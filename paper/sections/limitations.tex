@@ -1,0 +1,95 @@
+\section{Limitations and future work}
+\label{sec:limitations}
+
+\paragraph{The exact-token key is a layer-0 property, not a whole-store limit.} Every
+early result rested on the position-free layer-0 key being the raw token embedding, which
+makes retrieval \emph{there} an exact token match---the property that lets a single head
+recover a specific binding, keeps the read sparse, lets the store quantize and reuse across
+layers, and binds a store to its author (\S\ref{sec:transplant}). Read as a limitation of
+the store as a whole, though, that is too strong: it describes only the bottom of the
+stack. Layer 0 is the token; \emph{deeper layers are increasingly contextual, semantic
+representations}, and per-layer read/write (\S\ref{sec:method}, r103) engages every one of
+them---writing each depth's own state into the one shared store and reading it back. This
+is a clear, controlled win: per-depth values lift cold recall from \recall{80.8}
+(write-the-mean, one slot per token) to \recall{95.5}/\recall{98.9} over two seeds, with a
+residual-key control at \recall{0.2} isolating the cause as per-depth content addressed by
+the exact token. So the store is no longer a pure layer-0 token index---it carries
+token-exact content at the bottom and progressively semantic content with depth, and using
+all of it is strictly better. What remains genuinely outside the store is
+\emph{addressing by meaning without reasoning}: a synonym query against the token key is at
+chance (\recall{4}, r98), the embeddings barely separating synonyms from random words, and
+softening the read collapses the geometric basin rather than widening it. The working route
+to semantics is therefore reasoning, not matching---a chain-of-thought that emits the
+canonical form of a paraphrase from the weights, then reads it exactly: a parametric first
+hop plus a store second hop recalls a synonym-queried fact at \recall{90.8} (hop~1
+\recall{100}), with a broken-lexicon control collapsing hop~1 to \recall{2} (r99). Exact
+keys at the bottom, semantic representations with depth, and meaning supplied by
+CoT are complementary, and per-layer read/write is what puts the whole stack to work.
+
+\paragraph{Capacity: per-layer read/write pushes the frontier but does not remove it.}
+The store with a single mean-write value has a real capacity frontier: it holds full recall
+at 64 facts (\recall{96.3}) but at 128 never bootstraps (\recall{0.3}, flat to $10$k steps;
+warming even from the converged 64-fact model peaks near \recall{47} then collapses to
+\recall{3}, r88), unlike every earlier scaling cliff (r25/r66) which was under-training that
+more steps cleared. But that frontier belongs to the single mean-write value, not to the
+architecture: per-layer read/write, which gives each token $L$ slots (one per depth) rather
+than one, learns 128 facts to \recall{45.3} where the mean-write store is pinned at chance
+(r104)---a $150\times$ lift, carried by the deep read gates opening (layers 3--5 to
+$0.51$--$0.61$). It is a \emph{partial} win: \recall{45.3} is far short of the $\approx$95\%
+per-layer reaches at 32--64 facts, and it plateaus rather than climbing, so $128$ distinct
+facts remain genuinely hard. Per-layer write \emph{pushes} the capacity frontier
+substantially; it does not eliminate it. And the obvious capacity levers do not close the
+remaining gap (r105/r106): more attention heads land at \recall{43.8} (a null---the 4-head
+run tracks the 1-head trajectory step for step); a curriculum warm-started from the
+converged 64/32-fact model reaches \emph{exactly} \recall{45.3}, the cold ceiling, so the
+warm start only speeds the climb (the curriculum that broke every earlier fact-count cliff,
+r25/r49/r66, does not break this one---those were under-training, this is not); and doubling
+the width to $d{=}512$ ($3.4\times$ the parameters) gives \recall{47.5}, a real but marginal
+$+2$ points, replicated on two runs. Three independent levers all land $44$--$48\%$, so a
+single shared store binding $128$ distinct keys genuinely saturates near $45\%$ under the
+compute we ran: the frontier is real for a fixed single store, not a budget or bootstrapping
+artifact at that scale. But it is very likely an \emph{addressing}, not a storage, limit, and
+addressing is exactly what positional embeddings solve in an ordinary KV cache---many keys of
+similar content are told apart by position (learned, or RoPE's symmetric rotation of query and
+key). The same mechanism should apply here, and crucially it is \emph{not} the content-enriched
+fine key that failed (r89, which moved the key off the raw-token manifold and broke exact match):
+a positional or ordinal tag applied \emph{symmetrically} to the query and the stored key
+preserves the exact-token match and adds an orthogonal axis to separate collisions. We already
+have a working first instance---the recency read (r67) disambiguates same-key facts by an ordinal
+write-order tag (\recall{88.9}$\to$\recall{96.7})---so generalising that to a full
+positional/RoPE-style differentiation on the store is the natural way to push past $45\%$. The
+same frontier also shows up along the \emph{time} axis as a passkey write-order decay
+(\S\ref{sec:longcontext}): a fact written late into a saturated store is progressively lost,
+which decomposes into store saturation plus the fixed novelty write-gate---and the gate half is
+a \emph{fixable} write policy (a unique, always-novel key lifts the late tail fourfold on the
+strong model, r113; the rescue is model-dependent, absent on the weaker one whose rarest-token
+embeddings are too under-trained to key), so part of the long-context degradation is engineering
+rather than a fundamental limit. We did
+not run the positional differentiation, nor a debugged version of the structural levers (a first
+several-shared-stores implementation returned a buggy null, r109--r110, and more read heads
+\emph{on the store} we did not attempt), for want of compute rather than for any result
+suggesting they would fail; the single-store, single-mechanism $128$-key frontier is what is
+characterised here.
+
+\paragraph{Different models store the same facts incompatibly (a feature, restated).}
+\S\ref{sec:transplant} shows a store written by one model cannot be read by another: two
+independently trained models each read their own store at $\approx$\recall{100} and the
+other's at \recall{0.0}, both ways, though the facts are physically present. This is not a
+weakness to be fixed---it is direct confirmation of the stateless-weights / stateful-store
+thesis: a store's keys are its writer's token embeddings, so the \emph{same} facts are
+encoded completely differently under different weights. The one genuine open item is
+operational: a memory that must outlive a model version needs a re-encoding path---decode
+the store to its transcript (free, since the key sequence \emph{is} the transcript,
+\S\ref{sec:sleep}) and re-write it under the new weights---whose fidelity we have not yet
+measured.
+
+\paragraph{Measured, not yet literal---the engineering to push.} The long-context, pool,
+and quantization results (\S\ref{sec:longcontext}--\ref{sec:sharedkv}) are properties
+measured with a dense $q\!\cdot\!K$ scan and fp32 fake-quantization; the $\approx\!2$-slot
+candidate pool and the $4$-bit codes are real as \emph{properties} but not yet as speed and
+bytes---turning them into a true hashed / int4 kernel is the next build. Likewise a
+\emph{learned} salience gate for the write: a fixed exact-key rule was sufficient for the
+tasks here, but a model that learns what deserves storage is the natural generalisation, and
+the growable store (\S\ref{sec:longcontext}) plus consolidation (\S\ref{sec:sleep}) is the
+container it would fill. These are engineering rather than open scientific questions, but
+they are unbuilt.

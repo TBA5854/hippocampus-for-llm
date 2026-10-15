@@ -1,0 +1,8 @@
+r95 box1 starting in /home/adhavan_23bce0839/research/framework at 2026-09-21T07:42:26+05:30
+=== ar_4hop START 2026-09-21T07:42:26+05:30
+=== ar_4hop EXIT 0 2026-09-21T07:42:49+05:30
+AR 4-hop: final(own intermediates) 91.6%  per-hop ['98.4%', '96.1%', '93.9%', '91.6%']  n=640
+=== ar_5hop START 2026-09-21T07:42:49+05:30
+=== ar_5hop EXIT 0 2026-09-21T07:43:12+05:30
+AR 5-hop: final(own intermediates) 89.7%  per-hop ['97.2%', '95.5%', '93.8%', '91.6%', '89.7%']  n=640
+=== ROUND DONE 2026-09-21T07:43:12+05:30

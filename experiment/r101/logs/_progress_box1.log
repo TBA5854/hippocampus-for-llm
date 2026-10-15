@@ -1,0 +1,18 @@
+r101 box1 starting at 2026-09-21T13:01:16+05:30
+=== nseg=16 START 2026-09-21T13:01:16+05:30
+top-1         store= 1905 slots (15 windows)  touched=    1/1905  recall=100.0%
+top-2         store= 1905 slots (15 windows)  touched=    2/1905  recall=100.0%
+graded(all)   store= 1905 slots (15 windows)  touched= 1905/1905  recall= 85.4%
+=== nseg=64 START 2026-09-21T13:01:43+05:30
+top-1         store= 8001 slots (63 windows)  touched=    1/8001  recall=100.0%
+top-2         store= 8001 slots (63 windows)  touched=    2/8001  recall=100.0%
+graded(all)   store= 8001 slots (63 windows)  touched= 8001/8001  recall= 75.0%
+=== nseg=128 START 2026-09-21T13:02:51+05:30
+top-1         store=16129 slots (127 windows)  touched=    1/16129  recall=100.0%
+top-2         store=16129 slots (127 windows)  touched=    2/16129  recall=100.0%
+graded(all)   store=16129 slots (127 windows)  touched=16129/16129  recall= 64.6%
+=== nseg=200 START 2026-09-21T13:04:19+05:30
+top-1         store=25273 slots (199 windows)  touched=    1/25273  recall=100.0%
+top-2         store=25273 slots (199 windows)  touched=    2/25273  recall=100.0%
+graded(all)   store=25273 slots (199 windows)  touched=25273/25273  recall= 60.4%
+=== ROUND DONE 2026-09-21T13:07:53+05:30

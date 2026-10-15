@@ -1,0 +1,16 @@
+=== r65 ablate (keys vs values, r50_bpe16_s2) START 2026-09-18T22:46:16+05:30
+--- quant keys ---
+none   16bit (keys  )     512 B/slot  recall= 99.4%
+none    8bit (keys  )     256 B/slot  recall= 99.4%
+none    6bit (keys  )     192 B/slot  recall= 99.4%
+none    4bit (keys  )     128 B/slot  recall= 99.4%
+none    3bit (keys  )      96 B/slot  recall=  0.0%
+none    2bit (keys  )      64 B/slot  recall=  0.0%
+--- quant values ---
+none   16bit (values)     512 B/slot  recall= 99.4%
+none    8bit (values)     256 B/slot  recall= 99.4%
+none    6bit (values)     192 B/slot  recall= 99.4%
+none    4bit (values)     128 B/slot  recall= 99.4%
+none    3bit (values)      96 B/slot  recall= 99.4%
+none    2bit (values)      64 B/slot  recall= 23.1%
+=== ROUND DONE 2026-09-18T22:47:38+05:30

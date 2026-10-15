@@ -1,0 +1,37 @@
+hc=on  vocab=130  params=5.06M  trainable=4.87M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 7.0137  val 6.9678  ppl 1061.88  recall   3.8%  slot@1 100.0% mass 1.00 content-miss 96.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.114  s1:2.976  s2:2.976  s3:0.410]  gates=0:0.000
+step   500  train 6.2551  val 6.2177  ppl 501.53  recall   3.3%  slot@1 100.0% mass 1.00 content-miss 96.7% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:2.486  s1:2.342  s2:2.336  s3:0.130]  gates=0:0.012
+step   750  train 5.8003  val 5.9431  ppl 381.11  recall   2.8%  slot@1 100.0% mass 1.00 content-miss 97.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:2.201  s1:2.022  s2:2.018  s3:0.059]  gates=0:0.024
+step  1000  train 5.6626  val 5.6689  ppl 289.73  recall   6.4%  slot@1 100.0% mass 1.00 content-miss 93.6% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:2.047  s1:1.846  s2:1.841  s3:0.111]  gates=0:0.048
+step  1250  train 5.5628  val 5.7189  ppl 304.57  recall   5.8%  slot@1 100.0% mass 1.00 content-miss 94.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.999  s1:1.803  s2:1.783  s3:0.058]  gates=0:0.060
+step  1500  train 5.3749  val 5.4281  ppl 227.71  recall   5.3%  slot@1 100.0% mass 1.00 content-miss 94.7% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.932  s1:1.723  s2:1.706  s3:0.061]  gates=0:0.065
+step  1750  train 4.9108  val 5.1990  ppl 181.10  recall  13.8%  slot@1 100.0% mass 1.00 content-miss 86.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.886  s1:1.669  s2:1.660  s3:0.061]  gates=0:0.077
+step  2000  train 4.4464  val 4.3064  ppl 74.17  recall  28.4%  slot@1 100.0% mass 1.00 content-miss 71.6% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.852  s1:1.627  s2:1.612  s3:0.048]  gates=0:0.092
+step  2250  train 2.7052  val 2.8498  ppl 17.29  recall  61.9%  slot@1 100.0% mass 1.00 content-miss 38.1% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.838  s1:1.614  s2:1.597  s3:0.039]  gates=0:0.112
+step  2500  train 2.1193  val 2.0954  ppl 8.13  recall  79.5%  slot@1 100.0% mass 1.00 content-miss 20.5% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.826  s1:1.602  s2:1.585  s3:0.034]  gates=0:0.133
+step  2750  train 1.5516  val 1.8261  ppl 6.21  recall  85.2%  slot@1 100.0% mass 1.00 content-miss 14.8% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.803  s1:1.582  s2:1.563  s3:0.032]  gates=0:0.153
+step  3000  train 1.4863  val 1.5798  ppl 4.85  recall  91.6%  slot@1 100.0% mass 1.00 content-miss  8.4% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.799  s1:1.572  s2:1.553  s3:0.032]  gates=0:0.168
+step  3250  train 1.1791  val 1.5028  ppl 4.49  recall  92.5%  slot@1 100.0% mass 1.00 content-miss  7.5% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.790  s1:1.559  s2:1.544  s3:0.030]  gates=0:0.184
+step  3500  train 1.1514  val 1.3872  ppl 4.00  recall  96.6%  slot@1 100.0% mass 1.00 content-miss  3.4% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.817  s1:1.590  s2:1.569  s3:0.029]  gates=0:0.196
+step  3750  train 1.4630  val 1.3924  ppl 4.02  recall  96.7%  slot@1 100.0% mass 1.00 content-miss  3.3% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.800  s1:1.576  s2:1.557  s3:0.029]  gates=0:0.207
+step  4000  train 1.0478  val 1.2862  ppl 3.62  recall  98.6%  slot@1 100.0% mass 1.00 content-miss  1.4% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.785  s1:1.551  s2:1.533  s3:0.028]  gates=0:0.214
+step  4250  train 1.1445  val 1.2436  ppl 3.47  recall  99.4%  slot@1 100.0% mass 1.00 content-miss  0.6% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.785  s1:1.555  s2:1.535  s3:0.028]  gates=0:0.218
+step  4500  train 1.0738  val 1.2220  ppl 3.39  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.782  s1:1.544  s2:1.526  s3:0.028]  gates=0:0.220
+step  4750  train 0.9646  val 1.2181  ppl 3.38  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.776  s1:1.538  s2:1.520  s3:0.028]  gates=0:0.219
+step  5000  train 0.9446  val 1.2127  ppl 3.36  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.770  s1:1.532  s2:1.515  s3:0.028]  gates=0:0.220
+step  5250  train 0.9173  val 1.2232  ppl 3.40  recall  99.8%  slot@1 100.0% mass 1.00 content-miss  0.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.778  s1:1.542  s2:1.525  s3:0.028]  gates=0:0.220
+step  5500  train 0.9106  val 1.2244  ppl 3.40  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.785  s1:1.550  s2:1.531  s3:0.028]  gates=0:0.219
+step  5750  train 0.9055  val 1.2353  ppl 3.44  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.801  s1:1.563  s2:1.549  s3:0.028]  gates=0:0.219
+step  6000  train 0.8852  val 1.2367  ppl 3.44  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.801  s1:1.567  s2:1.550  s3:0.028]  gates=0:0.218
+step  6250  train 0.8818  val 1.2451  ppl 3.47  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.812  s1:1.577  s2:1.563  s3:0.028]  gates=0:0.217
+step  6500  train 0.8503  val 1.2529  ppl 3.50  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.821  s1:1.589  s2:1.574  s3:0.028]  gates=0:0.216
+step  6750  train 0.8353  val 1.2588  ppl 3.52  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.828  s1:1.597  s2:1.582  s3:0.028]  gates=0:0.215
+step  7000  train 0.8247  val 1.2649  ppl 3.54  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.836  s1:1.606  s2:1.589  s3:0.028]  gates=0:0.215
+step  7250  train 0.8447  val 1.2685  ppl 3.56  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.840  s1:1.611  s2:1.595  s3:0.028]  gates=0:0.215
+step  7500  train 0.8268  val 1.2689  ppl 3.56  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.841  s1:1.611  s2:1.595  s3:0.028]  gates=0:0.214
+step  7750  train 0.8230  val 1.2690  ppl 3.56  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.841  s1:1.611  s2:1.596  s3:0.028]  gates=0:0.214
+step  8000  train 0.8202  val 1.2693  ppl 3.56  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.842  s1:1.611  s2:1.596  s3:0.028]  gates=0:0.214
+done in 1328s
+-> experiment/r11/ckpt/r11_skip_s1.pt
+-> experiment/r11/results/r11_skip_s1.json

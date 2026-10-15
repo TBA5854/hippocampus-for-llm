@@ -1,0 +1,21 @@
+hc=off  vocab=130  params=4.80M  trainable=4.80M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 6.6685  val 6.6336  ppl 760.24  recall   2.3%  [s0:3.465  s1:2.650  s2:2.652  s3:0.165]
+step   500  train 5.6869  val 5.6810  ppl 293.24  recall   2.5%  [s0:0.722  s1:2.239  s2:2.242  s3:0.061]
+step   750  train 5.3928  val 5.4843  ppl 240.88  recall   2.2%  [s0:0.544  s1:1.944  s2:1.951  s3:0.057]
+step  1000  train 5.4088  val 5.4062  ppl 222.78  recall   1.9%  [s0:0.507  s1:1.777  s2:1.788  s3:0.056]
+step  1250  train 5.2869  val 5.3380  ppl 208.10  recall   3.3%  [s0:0.463  s1:1.690  s2:1.708  s3:0.055]
+step  1500  train 5.0907  val 5.2994  ppl 200.21  recall   2.5%  [s0:0.458  s1:1.612  s2:1.633  s3:0.055]
+step  1750  train 5.1636  val 5.2539  ppl 191.30  recall   4.1%  [s0:0.451  s1:1.565  s2:1.586  s3:0.055]
+step  2000  train 5.1477  val 5.2313  ppl 187.03  recall   2.7%  [s0:0.447  s1:1.531  s2:1.553  s3:0.055]
+step  2250  train 5.1357  val 5.2362  ppl 187.96  recall   2.7%  [s0:0.445  s1:1.513  s2:1.531  s3:0.055]
+step  2500  train 5.1319  val 5.2121  ppl 183.48  recall   4.1%  [s0:0.443  s1:1.497  s2:1.517  s3:0.055]
+step  2750  train 5.0869  val 5.2110  ppl 183.28  recall   2.5%  [s0:0.442  s1:1.481  s2:1.500  s3:0.055]
+step  3000  train 5.0737  val 5.2054  ppl 182.26  recall   3.1%  [s0:0.441  s1:1.477  s2:1.498  s3:0.055]
+step  3250  train 5.0577  val 5.1990  ppl 181.08  recall   2.3%  [s0:0.440  s1:1.472  s2:1.493  s3:0.055]
+step  3500  train 5.0586  val 5.1983  ppl 180.97  recall   3.0%  [s0:0.440  s1:1.470  s2:1.491  s3:0.055]
+step  3750  train 5.0317  val 5.1985  ppl 180.99  recall   2.5%  [s0:0.440  s1:1.468  s2:1.489  s3:0.055]
+step  4000  train 5.0349  val 5.1978  ppl 180.88  recall   2.5%  [s0:0.440  s1:1.467  s2:1.488  s3:0.055]
+done in 366s
+-> experiment/r4/ckpt/r4_f8_off.pt
+-> experiment/r4/results/r4_f8_off.json

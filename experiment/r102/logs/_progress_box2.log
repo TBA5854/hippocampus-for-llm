@@ -1,0 +1,6 @@
+r102 box2 starting at 2026-09-21T14:45:02+05:30
+SKIP rare_ns200
+SKIP normal_ns200
+SKIP rare_ns1000
+SKIP normal_ns1000
+=== rare_ns3000 (nseg 3000, topk 1) START 2026-09-21T14:45:02+05:30

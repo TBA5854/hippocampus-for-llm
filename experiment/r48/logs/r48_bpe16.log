@@ -1,0 +1,19 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+hc=on  vocab=8192  params=7.13M  trainable=6.93M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 14.7265  val 14.8382  ppl 2780738.06  recall   0.0%  char   0.0% 0 ce 7.800  [s0:7.734  s1:6.212  s2:6.208  s3:0.196]  gates=0:0.011
+step  1000  train 14.3301  val 14.4383  ppl 1864200.46  recall   0.2%  char   0.2% 0 ce 7.756  [s0:7.625  s1:5.619  s2:5.605  s3:0.125]  gates=0:0.025
+step  1500  train 13.9072  val 14.0156  ppl 1221566.60  recall   0.2%  char   0.2% 0 ce 7.504  [s0:7.598  s1:5.422  s2:5.402  s3:0.123]  gates=0:0.065
+step  2000  train 13.8488  val 13.8667  ppl 1052493.19  recall   0.2%  char   0.2% 0 ce 7.427  [s0:7.595  s1:5.324  s2:5.292  s3:0.119]  gates=0:0.083
+step  2500  train 13.4477  val 13.4572  ppl 698878.10  recall   0.2%  char   0.2% 0 ce 7.126  [s0:7.568  s1:5.271  s2:5.243  s3:0.116]  gates=0:0.113
+step  3000  train 12.6561  val 12.9535  ppl 422319.99  recall   2.7%  char   2.7% 3 ce 6.751  [s0:7.552  s1:5.215  s2:5.180  s3:0.114]  gates=0:0.164
+step  3500  train 11.7862  val 12.3230  ppl 224808.99  recall   8.4%  char   8.4% 8 ce 6.265  [s0:7.543  s1:5.179  s2:5.134  s3:0.110]  gates=0:0.203
+step  4000  train 11.3624  val 11.7552  ppl 127419.02  recall  19.4%  char  19.4% 19 ce 5.818  [s0:7.539  s1:5.169  s2:5.120  s3:0.106]  gates=0:0.229
+step  4500  train 10.8699  val 11.2477  ppl 76700.36  recall  31.1%  char  31.1% 31 ce 5.423  [s0:7.535  s1:5.139  s2:5.097  s3:0.103]  gates=0:0.246
+step  5000  train 11.0171  val 10.7512  ppl 46686.44  recall  45.6%  char  45.6% 46 ce 5.034  [s0:7.531  s1:5.123  s2:5.081  s3:0.099]  gates=0:0.254
+step  5500  train 10.4981  val 10.4980  ppl 36243.24  recall  52.3%  char  52.3% 52 ce 4.838  [s0:7.528  s1:5.109  s2:5.069  s3:0.098]  gates=0:0.258
+step  6000  train 10.3803  val 10.4598  ppl 34884.49  recall  52.8%  char  52.8% 53 ce 4.808  [s0:7.528  s1:5.106  s2:5.066  s3:0.098]  gates=0:0.259
+done in 831s
+-> experiment/r48/ckpt/r48_bpe16.pt
+-> experiment/r48/results/r48_bpe16.json

@@ -1,0 +1,12 @@
+r111 box2 start 2026-09-22T17:56:23+05:30
+r111 box2 start 2026-09-22T17:56:23+05:30
+=== box2_ns1000 (nseg 1000, fixed M=140000) START 2026-09-22T17:56:23+05:30
+=== box2_ns1000 EXIT 0 2026-09-22T18:01:09+05:30
+top-1         store=126873 slots (999 windows)  touched=    1/126873  recall=100.0%
+=== box2_ns3000 (nseg 3000, fixed M=400000) START 2026-09-22T18:01:09+05:30
+=== box2_ns3000 EXIT 0 2026-09-22T18:38:38+05:30
+top-1         store=380873 slots (2999 windows)  touched=    1/380873  recall=100.0%
+=== box2_ns7800 (nseg 7800, fixed M=1024000) START 2026-09-22T18:38:38+05:30
+=== box2_ns7800 EXIT 0 2026-09-22T22:44:44+05:30
+top-1         store=990473 slots (7799 windows)  touched=    1/990473  recall=100.0%
+=== ROUND DONE 2026-09-22T22:44:44+05:30

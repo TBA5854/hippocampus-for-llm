@@ -1,0 +1,48 @@
+r98 box1 starting in /home/adhavan_23bce0839/research/framework at 2026-09-21T10:30:28+05:30
+=== sem_d256_L6 START 2026-09-21T10:30:28+05:30
+  exact (query=word)     recall  41.7%
+  synonym (query=synonym) recall   4.2%   [cos(word,syn)=0.906]
+  random (query=random)   recall   0.0%   [cos(word,rnd)=0.870]  chance~4.2%
+=== sem_d512_L2 START 2026-09-21T10:30:45+05:30
+  exact (query=word)     recall  54.2%
+  synonym (query=synonym) recall   4.2%   [cos(word,syn)=0.754]
+  random (query=random)   recall   0.0%   [cos(word,rnd)=0.682]  chance~4.2%
+=== sem_d384_L3 START 2026-09-21T10:31:03+05:30
+  exact (query=word)     recall  50.0%
+  synonym (query=synonym) recall   8.3%   [cos(word,syn)=0.827]
+  random (query=random)   recall   0.0%   [cos(word,rnd)=0.785]  chance~4.2%
+=== sem_d192_L12 START 2026-09-21T10:31:21+05:30
+  exact (query=word)     recall  41.7%
+  synonym (query=synonym) recall   4.2%   [cos(word,syn)=0.891]
+  random (query=random)   recall   0.0%   [cos(word,rnd)=0.839]  chance~4.2%
+=== beta_8 START 2026-09-21T10:31:39+05:30
+beta=8:
+nn_rank=0  neighbor_cos=1.000  recall= 96.9%  n=480
+nn_rank=1  neighbor_cos=0.832  recall=  0.6%  n=480
+nn_rank=2  neighbor_cos=0.823  recall=  0.2%  n=480
+nn_rank=3  neighbor_cos=0.818  recall=  0.2%  n=480
+=== beta_16 START 2026-09-21T10:32:01+05:30
+beta=16:
+nn_rank=0  neighbor_cos=1.000  recall= 98.1%  n=480
+nn_rank=1  neighbor_cos=0.832  recall= 33.1%  n=480
+nn_rank=2  neighbor_cos=0.823  recall= 20.0%  n=480
+nn_rank=3  neighbor_cos=0.818  recall= 15.0%  n=480
+=== beta_32 START 2026-09-21T10:32:24+05:30
+beta=32:
+nn_rank=0  neighbor_cos=1.000  recall= 98.5%  n=480
+nn_rank=1  neighbor_cos=0.832  recall= 70.6%  n=480
+nn_rank=2  neighbor_cos=0.823  recall= 57.9%  n=480
+nn_rank=3  neighbor_cos=0.818  recall= 51.0%  n=480
+=== beta_64 START 2026-09-21T10:32:47+05:30
+beta=64:
+nn_rank=0  neighbor_cos=1.000  recall= 98.8%  n=480
+nn_rank=1  neighbor_cos=0.832  recall= 74.4%  n=480
+nn_rank=2  neighbor_cos=0.823  recall= 62.9%  n=480
+nn_rank=3  neighbor_cos=0.818  recall= 55.2%  n=480
+=== beta_128 START 2026-09-21T10:33:10+05:30
+beta=128:
+nn_rank=0  neighbor_cos=1.000  recall= 99.0%  n=480
+nn_rank=1  neighbor_cos=0.832  recall= 74.8%  n=480
+nn_rank=2  neighbor_cos=0.823  recall= 62.5%  n=480
+nn_rank=3  neighbor_cos=0.818  recall= 54.8%  n=480
+=== ROUND DONE 2026-09-21T10:33:33+05:30

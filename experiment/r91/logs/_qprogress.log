@@ -1,0 +1,4 @@
+QRUN START 2026-09-21T02:43:36+05:30 root=/home/<user>/fw rdir=experiment/r91 pid=565857
+=== RUN r91_C8_exact_cold START 2026-09-21T02:43:36+05:30
+=== RUN r91_C8_exact_cold EXIT 0 2026-09-21T03:26:26+05:30
+=== RUN r91_C8_fine_cold START 2026-09-21T03:26:26+05:30

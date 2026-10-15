@@ -1,0 +1,68 @@
+\section{Cross-segment recall on real language}
+\label{sec:language}
+
+\subsection{Task}
+
+A batch is a sequence of segments. The first segment states $n$ facts---key/value
+pairs---embedded once; intervening segments are unrelated PG-19 prose that acts as
+distractor filler; the final segment is a query that contains \emph{no} fact, only
+a marker and one key, and asks the model to produce the corresponding value. Since
+segments do not cross-attend and the query segment holds no facts, a correct answer
+can only come from the store. We report exact-match recall and always run two
+matched controls: store-disabled (the read is off) and scrambled-store (each
+example reads a neighbour's store). Both must sit at chance for the number to mean
+retrieval, and they do.
+
+\subsection{From synthetic symbols to words}
+
+On a synthetic multi-query associative recall task with single-symbol keys the
+block reaches \recall{100} at 8 facts on three seeds, with both controls at
+chance and the store reloaded in a fresh process at no loss. Moving to real
+language exposed two obstacles.
+
+\paragraph{The multi-token-key tax.} A fact key written in character-level text is
+\emph{several} tokens, and the only token available at the retrieval point is the
+shared delimiter; the read then becomes a uniform draw over the fact set, so
+per-fact accuracy tracks $1/n$. Character-level recall consequently declines
+monotonically with fact count (4 facts \recall{90}, 8 \recall{79}, 12 \recall{62},
+13 \recall{55}) and caps around 13 facts. A single-token \emph{sub-word} (BPE)
+key removes this tax: the key is one token again, competing directly with the
+prose vocabulary. Cold, an 8-fact BPE model already recalls \recall{49.8} versus
+\recall{10.3} for character keys---a $5\times$ gain with no per-character penalty.
+
+\paragraph{The fact-count cliff is bootstrapping, not capacity.} Even with clean
+keys, cold training exhibits a sharp cliff: recall is high at a few facts and
+collapses to chance beyond a threshold, while the retrieval always lands on the
+\emph{correct} slot (matching is intact; only the content is missing). Enlarging
+the store does not help---the same recall is byte-identical at $2\times$ and
+$4\times$ capacity---so the cliff is a gate/decoder bootstrapping deadlock, not a
+capacity limit. A \emph{warm-start curriculum} escapes it: training a harder
+fact-count from the checkpoint of an easier one ladders past the cliff. The
+curriculum is the escape route for this single-site placement, but not the only
+one---multi-layer placement clears the same cliff cold given a larger training
+budget (\S\ref{sec:placement}), so the curriculum is best read as a
+training-efficiency shortcut rather than a strict requirement.
+
+\subsection{Results}
+
+With single-token keys and the curriculum, the store recalls real-language facts
+stated once and queried entirely out of context (\tabref{tab:language}):
+\recall{100} at 8, 16 and 32 facts and \recall{99.1} at 64, replicated across two
+seeds, with the matched scrambled control at chance ($0.16\%$) even at 64 facts.
+Persistence holds on the language store: written, killed, reloaded in a fresh
+process, recall equals in-process (\recall{100}); a mismatched store file falls to
+$0\%$.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+& 8 facts & 16 & 32 & 64 & scrambled (64) \\
+\midrule
+BPE + curriculum & \recall{100} & \recall{100} & \recall{100} & \recall{99.1} & $0.16\%$ \\
+\bottomrule
+\end{tabular}
+\caption{Real-language recall: facts stated once in PG-19 prose, queried out of
+context, answered from the store. Two seeds; matched scrambled control at chance.}
+\label{tab:language}
+\end{table}

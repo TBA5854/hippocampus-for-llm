@@ -1,0 +1,7 @@
+r99 box1 starting in /home/adhavan_23bce0839/research/framework at 2026-09-21T10:48:54+05:30
+=== r99_semchain START 2026-09-21T10:48:54+05:30
+=== r99_semchain EXIT 0 2026-09-21T12:01:12+05:30
+step 10000  train 2.2750  val 2.5426  ppl 12.71  recall  90.8%  mem 176/1024  char  95.4% 100/91 ce 0.200  [s0:0.493  s1:4.311  s2:4.332  s3:0.036]  gates=0:0.671,1:0.100,2:0.013,3:0.038,4:0.134,5:0.074
+=== r99_semchain_broken START 2026-09-21T12:01:12+05:30
+=== r99_semchain_broken EXIT 0 2026-09-21T12:30:27+05:30
+=== ROUND DONE 2026-09-21T12:30:27+05:30

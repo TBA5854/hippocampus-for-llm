@@ -1,0 +1,10 @@
+=== r64 reuse (per-layer vs anchor) START 2026-09-18T22:40:32+05:30
+--- per-layer rebuild (anchor none) ---
+none    store=  381  candidates=   381.0/381  recall=100.0%
+token   store=  381  candidates=     1.0/381  recall=100.0%
+ann     store=  381  candidates=     1.5/381  recall=100.0%
+--- cross-layer reuse (anchor 0) ---
+none    store=  381  candidates=   381.0/381  recall=100.0%
+token   store=  381  candidates=     1.0/381  recall=100.0%
+ann     store=  381  candidates=     1.5/381  recall=100.0%
+=== ROUND DONE 2026-09-18T22:40:40+05:30

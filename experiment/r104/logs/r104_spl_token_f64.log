@@ -1,0 +1,27 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/<user>/fw/mech/train.py", line 637, in <module>
+    main()
+  File "/home/<user>/fw/mech/train.py", line 543, in main
+    model = build(args, vocab, device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/mech/train.py", line 98, in build
+    return TinyGPT(gcfg, mem).to(device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1388, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1036, in _apply
+    self._buffers[key] = fn(buf)
+                         ^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1374, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: NVML_SUCCESS == DriverAPI::get()->nvmlInit_v2_() INTERNAL ASSERT FAILED at "/__w/pytorch/pytorch/c10/cuda/PeerToPeerAccess.cpp":83, please report a bug to PyTorch. 

@@ -1,0 +1,14 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+initialised from experiment/r79/ckpt/r79_shared_gate_recall.pt
+hc=on  vocab=8192  params=7.78M  trainable=7.26M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 7.9431  val 8.2639  ppl 3881.34  recall   0.0%  mem 173/2048  char  49.1% 98/0 ce 4.484  [s0:0.987  s1:4.762  s2:4.744  s3:0.140]  gates=0:0.897,1:0.124,2:0.038,3:0.099,4:0.214,5:0.098
+step  1000  train 8.4009  val 8.2207  ppl 3717.26  recall   0.0%  mem 173/2048  char  48.6% 97/0 ce 4.473  [s0:0.979  s1:4.708  s2:4.691  s3:0.140]  gates=0:0.960,1:0.124,2:0.033,3:0.082,4:0.190,5:0.046
+step  1500  train 8.1060  val 8.4148  ppl 4513.41  recall   0.0%  mem 173/2048  char  46.2% 92/0 ce 4.641  [s0:0.975  s1:4.672  s2:4.657  s3:0.150]  gates=0:1.030,1:0.126,2:0.036,3:0.083,4:0.196,5:0.043
+step  2000  train 8.0807  val 8.5476  ppl 5154.57  recall   0.0%  mem 173/2048  char  43.6% 87/0 ce 4.756  [s0:0.972  s1:4.650  s2:4.636  s3:0.151]  gates=0:1.077,1:0.126,2:0.036,3:0.088,4:0.203,5:0.044
+step  2500  train 7.9408  val 8.4901  ppl 4866.40  recall   0.0%  mem 173/2048  char  43.6% 87/0 ce 4.724  [s0:0.970  s1:4.618  s2:4.604  s3:0.151]  gates=0:1.096,1:0.126,2:0.037,3:0.090,4:0.206,5:0.044
+step  3000  train 8.2694  val 8.4594  ppl 4719.41  recall   0.0%  mem 173/2048  char  44.0% 88/0 ce 4.701  [s0:0.969  s1:4.614  s2:4.598  s3:0.149]  gates=0:1.099,1:0.125,2:0.037,3:0.091,4:0.207,5:0.044
+done in 1399s
+-> experiment/r93/ckpt/r93_chain_2hop_f64_broken.pt
+-> experiment/r93/results/r93_chain_2hop_f64_broken.json

@@ -1,0 +1,8 @@
+{
+  "n_pairs": 24,
+  "recall_exact": 0.5,
+  "recall_synonym": 0.0,
+  "recall_random": 0.0,
+  "cos_synonym": 0.9086048007011414,
+  "cos_random": 0.8792403936386108
+}

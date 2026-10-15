@@ -1,0 +1,36 @@
+=== H51a persistence (32-fact 100% model) START 2026-09-18T14:08:24+05:30
+{
+  "in_process_recall": 1.0,
+  "n": 160,
+  "fingerprint": "95c41ec21e7e2a237a231bac495063dea619db8f021c2285e25397646855b642",
+  "store_bytes_per_file": 16781205,
+  "slots_per_example": 381
+}
+{
+  "reloaded_recall": 1.0,
+  "in_process_recall": 1.0,
+  "n": 160
+}
+{
+  "mismatched_store_recall": 0.0,
+  "in_process_recall": 1.0,
+  "n": 160
+}
+=== H51b context sweep (64-fact model) START 2026-09-18T14:09:09+05:30
+M=  512  n_seg=  4  bridge=  3win (  384 tok)  slots=381/512  recall= 98.8%
+M=  512  n_seg=  8  bridge=  7win (  896 tok)  slots=512/512  recall=  0.0%
+M=  512  n_seg= 16  bridge= 15win ( 1920 tok)  slots=512/512  recall=  0.0%
+M=  512  n_seg= 32  bridge= 31win ( 3968 tok)  slots=512/512  recall=  0.0%
+M= 1024  n_seg=  4  bridge=  3win (  384 tok)  slots=381/1024  recall= 98.8%
+M= 1024  n_seg=  8  bridge=  7win (  896 tok)  slots=889/1024  recall= 98.8%
+M= 1024  n_seg= 16  bridge= 15win ( 1920 tok)  slots=1024/1024  recall=  0.0%
+M= 1024  n_seg= 32  bridge= 31win ( 3968 tok)  slots=1024/1024  recall=  0.0%
+M= 2048  n_seg=  4  bridge=  3win (  384 tok)  slots=381/2048  recall= 98.8%
+M= 2048  n_seg=  8  bridge=  7win (  896 tok)  slots=889/2048  recall= 98.8%
+M= 2048  n_seg= 16  bridge= 15win ( 1920 tok)  slots=1905/2048  recall= 93.8%
+M= 2048  n_seg= 32  bridge= 31win ( 3968 tok)  slots=2048/2048  recall=  0.0%
+M= 4096  n_seg=  4  bridge=  3win (  384 tok)  slots=381/4096  recall= 98.8%
+M= 4096  n_seg=  8  bridge=  7win (  896 tok)  slots=889/4096  recall= 98.8%
+M= 4096  n_seg= 16  bridge= 15win ( 1920 tok)  slots=1905/4096  recall= 93.8%
+M= 4096  n_seg= 32  bridge= 31win ( 3968 tok)  slots=3937/4096  recall= 90.0%
+=== ROUND DONE 2026-09-18T14:09:44+05:30

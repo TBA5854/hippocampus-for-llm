@@ -1,0 +1,37 @@
+hc=on  vocab=337  params=5.11M  trainable=4.92M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 8.9560  val 8.9403  ppl 7633.78  recall   0.2%  [s0:3.378  s1:3.056  s2:3.049  s3:0.614]  gates=0:0.000
+step   500  train 7.9285  val 7.8464  ppl 2556.63  recall   0.9%  [s0:2.466  s1:2.143  s2:2.131  s3:0.162]  gates=0:0.007
+step   750  train 7.4389  val 7.4695  ppl 1753.69  recall   0.3%  [s0:2.023  s1:1.635  s2:1.635  s3:0.078]  gates=0:0.011
+step  1000  train 7.1423  val 7.2312  ppl 1381.92  recall   0.8%  [s0:1.761  s1:1.340  s2:1.339  s3:0.078]  gates=0:0.013
+step  1250  train 7.1208  val 7.1330  ppl 1252.61  recall   0.9%  [s0:1.652  s1:1.214  s2:1.215  s3:0.077]  gates=0:0.021
+step  1500  train 7.1032  val 7.0727  ppl 1179.32  recall   1.1%  [s0:1.591  s1:1.137  s2:1.141  s3:0.078]  gates=0:0.033
+step  1750  train 6.5834  val 6.7290  ppl 836.33  recall   1.9%  [s0:1.566  s1:1.112  s2:1.111  s3:0.075]  gates=0:0.037
+step  2000  train 6.9806  val 6.8650  ppl 958.10  recall   1.1%  [s0:1.567  s1:1.110  s2:1.110  s3:0.078]  gates=0:0.044
+step  2250  train 6.5426  val 6.4634  ppl 641.25  recall   2.8%  [s0:1.511  s1:1.055  s2:1.056  s3:0.076]  gates=0:0.050
+step  2500  train 6.3230  val 6.4214  ppl 614.86  recall   2.3%  [s0:1.489  s1:1.026  s2:1.029  s3:0.075]  gates=0:0.054
+step  2750  train 6.3227  val 6.3815  ppl 590.79  recall   2.2%  [s0:1.471  s1:1.016  s2:1.015  s3:0.074]  gates=0:0.057
+step  3000  train 5.9703  val 6.1551  ppl 471.10  recall   2.8%  [s0:1.441  s1:0.977  s2:0.975  s3:0.077]  gates=0:0.060
+step  3250  train 5.7461  val 6.0652  ppl 430.62  recall   2.8%  [s0:1.419  s1:0.955  s2:0.952  s3:0.072]  gates=0:0.064
+step  3500  train 5.9996  val 6.0346  ppl 417.62  recall   2.8%  [s0:1.406  s1:0.940  s2:0.937  s3:0.071]  gates=0:0.068
+step  3750  train 6.1796  val 6.0661  ppl 431.00  recall   3.3%  [s0:1.403  s1:0.940  s2:0.942  s3:0.072]  gates=0:0.073
+step  4000  train 5.5251  val 5.8609  ppl 351.03  recall   6.7%  [s0:1.386  s1:0.914  s2:0.917  s3:0.071]  gates=0:0.079
+step  4250  train 5.5120  val 5.4640  ppl 236.04  recall   7.5%  [s0:1.377  s1:0.902  s2:0.904  s3:0.069]  gates=0:0.084
+step  4500  train 4.9212  val 4.9526  ppl 141.55  recall  16.1%  [s0:1.369  s1:0.894  s2:0.895  s3:0.065]  gates=0:0.089
+step  4750  train 4.4304  val 4.5588  ppl 95.46  recall  21.1%  [s0:1.366  s1:0.887  s2:0.889  s3:0.063]  gates=0:0.094
+step  5000  train 4.2297  val 4.1136  ppl 61.16  recall  31.6%  [s0:1.360  s1:0.881  s2:0.882  s3:0.059]  gates=0:0.097
+step  5250  train 3.6168  val 3.8740  ppl 48.14  recall  37.0%  [s0:1.361  s1:0.884  s2:0.884  s3:0.058]  gates=0:0.101
+step  5500  train 3.4369  val 3.3510  ppl 28.53  recall  50.5%  [s0:1.357  s1:0.877  s2:0.879  s3:0.055]  gates=0:0.104
+step  5750  train 2.8686  val 2.9146  ppl 18.44  recall  63.3%  [s0:1.354  s1:0.874  s2:0.877  s3:0.052]  gates=0:0.106
+step  6000  train 2.6758  val 2.6519  ppl 14.18  recall  69.7%  [s0:1.351  s1:0.873  s2:0.873  s3:0.050]  gates=0:0.108
+step  6250  train 2.2366  val 2.4571  ppl 11.67  recall  72.5%  [s0:1.348  s1:0.869  s2:0.871  s3:0.049]  gates=0:0.109
+step  6500  train 1.4940  val 2.2897  ppl 9.87  recall  76.7%  [s0:1.347  s1:0.868  s2:0.870  s3:0.048]  gates=0:0.110
+step  6750  train 1.6732  val 2.1557  ppl 8.63  recall  78.6%  [s0:1.344  s1:0.865  s2:0.867  s3:0.047]  gates=0:0.111
+step  7000  train 1.9257  val 2.1072  ppl 8.23  recall  79.8%  [s0:1.342  s1:0.862  s2:0.865  s3:0.047]  gates=0:0.111
+step  7250  train 1.4340  val 2.0451  ppl 7.73  recall  81.1%  [s0:1.340  s1:0.861  s2:0.863  s3:0.047]  gates=0:0.111
+step  7500  train 1.4810  val 2.0142  ppl 7.49  recall  82.2%  [s0:1.339  s1:0.859  s2:0.862  s3:0.046]  gates=0:0.111
+step  7750  train 1.4615  val 2.0023  ppl 7.41  recall  82.5%  [s0:1.339  s1:0.859  s2:0.862  s3:0.046]  gates=0:0.111
+step  8000  train 1.8658  val 1.9991  ppl 7.38  recall  82.5%  [s0:1.338  s1:0.859  s2:0.862  s3:0.046]  gates=0:0.111
+done in 830s
+-> experiment/r31/ckpt/r31_ep_m288_full.pt
+-> experiment/r31/results/r31_ep_m288_full.json

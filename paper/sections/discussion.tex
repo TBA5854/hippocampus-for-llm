@@ -1,0 +1,40 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+
+\paragraph{Measured versus literal.} The compute and memory wins of
+\S\ref{sec:sharedkv} are \emph{measured}: the candidate-pool probe reports how many
+candidates a real index would score but still computes $q\!\cdot\!K$ densely to
+obtain the recall number, and the quantization probe fake-quantizes in fp32. The
+results establish that recall survives the pool and 4 bits; realising the actual
+speedup and byte savings needs a genuine token-hash / LSH kernel and int4 storage.
+That is engineering, not a further scientific claim, but it is not done here.
+
+\paragraph{Eval-time read path.} The pool and quantization are applied at
+evaluation on models trained with the plain dense, full-precision read. Evaluation
+showed no gap, so we did not need to train with them; whether training \emph{with}
+the pooled/quantized read helps at harder settings is open.
+
+\paragraph{Curriculum is an optimisation, not a requirement.} We initially reported
+that the warm-start curriculum was needed for full recall on real language. Running
+the cold multi-layer model to a larger budget overturns this: it reaches
+\recall{99.7} at 16 facts and \recall{98.0} at 32 on its own, through a delayed
+phase transition, and the curriculum reaches the same endpoint in roughly half the
+steps (\S\ref{sec:placement}). So the curriculum buys training efficiency, not
+capability. This is a caution as much as a result: a plateau before a delayed
+transition is easy to mistake for a hard bottleneck, and the ``embedding
+competition'' wall we posited was partly an under-training artifact. How the
+transition step scales with fact count, model size, and seed---and whether a
+principled schedule beats both cold-long and the hand-built ladder---remains open.
+
+\paragraph{The exact-key constraint.} The layer-0 exact-token key is both the
+enabling property and a limitation: it makes retrieval exact and cheap but forbids
+contextual keys and pattern separation, and top-$1$ sparse reading works precisely
+because the answer slot dominates an exact-match ranking. On tasks with genuinely
+fuzzy keys a larger pool (the LSH index, $k>1$) is needed, and the clean $O(1)$
+token hash no longer applies.
+
+\paragraph{Scope.} Some placement and breaking-point results are on a synthetic
+associative-recall task; the flagship recall, long-context, sparse-read, and
+shared-KV results are on real PG-19 language. The model is small (6 layers,
+$256$-d, single head); we have not tested scale, and the consolidation/sleep
+machinery is validated only on the synthetic store.

@@ -1,0 +1,19 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+hc=on  vocab=8192  params=7.13M  trainable=6.93M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 14.0743  val 14.2361  ppl 1522886.46  recall   0.0%  char   0.0% 0 ce 7.876  [s0:4.921  s1:6.221  s2:6.221  s3:0.204]  gates=0:0.028
+step  1000  train 12.8534  val 12.9885  ppl 437350.85  recall   0.0%  char   0.0% 0 ce 7.818  [s0:1.509  s1:5.624  s2:5.599  s3:0.132]  gates=0:0.089
+step  1500  train 12.4056  val 12.2664  ppl 212441.50  recall   0.6%  char   0.6% 1 ce 7.389  [s0:1.063  s1:5.478  s2:5.445  s3:0.132]  gates=0:0.126
+step  2000  train 10.4890  val 10.7886  ppl 48466.49  recall  18.1%  char  18.1% 18 ce 6.229  [s0:1.024  s1:5.469  s2:5.410  s3:0.108]  gates=0:0.170
+step  2500  train 10.2235  val 10.0689  ppl 23597.94  recall  25.9%  char  25.9% 26 ce 5.713  [s0:0.838  s1:5.418  s2:5.351  s3:0.104]  gates=0:0.175
+step  3000  train 9.8304  val 9.3628  ppl 11647.48  recall  29.1%  char  29.1% 29 ce 5.185  [s0:0.725  s1:5.389  s2:5.304  s3:0.109]  gates=0:0.189
+step  3500  train 8.7061  val 8.8948  ppl 7294.10  recall  32.0%  char  32.0% 32 ce 4.835  [s0:0.672  s1:5.354  s2:5.274  s3:0.105]  gates=0:0.204
+step  4000  train 9.2435  val 8.4267  ppl 4567.35  recall  34.4%  char  34.4% 34 ce 4.482  [s0:0.629  s1:5.322  s2:5.244  s3:0.101]  gates=0:0.217
+step  4500  train 8.9349  val 8.2213  ppl 3719.40  recall  37.0%  char  37.0% 37 ce 4.332  [s0:0.604  s1:5.298  s2:5.222  s3:0.099]  gates=0:0.227
+step  5000  train 8.3974  val 7.9922  ppl 2957.65  recall  38.1%  char  38.1% 38 ce 4.159  [s0:0.587  s1:5.283  s2:5.207  s3:0.097]  gates=0:0.233
+step  5500  train 8.3018  val 7.8987  ppl 2693.88  recall  38.4%  char  38.4% 38 ce 4.088  [s0:0.579  s1:5.275  s2:5.202  s3:0.096]  gates=0:0.235
+step  6000  train 7.2068  val 7.8847  ppl 2656.44  recall  37.2%  char  37.2% 37 ce 4.078  [s0:0.578  s1:5.273  s2:5.200  s3:0.096]  gates=0:0.236
+done in 992s
+-> experiment/r48/ckpt/r48_bpe4.pt
+-> experiment/r48/results/r48_bpe4.json

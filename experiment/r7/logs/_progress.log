@@ -1,0 +1,5 @@
+=== r7_w0s1 START 2026-09-13T23:23:17+05:30
+=== r7_w0s1 EXIT 0 2026-09-13T23:34:21+05:30
+=== r7_w5s1 START 2026-09-13T23:34:21+05:30
+=== r7 STOPPED by design 2026-09-13T23:35:46+05:30: r7_w0s1 taxonomy shows reads land on position-matched text (query pos 126, reads at 101-126, 0% on fact keys); remaining runs share the position-carrying key. Continued as r8 with --key-pos-free.
+=== ROUND DONE 2026-09-13T23:35:46+05:30

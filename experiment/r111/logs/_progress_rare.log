@@ -1,0 +1,8 @@
+rare-key 1M start 2026-09-22T20:12:13+05:30
+=== rare_ns3000 START 2026-09-22T20:12:13+05:30
+=== rare_ns3000 EXIT 0 2026-09-22T20:31:00+05:30
+top-1         store=380873 slots (2999 windows)  touched=    1/380873  recall= 50.0%
+=== rare_ns7800 START 2026-09-22T20:31:00+05:30
+=== rare_ns7800 EXIT 0 2026-09-22T22:31:08+05:30
+top-1         store=990473 slots (7799 windows)  touched=    1/990473  recall= 75.0%
+=== RARE DONE 2026-09-22T22:31:08+05:30

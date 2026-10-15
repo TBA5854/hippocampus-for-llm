@@ -1,0 +1,4 @@
+chain_box1 waiting on PID 43196 @ 2026-09-22T21:55:36+05:30
+chain_box1: PID 43196 gone @ 2026-09-22T22:31:36+05:30 -> launching r112
+r112 box1 start 2026-09-22T22:31:36+05:30
+chain_box1 done @ 2026-09-22T22:31:54+05:30

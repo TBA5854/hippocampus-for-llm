@@ -1,0 +1,37 @@
+hc=on  vocab=130  params=5.06M  trainable=4.87M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 6.9527  val 6.9828  ppl 1077.94  recall   2.8%  [s0:3.150  s1:3.011  s2:3.012  s3:0.323]  gates=0:0.001
+step   500  train 6.1956  val 6.2196  ppl 502.50  recall   3.3%  [s0:2.516  s1:2.371  s2:2.368  s3:0.120]  gates=0:0.006
+step   750  train 5.9489  val 5.9453  ppl 381.96  recall   3.3%  [s0:2.221  s1:2.042  s2:2.041  s3:0.057]  gates=0:0.008
+step  1000  train 5.7691  val 5.7987  ppl 329.88  recall   4.4%  [s0:2.041  s1:1.837  s2:1.833  s3:0.060]  gates=0:0.003
+step  1250  train 5.6756  val 5.7157  ppl 303.59  recall   3.4%  [s0:1.930  s1:1.716  s2:1.714  s3:0.055]  gates=0:0.002
+step  1500  train 5.5617  val 5.6733  ppl 291.00  recall   2.8%  [s0:1.869  s1:1.644  s2:1.635  s3:0.055]  gates=0:0.002
+step  1750  train 5.4228  val 5.6012  ppl 270.74  recall   3.9%  [s0:1.830  s1:1.599  s2:1.588  s3:0.055]  gates=0:0.003
+step  2000  train 5.3910  val 5.5987  ppl 270.08  recall   3.4%  [s0:1.809  s1:1.574  s2:1.559  s3:0.055]  gates=0:0.002
+step  2250  train 5.3506  val 5.5799  ppl 265.04  recall   2.8%  [s0:1.787  s1:1.553  s2:1.535  s3:0.055]  gates=0:0.003
+step  2500  train 5.3640  val 5.5901  ppl 267.75  recall   2.8%  [s0:1.782  s1:1.547  s2:1.529  s3:0.055]  gates=0:0.003
+step  2750  train 5.3158  val 5.5809  ppl 265.31  recall   3.9%  [s0:1.794  s1:1.555  s2:1.540  s3:0.055]  gates=0:0.002
+step  3000  train 5.2785  val 5.5818  ppl 265.56  recall   2.3%  [s0:1.799  s1:1.560  s2:1.540  s3:0.055]  gates=0:0.002
+step  3250  train 5.2993  val 5.6008  ppl 270.63  recall   2.8%  [s0:1.814  s1:1.582  s2:1.562  s3:0.055]  gates=0:0.002
+step  3500  train 5.2695  val 5.6167  ppl 274.98  recall   3.6%  [s0:1.833  s1:1.604  s2:1.589  s3:0.055]  gates=0:0.002
+step  3750  train 5.2081  val 5.6476  ppl 283.60  recall   3.3%  [s0:1.863  s1:1.647  s2:1.625  s3:0.055]  gates=0:0.001
+step  4000  train 5.1738  val 5.6599  ppl 287.11  recall   2.8%  [s0:1.898  s1:1.685  s2:1.662  s3:0.055]  gates=0:0.002
+step  4250  train 5.1560  val 5.6922  ppl 296.53  recall   1.9%  [s0:1.926  s1:1.716  s2:1.695  s3:0.055]  gates=0:0.002
+step  4500  train 5.1552  val 5.7315  ppl 308.43  recall   3.3%  [s0:1.975  s1:1.776  s2:1.748  s3:0.055]  gates=0:0.001
+step  4750  train 5.0331  val 5.7611  ppl 317.71  recall   2.8%  [s0:2.014  s1:1.829  s2:1.803  s3:0.055]  gates=0:0.001
+step  5000  train 5.0013  val 5.8143  ppl 335.07  recall   3.0%  [s0:2.080  s1:1.901  s2:1.873  s3:0.055]  gates=0:0.001
+step  5250  train 4.9670  val 5.8504  ppl 347.38  recall   3.0%  [s0:2.126  s1:1.952  s2:1.920  s3:0.055]  gates=0:0.001
+step  5500  train 4.9570  val 5.9064  ppl 367.37  recall   3.3%  [s0:2.189  s1:2.020  s2:1.996  s3:0.055]  gates=0:0.001
+step  5750  train 4.9268  val 5.9457  ppl 382.09  recall   4.4%  [s0:2.251  s1:2.095  s2:2.063  s3:0.055]  gates=0:0.001
+step  6000  train 4.8840  val 5.9792  ppl 395.14  recall   3.1%  [s0:2.286  s1:2.139  s2:2.109  s3:0.055]  gates=0:0.001
+step  6250  train 4.8630  val 6.0299  ppl 415.66  recall   2.3%  [s0:2.342  s1:2.205  s2:2.173  s3:0.055]  gates=0:0.001
+step  6500  train 4.8771  val 6.0538  ppl 425.75  recall   4.1%  [s0:2.379  s1:2.247  s2:2.214  s3:0.055]  gates=0:0.000
+step  6750  train 4.8461  val 6.0887  ppl 440.83  recall   2.8%  [s0:2.418  s1:2.290  s2:2.254  s3:0.055]  gates=0:0.001
+step  7000  train 4.8393  val 6.1002  ppl 445.97  recall   4.1%  [s0:2.433  s1:2.310  s2:2.272  s3:0.055]  gates=0:0.000
+step  7250  train 4.8250  val 6.1160  ppl 453.07  recall   4.1%  [s0:2.451  s1:2.332  s2:2.294  s3:0.055]  gates=0:0.001
+step  7500  train 4.8312  val 6.1227  ppl 456.12  recall   2.8%  [s0:2.459  s1:2.341  s2:2.303  s3:0.055]  gates=0:0.000
+step  7750  train 4.8242  val 6.1255  ppl 457.38  recall   2.8%  [s0:2.463  s1:2.345  s2:2.307  s3:0.055]  gates=0:0.000
+step  8000  train 4.8104  val 6.1265  ppl 457.83  recall   2.8%  [s0:2.464  s1:2.346  s2:2.308  s3:0.055]  gates=0:0.000
+done in 1340s
+-> experiment/r11/ckpt/r11_skip_shuf.pt
+-> experiment/r11/results/r11_skip_shuf.json

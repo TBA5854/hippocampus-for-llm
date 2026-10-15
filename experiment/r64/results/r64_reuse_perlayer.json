@@ -1,0 +1,32 @@
+{
+  "n_facts": 16,
+  "pool_size": 16,
+  "pool_anchor": null,
+  "memory_size": 512,
+  "rows": [
+    {
+      "pool": "none",
+      "store": 381,
+      "candidates": 381.0,
+      "bridge_windows": 3,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "pool": "token",
+      "store": 381,
+      "candidates": 1.0,
+      "bridge_windows": 3,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "pool": "ann",
+      "store": 381,
+      "candidates": 1.475,
+      "bridge_windows": 3,
+      "recall": 1.0,
+      "n": 160
+    }
+  ]
+}

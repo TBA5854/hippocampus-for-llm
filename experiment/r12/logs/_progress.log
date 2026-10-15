@@ -1,0 +1,5 @@
+=== r12_M1024 START 2026-09-14T03:32:48+05:30
+=== r12_M1024 EXIT 0 2026-09-14T03:58:23+05:30
+=== r12_M2048 START 2026-09-14T03:58:23+05:30
+=== r12_M2048 STOPPED by design 2026-09-14T03:58:53+05:30: r12_M1024 showed batch 16 slows lift-off; a 4x store at batch 8 would confound store size with batch twice. Continued as r13 with --accum.
+=== ROUND DONE 2026-09-14T03:58:53+05:30

@@ -1,0 +1,20 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+initialised from experiment/r70/ckpt/r70_pl_recall.pt
+hc=on  vocab=8192  params=7.78M  trainable=7.26M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 13.7150  val 13.8233  ppl 1007788.41  recall   0.3%  char   0.3% 0 ce 8.571  [s0:2.061  s1:5.103  s2:5.140  s3:0.134]  gates=0:0.358,1:0.106,2:0.082,3:0.085,4:0.021,5:0.032
+step  1000  train 12.8405  val 12.9197  ppl 408294.04  recall   0.2%  char   0.2% 0 ce 7.848  [s0:2.073  s1:5.098  s2:5.134  s3:0.134]  gates=0:0.352,1:0.101,2:0.071,3:0.067,4:0.013,5:0.030
+step  1500  train 11.0302  val 11.2093  ppl 73815.88  recall  16.1%  char  16.1% 16 ce 6.475  [s0:2.043  s1:5.128  s2:5.164  s3:0.126]  gates=0:0.353,1:0.093,2:0.062,3:0.063,4:0.012,5:0.032
+step  2000  train 10.5217  val 10.6421  ppl 41859.34  recall  14.2%  char  14.2% 14 ce 6.048  [s0:2.042  s1:5.059  s2:5.101  s3:0.125]  gates=0:0.355,1:0.080,2:0.059,3:0.070,4:0.016,5:0.036
+step  2500  train 10.1617  val 9.7442  ppl 17055.16  recall  33.3%  char  33.3% 33 ce 5.347  [s0:2.035  s1:5.022  s2:5.068  s3:0.119]  gates=0:0.359,1:0.066,2:0.059,3:0.070,4:0.020,5:0.034
+step  3000  train 9.0476  val 9.3521  ppl 11522.90  recall  37.2%  char  37.2% 37 ce 5.038  [s0:2.028  s1:5.018  s2:5.060  s3:0.114]  gates=0:0.363,1:0.061,2:0.066,3:0.075,4:0.020,5:0.037
+step  3500  train 8.5821  val 8.9897  ppl 8019.88  recall  47.5%  char  47.5% 48 ce 4.754  [s0:2.023  s1:5.005  s2:5.048  s3:0.113]  gates=0:0.364,1:0.057,2:0.071,3:0.080,4:0.021,5:0.039
+step  4000  train 8.0275  val 8.6601  ppl 5768.09  recall  50.9%  char  50.9% 51 ce 4.499  [s0:2.021  s1:4.989  s2:5.026  s3:0.111]  gates=0:0.366,1:0.055,2:0.074,3:0.086,4:0.021,5:0.043
+step  4500  train 6.9785  val 7.8056  ppl 2454.40  recall  63.0%  char  63.0% 63 ce 3.826  [s0:2.015  s1:4.965  s2:5.008  s3:0.105]  gates=0:0.367,1:0.056,2:0.074,3:0.090,4:0.022,5:0.044
+step  5000  train 7.1660  val 7.0601  ppl 1164.62  recall  78.0%  char  78.0% 78 ce 3.241  [s0:2.013  s1:4.941  s2:4.984  s3:0.098]  gates=0:0.367,1:0.056,2:0.074,3:0.090,4:0.022,5:0.043
+step  5500  train 6.5685  val 6.8908  ppl 983.14  recall  84.1%  char  84.1% 84 ce 3.109  [s0:2.012  s1:4.934  s2:4.977  s3:0.097]  gates=0:0.367,1:0.055,2:0.074,3:0.089,4:0.022,5:0.043
+step  6000  train 6.7098  val 6.7645  ppl 866.54  recall  85.5%  char  85.5% 85 ce 3.008  [s0:2.011  s1:4.933  s2:4.976  s3:0.096]  gates=0:0.367,1:0.056,2:0.074,3:0.089,4:0.022,5:0.042
+done in 1644s
+-> experiment/r71/ckpt/r71_pl_broken.pt
+-> experiment/r71/results/r71_pl_broken.json

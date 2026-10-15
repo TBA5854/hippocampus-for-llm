@@ -1,0 +1,5 @@
+1M scrambled control start 2026-09-22T17:59:43+05:30
+=== ctrl_shuffle_ns3000 START 2026-09-22T17:59:43+05:30
+=== ctrl_shuffle_ns3000 EXIT 0 2026-09-22T18:22:40+05:30
+top-1         store=380873 slots (2999 windows)  touched=    1/380873  recall=100.0%
+=== ctrl_shuffle_ns7800 START 2026-09-22T18:22:40+05:30

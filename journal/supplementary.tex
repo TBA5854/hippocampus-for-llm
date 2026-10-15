@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+% Supplementary Information for the journal manuscript (main.tex).
+% It wraps the extended account in ../paper/sections so the two never drift apart:
+% edit those sections, rebuild both documents.
+%
+% Nature Machine Intelligence rules applied here: one combined PDF; every item is labelled
+% Supplementary Note / Table; Tables are numbered sequentially (Notes are titled, and
+% numbered here only so the main text can cite them); every item is cited in the main
+% text or Methods, in sequence, with the word "Supplementary". The Notes are in the order
+% in which main.tex first cites them.
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\recall}[1]{\textbf{#1\%}}
+
+% Notes: "Supplementary Note N" headings; Tables: "Supplementary Table N"
+\titleformat{\section}{\large\bfseries}{Supplementary Note \thesection.}{0.6em}{}
+\renewcommand{\tablename}{Supplementary Table}
+% shared-section cross-references (the long paper defines the plain versions)
+\renewcommand{\S}{Supplementary Note~}
+\newcommand{\secref}[1]{Supplementary Note~\ref{#1}}
+\newcommand{\secsref}[1]{Supplementary Notes~\ref{#1}}
+\newcommand{\appref}[1]{Supplementary Note~\ref{#1}}
+\newcommand{\tabref}[1]{Supplementary Table~\ref{#1}}
+\newcommand{\chronref}{Supplementary Data~1}
+\setlength{\emergencystretch}{2em}
+
+\title{\textbf{Supplementary Information}\\[4pt]
+\large Stateless weights, stateful store: memory as a block inside the transformer}
+\author{Adhavan K, Prem Vaishnav P and Vinila Jinny S}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent This document is the extended account behind the main text. It holds the
+full specification of the memory block (Supplementary Note~\ref{sec:method}), every result
+family with its controls (Supplementary Notes~\ref{sec:placement}--\ref{sec:memory}), the
+consolidation experiment (Supplementary Note~\ref{sec:sleep}) and a longer discussion of
+limitations (Supplementary Note~\ref{sec:limitations}). The per-round log of all 113
+experiments is a separate file, Supplementary Data~1 (a table of round, hypothesis and
+result). Each round is also a folder in the code repository holding its hypothesis, exact
+commands and results, cited here as r$n$.
+
+\input{../paper/sections/method}
+\input{../paper/sections/placement}
+\input{../paper/sections/language}
+\input{../paper/sections/transplant}
+\input{../paper/sections/longcontext}
+\input{../paper/sections/shared_kv}
+\input{../paper/sections/memory}
+\input{../paper/sections/sleep}
+\input{../paper/sections/limitations}
+
+\end{document}

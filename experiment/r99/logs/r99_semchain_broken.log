@@ -1,0 +1,17 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_semchain: fixed lexicon of 64 syn->canon pairs, 64 values
+bpe_recall: 1899 keys / 64 values, prose 11.3M / 5.0M tokens
+initialised from experiment/r79/ckpt/r79_shared_gate_recall.pt
+hc=on  vocab=8192  params=7.78M  trainable=7.26M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 5.3398  val 5.4456  ppl 231.73  recall   1.4%  mem 174/1024  char  46.4% 1/91 ce 2.341  [s0:0.513  s1:4.726  s2:4.724  s3:0.113]  gates=0:0.837,1:0.120,2:0.036,3:0.110,4:0.228,5:0.134
+step  1000  train 5.2795  val 5.3792  ppl 216.85  recall   1.4%  mem 174/1024  char  46.4% 2/91 ce 2.316  [s0:0.511  s1:4.658  s2:4.667  s3:0.103]  gates=0:0.807,1:0.116,2:0.031,3:0.093,4:0.209,5:0.122
+step  1500  train 5.1635  val 5.3081  ppl 201.97  recall   1.2%  mem 174/1024  char  46.2% 1/91 ce 2.285  [s0:0.508  s1:4.596  s2:4.599  s3:0.102]  gates=0:0.785,1:0.113,2:0.029,3:0.083,4:0.195,5:0.117
+step  2000  train 4.9067  val 5.2963  ppl 199.60  recall   1.4%  mem 174/1024  char  46.4% 1/91 ce 2.292  [s0:0.503  s1:4.560  s2:4.561  s3:0.102]  gates=0:0.775,1:0.111,2:0.025,3:0.077,4:0.187,5:0.110
+step  2500  train 4.9915  val 5.2636  ppl 193.17  recall   0.9%  mem 174/1024  char  46.4% 1/91 ce 2.285  [s0:0.501  s1:4.513  s2:4.514  s3:0.101]  gates=0:0.767,1:0.109,2:0.023,3:0.075,4:0.183,5:0.107
+step  3000  train 4.9776  val 5.2330  ppl 187.35  recall   1.4%  mem 174/1024  char  46.6% 1/92 ce 2.272  [s0:0.498  s1:4.484  s2:4.486  s3:0.101]  gates=0:0.763,1:0.108,2:0.020,3:0.073,4:0.180,5:0.106
+step  3500  train 4.8609  val 5.2188  ppl 184.71  recall   1.9%  mem 174/1024  char  46.7% 2/91 ce 2.271  [s0:0.498  s1:4.460  s2:4.462  s3:0.101]  gates=0:0.761,1:0.107,2:0.019,3:0.071,4:0.179,5:0.104
+step  4000  train 5.0419  val 5.2145  ppl 183.91  recall   2.0%  mem 174/1024  char  46.8% 2/91 ce 2.269  [s0:0.498  s1:4.455  s2:4.458  s3:0.101]  gates=0:0.761,1:0.107,2:0.018,3:0.071,4:0.178,5:0.105
+done in 1736s
+-> experiment/r99/ckpt/r99_semchain_broken.pt
+-> experiment/r99/results/r99_semchain_broken.json

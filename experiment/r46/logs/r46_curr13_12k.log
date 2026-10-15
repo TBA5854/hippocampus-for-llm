@@ -1,0 +1,20 @@
+pg19: 100 train books (40.4M tokens), 50 held-out books (17.4M), vocab 252, 0.0011% of held-out chars outside the train vocab
+pg19: flattened for --task recall (distractor prose)
+initialised from experiment/r45/ckpt/r45_curr12_from12k.pt
+hc=on  vocab=252  params=5.09M  trainable=4.90M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step  1000  train 2.3856  val 2.5721  ppl 13.09  recall  39.4%  char  60.6% 48/74 ce 1.262  [s0:1.022  s1:1.448  s2:1.446  s3:0.061]  gates=0:1.061
+step  2000  train 2.3931  val 2.5513  ppl 12.82  recall  38.6%  char  60.1% 48/72 ce 1.251  [s0:0.986  s1:1.453  s2:1.450  s3:0.063]  gates=0:1.105
+step  3000  train 2.4247  val 2.4748  ppl 11.88  recall  41.4%  char  62.7% 50/75 ce 1.194  [s0:0.981  s1:1.445  s2:1.446  s3:0.060]  gates=0:1.145
+step  4000  train 2.5608  val 2.4385  ppl 11.46  recall  43.3%  char  63.4% 52/74 ce 1.168  [s0:0.974  s1:1.443  s2:1.438  s3:0.058]  gates=0:1.179
+step  5000  train 2.0008  val 2.3809  ppl 10.81  recall  44.8%  char  64.5% 52/77 ce 1.126  [s0:0.974  s1:1.430  s2:1.433  s3:0.058]  gates=0:1.201
+step  6000  train 1.9569  val 2.2945  ppl 9.92  recall  45.6%  char  66.2% 52/80 ce 1.063  [s0:0.967  s1:1.418  s2:1.419  s3:0.057]  gates=0:1.213
+step  7000  train 2.2603  val 2.2769  ppl 9.75  recall  44.1%  char  65.5% 52/78 ce 1.053  [s0:0.962  s1:1.412  s2:1.413  s3:0.055]  gates=0:1.222
+step  8000  train 1.9669  val 2.2013  ppl 9.04  recall  47.8%  char  67.9% 54/82 ce 0.997  [s0:0.958  s1:1.403  s2:1.403  s3:0.057]  gates=0:1.226
+step  9000  train 1.9430  val 2.0840  ppl 8.04  recall  52.2%  char  71.1% 57/85 ce 0.907  [s0:0.955  s1:1.397  s2:1.396  s3:0.052]  gates=0:1.227
+step 10000  train 2.0911  val 2.0032  ppl 7.41  recall  50.8%  char  71.4% 57/86 ce 0.845  [s0:0.953  s1:1.393  s2:1.391  s3:0.052]  gates=0:1.227
+step 11000  train 2.1113  val 1.9626  ppl 7.12  recall  53.3%  char  72.9% 58/88 ce 0.814  [s0:0.951  s1:1.390  s2:1.388  s3:0.050]  gates=0:1.226
+step 12000  train 2.1820  val 1.9521  ppl 7.04  recall  54.8%  char  73.8% 59/88 ce 0.806  [s0:0.950  s1:1.389  s2:1.387  s3:0.050]  gates=0:1.226
+done in 1264s
+-> experiment/r46/ckpt/r46_curr13_12k.pt
+-> experiment/r46/results/r46_curr13_12k.json

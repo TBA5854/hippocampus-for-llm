@@ -1,0 +1,3 @@
+initialised from experiment/r19/ckpt/r19_warm_skipnorm_M2048.pt
+hc=on  vocab=145  params=5.07M  trainable=4.87M  device=cuda
+example = 32 x 128 tokens, store carries across segments

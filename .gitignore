@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.egg-info/
+data/
+# model checkpoints and stores are large; the result JSONs and logs are tracked
+*.pt
+*.npz
+# LaTeX build products (journal/ and paper/ keep their own sources and figures)
+*.aux
+*.log.tex
+*.out
+*.bbl
+*.blg
+*.toc
+/journal/main.pdf
+/journal/supplementary.pdf
+/journal/dist/

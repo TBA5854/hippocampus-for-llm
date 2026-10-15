@@ -1,0 +1,22 @@
+pg19: 100 train books (40.4M tokens), 50 held-out books (17.4M), vocab 252, 0.0011% of held-out chars outside the train vocab
+hc=off  vocab=252  params=4.83M  trainable=4.83M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 2.2440  val 2.1986  ppl 9.01  [s0:2.206  s1:2.194  s2:2.196  s3:2.198]
+step  1000  train 1.7785  val 1.7816  ppl 5.94  [s0:1.788  s1:1.778  s2:1.782  s3:1.778]
+step  1500  train 1.5455  val 1.6102  ppl 5.00  [s0:1.619  s1:1.609  s2:1.608  s3:1.605]
+step  2000  train 1.4438  val 1.5347  ppl 4.64  [s0:1.543  s1:1.533  s2:1.534  s3:1.528]
+step  2500  train 1.3678  val 1.4988  ppl 4.48  [s0:1.506  s1:1.501  s2:1.496  s3:1.493]
+step  3000  train 1.4210  val 1.4613  ppl 4.31  [s0:1.473  s1:1.461  s2:1.460  s3:1.452]
+step  3500  train 1.3544  val 1.4370  ppl 4.21  [s0:1.446  s1:1.438  s2:1.436  s3:1.428]
+step  4000  train 1.3255  val 1.4177  ppl 4.13  [s0:1.425  s1:1.419  s2:1.416  s3:1.410]
+step  4500  train 1.2820  val 1.4022  ppl 4.06  [s0:1.411  s1:1.405  s2:1.399  s3:1.393]
+step  5000  train 1.2599  val 1.3875  ppl 4.00  [s0:1.398  s1:1.391  s2:1.384  s3:1.377]
+step  5500  train 1.2591  val 1.3750  ppl 3.96  [s0:1.383  s1:1.378  s2:1.372  s3:1.367]
+step  6000  train 1.2773  val 1.3647  ppl 3.91  [s0:1.373  s1:1.369  s2:1.361  s3:1.356]
+step  6500  train 1.2314  val 1.3565  ppl 3.88  [s0:1.364  s1:1.361  s2:1.353  s3:1.348]
+step  7000  train 1.2543  val 1.3518  ppl 3.86  [s0:1.360  s1:1.357  s2:1.347  s3:1.342]
+step  7500  train 1.2163  val 1.3484  ppl 3.85  [s0:1.357  s1:1.354  s2:1.344  s3:1.339]
+step  8000  train 1.1898  val 1.3468  ppl 3.85  [s0:1.355  s1:1.352  s2:1.343  s3:1.337]
+done in 698s
+-> experiment/r85/ckpt/lm_hc_off.pt
+-> experiment/r85/results/lm_hc_off.json

@@ -1,0 +1,329 @@
+\section{Experimental chronicle: the full chain of hypotheses, experiments, and results}
+\label{sec:chronicle}
+
+The construction above was not designed in one shot; it was found over
+$113$ experiments, each a small hypothesis tested against matched controls, each
+result deciding the next question. \appref{app:log} logs all $113$ rounds in order;
+this section narrates the through-line. This section narrates that chain end to end---the
+reasoning as much as the numbers---because the dead ends are as informative as the
+wins: several ``obvious'' designs (a projected slot, a contextual key, latent
+read-chaining) fail for the \emph{same} underlying reason, and seeing why is what
+justifies the final design. Every round is a folder in the repository
+(\texttt{HYPOTHESIS.md}, \texttt{run.sh}, \texttt{RESULTS.md}); we cite them as
+(r$n$). Controls are matched every round---store disabled, store scrambled, chain
+broken---and we report peak \emph{and} final recall throughout. \tabref{tab:milestones}
+lists the milestones.
+
+\subsection{Placement: read early, write late (r1--r20)}
+
+The seed result was a two-fact copy solved by a store written at an intermediate block.
+The first question was whether the \emph{last} block---the placement the objective
+demands, so the write summarises the whole segment---could hold it. It could not
+outright: writing at the last block collapsed to \recall{44.4} as the model learned to
+predict within the segment instead of reading (r1). Making keys and queries share a
+space (layer-1 key, identity-initialised query) fixed content transfer but pinned
+matching at chance (r2); a \emph{layer-0}, position-free token key with the query
+\emph{frozen} at identity gave 8 facts at \recall{100} on three seeds (r5)---at the
+cost of noting that a layer-0 key is essentially an exact-token address, the property
+that makes everything downstream work and constrains what is later possible. Probing
+where content survives, we found it lives only early in the stack (r7--r9): a fact seen
+once decodes at block~0 but not the last block, so the design became read-early /
+write-late with a block-0 \emph{value-skip} carrying early content forward. The skip
+needed normalisation to survive larger stores (r16--r18), and a store-size curriculum
+warm-started each doubling of the store from the last (r19--r20), reaching a
+$16\times$ store at \recall{100} with the scrambled control at chance and the store
+reloading identically across processes. This settles the method of \S\ref{sec:method}.
+
+\subsection{The fact-count cliff is a bootstrapping deadlock, not capacity (r21--r25)}
+
+Scaling facts revealed a sharp cliff: \recall{99.7} at 8 facts, \recall{3.8} at 16,
+\recall{3.1} at 32 (r24). Crucially the top-1 slot was correct throughout---never a
+matching failure---so the store had the answer but the readout/gate never bootstrapped
+to use it. A warm-start curriculum (8$\to$16$\to$48 facts) took the cold-failing
+counts to \recall{100} (r25). Store size, fact count, and key vocabulary turned out to
+be one failure mode---a gate/decoder bootstrapping deadlock---not three capacity
+limits (r22--r23). This ``bootstrapping, not capacity'' lesson recurs at every later
+scaling step.
+
+\subsection{Sleep: consolidation, replay, and compression (r26--r33)}
+
+An episodic store invites a consolidation phase. We found stored values do not decode
+to tokens but keys decode exactly, and slot $i{+}1$'s key is slot $i$'s value token, so
+the key sequence \emph{reconstructs the written text with no decoder} (r26)---replay
+from the store is free. A sleep loop then consolidates store contents into weights
+(0\%$\to$\recall{100} from weights alone) and reclaims slots, with the language-model
+loss improving under rehearsal (r27); rehearsing the memory task too keeps new writes
+at \recall{100} (r28); fixed-budget replay stabilises retention across repeated
+wake/sleep cycles (r29). On compression, dropping the write rate by a content-aware
+surprisal gate is free ($4\times$ fewer slots at \recall{100}, r30), but compressing
+slot \emph{width} with a random projection destroys the exact-token match and sits at
+chance (r31)---the two compression axes are not interchangeable, an early warning that
+the exact-match key is load-bearing. Sleep also ages the key space, so surviving
+episodes must be re-encoded from their own transcripts (r32--r33).
+
+\subsection{Real language I: the character-level multi-token-key tax (r34--r46)}
+
+On PG-19 the block gives a small but real language-model gain that capacity cannot
+explain (segment~0, empty store, is neutral; the shuffled-store control collapses)
+(r34). Turning to facts stated and queried \emph{in} prose, a character-level key
+exposed a hard limit: recall split into \recall{11.4} at the first answer character and
+\recall{80.5} at the second (r36), because a position-free single-token key cannot
+address a multi-token key---the first character is retrieved by reading at the shared
+delimiter, a uniform $1/n_{\text{facts}}$ draw. This is the r24 cliff in the text
+vocabulary (r37), and the curriculum breaks it (r38, r40, r43--r46), but the
+character curve asymptotes---4 facts \recall{90}, 8 \recall{79}, 12 \recall{62}---a
+multi-token-key tax compounding per fact (r44, r46). A shift addresses around the
+delimiter for one hop but not both (r37); reading at every layer is a tie (r41);
+dentate-gyrus pattern separation cannot help because the delimiter keys are
+byte-identical and contextualising them collapses the match (r42). The tax is
+intrinsic to multi-token keys.
+
+\subsection{Real language II: single-token BPE keys remove the tax (r47--r50)}
+
+Switching to a BPE tokenizer so a fact's key is a single word-token removed the tax at
+a stroke: 8 facts \emph{cold} at \recall{49.8} (five times the character level) with
+no position split, and the curriculum reaching \recall{100} at 8, 16, 32, and 64 facts
+(r47--r50), the scrambled control at \recall{0.16} at 64 facts. Real word-keys
+competing with the prose embedding space still address exactly. The objective---recall
+of $\geq 8$ facts out of context, persisted, controls at chance---was met on real
+language.
+
+\subsection{Closing the objective: persistence and the context bridge (r51--r55, r31)}
+
+Persistence was confirmed literally: a store reloaded in a fresh process recalls at
+\recall{100}, a mismatched store at \recall{0.0} (r51). The store bridges beyond the
+context window---from an empty 128-token prompt, recall spans $\approx M/128$ windows,
+reaching \textbf{31 windows (3968 tokens) at 90\%} for $M{=}4096$, with a hard cliff
+exactly where the ring buffer laps the oldest facts (r51). That cliff is eviction
+\emph{policy}, not capacity: an oracle that protects fact slots and evicts oldest prose
+holds 31 windows from as few as 256 slots (r52). A label-free surprisal score tracks
+the oracle to 15 windows but is outranked by prose's own rare tokens further out
+(r53), with a clean store-headroom margin law at 64 facts and a repeat-suppression
+failure at 16 that dedup-at-write repairs given headroom (r54--r55). Episodes as
+first-class objects with completeness-aware eviction beat ring eviction 0.5\%$\to$
+\recall{90.6} (r31).
+
+\subsection{One shared store, read at every layer (r56--r66)}
+
+Placement is a flat tie \emph{below} the cliff (all four read/write cells 99--100\%,
+r56), but \emph{at} the cliff, reading and writing at every layer escapes it cold
+without any curriculum---a shared single store reaches \recall{99.4}/\recall{96.2} at
+16/32 facts where the single-layer site sits at \recall{9.1}/\recall{4.2} (r59), and
+this is seed-robust with shared no worse than per-layer at one store instead of six
+(r60). This motivated treating the store as a shared key--value memory. Reading a big
+store with top-1 gives the north-star result---\textbf{63 windows, top-1 $=$ 100\%
+touching a single slot}, beating the dense scan which decays with distractor mass
+(r61--r62). Porting DeepSeek's CSA2 construction, a candidate pool (exact-token hash or
+LSH) scores $\approx 2$ of 8001 slots at dense recall, cross-layer pool reuse is free,
+and the store survives 4-bit codes with no loss, keys being the bit-limiting side
+(r64--r65)---the content of \S\ref{sec:longcontext}--\ref{sec:sharedkv}. Finally, the
+curriculum turned out to be an efficiency shortcut, not a requirement: multi-layer
+placement clears the BPE cliff cold through a delayed phase transition given enough
+steps (r66), overturning the earlier read that BPE had a second, curriculum-only
+bottleneck (r63).
+
+\subsection{From lookup to memory: revision, capacity, and multi-hop (r67--r84)}
+
+The capabilities of \S\ref{sec:memory} were the last thread, and the hardest.
+\emph{Revision} came cleanly: a recency-biased read lifts latest-value recall
+\recall{88.9}$\to$\recall{96.7}, and position is shown not to encode recency (r67).
+\emph{Multi-hop} was a wall. Every attempt to chain within a single forward
+pass---feeding a retrieved value back as the next key on a shared store (r68), a
+per-layer multistore (which briefly looked like \recall{85} but was a
+return-last-value \emph{leak}, exposed by a broken-chain control and refuted on a
+second seed, r70--r71), a leak-proofed task with several shuffled chains (r72), a
+learned re-projection of the retrieval (r73), end-to-end gradient through the hops
+(r74), and a decoded-pointer re-query (r75)---landed at chance. Seven negatives with
+one cause: a stored value is off the key manifold, so the next exact-match never fires.
+The lesson was that composition is a working-memory operation, not a within-pass one,
+which first required a store that could \emph{hold} computed state. So we built gated
+write operations (\textsc{new}/\textsc{update}/\textsc{skip}) giving an
+$O(\text{facts})$ bounded store at full recall (r76--r78, the recall gap being
+under-training as ever), and showed one shared store suffices without per-layer
+adapters (r79), holding at 32/64 facts (r80). Then multi-hop as an emitted-token
+scratchpad: the latent loop-gate failed as the eighth negative (r82), but the token
+scratchpad worked once a masking bug (r81) and a store collision on the
+key-and-value intermediate were fixed---the latter by not storing pad-valued slots
+(r83)---giving \textbf{2-hop \recall{96.4}/\recall{96.9}, 3-hop \recall{95.2}, and the
+broken-chain control at \recall{0.0}} (r84). This is the result of \S\ref{sec:memory}:
+reasoning across facts held outside the context window.
+
+\subsection{Scaling up (r85)}
+
+The final thread stresses the finished construction along four axes at once, as a
+resumable job queue across both machines, and returns four findings. \emph{Multi-hop
+scales}: 2-hop holds at \recall{96.4} and 3-hop at \recall{95.2} at 32 facts (twice
+r84's count), each hop still $\approx\!98\%$. There is a \emph{capacity frontier}: the
+bounded store holds 64 facts (\recall{95.9}) but a 128-fact / $M{=}4096$ store does not
+converge warm in the budget---it peaks near $46\%$ then destabilises to \recall{26}. The
+\emph{width-versus-depth} sweep is the surprise, and it is monotone in \emph{depth}: the
+shallow shapes cold-bootstrap the managed store (\recall{96.7} at 2 layers, \recall{95.3}
+at 3) while the deep ones do not (\recall{0.3} at 6 layers, \recall{0.2} at 12), the read
+gate never opening. This is the first \emph{cold} test of the managed store (r76--r79
+were warm-started), so it isolates a real limitation: the write-op gate cannot bootstrap
+from scratch in a deep stack. A gate-free control (r87) then bootstraps at \emph{every}
+depth (\recall{97.0} at 12 layers, \recall{98.8} at 2), confirming this is a
+gate$\times$depth interaction rather than a depth limit---the plain store is depth-robust;
+only the managed gate fails to cold-start, and a curriculum that warms the gate is the fix. Finally the \emph{language-model benchmark}: with no
+planted facts, the memory block lowers PG-19 validation loss from $1.347$ to $1.338$
+(perplexity $3.85\to3.81$), the gain concentrated in later segments as the store fills
+(a within-example drop of $0.032$ with the store versus $0.018$ without)---a small, real
+general-LM win consistent with r34. The memory-transplant test that anchors
+\S\ref{sec:transplant} (r86) belongs to this scaling push as well. The multi-hop result is
+then mapped across a frontier (r93): it extends to \textbf{five hops} (r93/r94:
+\recall{91.6} at four, \recall{89.7} at five, each hop $\approx\!98\%$ so joint tracks
+$0.98^n$) and to \textbf{64 facts} (\recall{96.9} at two hops, \recall{95.2} at three),
+every point with a broken-chain control at chance---the deep controls fire every hop up to
+the cut and kill only the cut one, confirming genuine deep composition rather than a
+shortcut. The multi-hop result is thus mapped over 2--5 hops and 16--64 facts. Finally the honest
+autoregressive eval (r95) --- feeding the model its own emitted intermediate per hop rather
+than the ground-truth one --- reproduces the teacher-forced numbers to the digit
+(\recall{96.9}/\recall{91.6}/\recall{89.7} at 2/4/5 hops), confirming the composition is
+real end-to-end, not a teacher-forcing artifact.
+
+\subsection{Closing threads: fuzzy recall, semantics, and an unbounded store (r96--r100)}
+
+Three final questions. First, \emph{is fuzzy recall already there?} Because the read is
+argmax-cosine, a query token that is merely a near-embedding neighbour of a stored key
+retrieves its value \recall{33}--\recall{73} of the time (r97, widest in wide/shallow
+models)---partial pattern completion for free---but it is \emph{not} semantic: a synonym
+query lands at chance (\recall{4}, r98), the embeddings barely separating synonyms from
+random words, and softening the read only collapses the geometric basin (r98). So the store
+cannot be made semantic. Second, then \emph{where do semantics live?} In reasoning:
+a chain-of-thought whose first hop is served by \emph{parametric} memory---a fixed
+synonym$\to$canonical map the model learns in its weights, never stored---and whose second
+hop is the store recalls a synonym-queried fact at \recall{90.8} (hop~1 \recall{100}), with a
+broken-lexicon control collapsing hop~1 to \recall{2} (r99). The store stays an exact index;
+meaning is a reasoning function. Third, \emph{must the store be bounded?} No: growing it by
+appending like a KV cache (amortized doubling) rather than a lapping ring removes the r51
+cliff, holding recall to $199$ windows / $25$k tokens where the fixed ring collapses at $7$
+(r100). The construction ends as a clean division: an unbounded, exact, stateless-weights
+store, with capacity, composition, and meaning all supplied above it by gating and reasoning.
+The multi-hop result also replicates across seeds (r96).
+
+\subsection{Unbounded reach, per-layer read/write, and the passkey frontier (r101--r113)}
+
+The growable store (r100) and the sparse read (r62) compose: with the store growing by
+appending and read by a top-$1$ readout, recall is \recall{100} at $15/63/127/199$
+windows while touching a single slot, and the dense read decays $85\to60\%$ over the same
+span (r101)---an unbounded store read at flat recall in $O(1)$ slots. Pushing this toward
+a million tokens (r102), top-$1$ holds \recall{100} out to $999$ windows
+($126{,}873$ slots, $\approx$128k tokens) on \emph{both} a wide-shallow and a
+narrow-deep model, while the dense read collapses to $0\%$; two things surface. The reach
+stops at $\approx$128k not for any capacity reason but because the offline evaluation
+materialises the entire store on one $16$\,GB GPU and exhausts it past $\approx$$380$k
+slots---the trained read is $O(1)$ per query, so this is an evaluation limit, not the
+architecture. And keying facts on the \emph{rarest} words (chosen to minimise prose
+collisions) recalls \emph{worse}, not better ($50$--$62\%$ vs \recall{100} for common
+words), because the rarest tokens have the least-trained embeddings: exact-match recall
+needs well-trained key-token embeddings, a key-quality caveat that a larger model softens.
+That evaluation limit was then removed (r108): the offline build was rewriting the entire
+$[B,M,d]$ store out of place every window ($O(M\cdot d)$ per window), and since evaluation
+has no backward pass, an in-place $O(S)$ write plus a fixed pre-sized store makes a
+$\approx\!10^{6}$-slot store buildable in bounded memory. Top-$1$ then holds \recall{100} to
+a \emph{literal million tokens} ($990{,}473$ slots, $7{,}799$ windows, still on one slot),
+on \emph{both} models (r111), with a matched \emph{batch-2} scrambled control at $0\%$ at
+$128$k and $384$k confirming the recall is genuine retrieval, and the rare-key quality
+effect persisting undiminished at scale ($75\%$ at $\approx$1M). The reach is now bounded
+only by build wall-clock, not by the model.
+
+The last arc revisits placement itself. Read-early / write-late (r56) had been a flat tie
+against reading and writing at every layer---but that comparison wrote the \emph{mean} of
+the per-layer states into one slot. Writing each layer's own state as its \emph{own} slot
+into the one shared store, still keyed by the exact token, is a different proposal, and it
+wins cleanly: cold recall rises from \recall{80.8} (write-the-mean) to \recall{95.5} and
+\recall{98.9} over two seeds, bootstrapping earlier (r103). A control pins the cause:
+keying each layer's slot by its \emph{evolving residual} instead of the token---the same
+$L\times$ slot count---collapses to \recall{0.2}, the read gates never opening. So the gain
+is per-depth \emph{values} that stay addressable because the key is still exact, not the
+extra capacity; and the block-0 value-skip is subsumed, since layer $0$'s own slot already
+carries the early content. The episode is also a cautionary tale in method: the first
+per-layer implementation stored the values \emph{without} detaching them, so the autograd
+graph was retained across segments and out-of-memory at the larger segment count---raising
+the worry that the win itself was an accidental cross-segment gradient. Detaching (the
+correct behaviour, matching every other write path) and re-running reproduced
+\recall{95.5} \emph{exactly}, confirming the effect is the values, not a training artifact.
+Per-layer read/write becomes the default; it also \emph{pushes} the $64$--$128$-fact
+capacity wall (r88), learning 128 facts to \recall{45.3} where the single mean-write value
+is pinned at \recall{0.3}---a $150\times$ lift carried by the deep read gates---though
+\recall{45.3} is partial against the $\approx$95\% it reaches at 32--64 facts, so the
+frontier is moved, not removed (r104), and the obvious capacity levers do not close the
+remaining gap: more heads land at \recall{43.8} (a null), a curriculum warm-started from the
+$32$-fact model reaches \emph{exactly} the cold \recall{45.3} ceiling, and doubling the width
+to $d{=}512$ ($3.4\times$ parameters) gives only \recall{47.5}---three independent levers all
+at $44$--$48\%$, so a single shared store binding $128$ distinct keys genuinely saturates near
+$45\%$ (r105/r106).
+
+Finally the long-context reach is stress-tested along the one axis it had not isolated: the
+\emph{passkey} / needle-in-a-haystack test, where the fact is planted at a controlled
+\emph{depth} in the filler rather than always at the start (r112). Recall is \emph{monotonic
+in depth}---the mid-context needle is never anomalously low---so there is \emph{no
+lost-in-the-middle}, the failure mode that afflicts attention. What there is instead is a
+\emph{write-order} decay: a fact stated early persists, a fact stated late into a saturated
+store is lost (at $64$k tokens, $d{=}512$ reads $100/62.5/50/25/12.5\%$ by depth; the weaker
+$d{=}256$ is near-binary, only the first-written fact surviving), with a scrambled control at
+$0\%$ throughout---the \emph{opposite} of a KV cache's recency, and the $128$-fact capacity
+frontier seen along the time axis. A behavioral decomposition (r113) locates the cause: the
+decay steepens with store \emph{saturation} ($81\!\to\!50\!\to\!6\%$ as the store fills
+$4$k$\to$$16$k$\to$$65$k slots), it is \emph{not} ring lapping (an appending store gives an
+identical curve), and it is \emph{partly} the fixed novelty write-gate---keying on a unique,
+always-novel token lifts the late tail fourfold ($6\!\to\!25\%$)---with a residual
+centring-drift factor. The not-lapping and saturation findings reproduce on the $d{=}256$
+model, but the write-gate rescue is model-dependent: on $d{=}256$, whose rarest-token
+embeddings are too under-trained to key, unique keys do not lift the tail and even lower the
+early end, so the fixable-policy half of the story holds only where key quality can support a
+unique key. So the long-context limit is a fixable write policy plus the same
+capacity frontier, not a positional one. (Three late rounds are omitted as inconclusive: r107
+was superseded before completing, and r109--r110's several-shared-stores sharding returned a
+buggy $0\%$ across all arms and is not reported as a result.)
+
+The construction ends as a clean
+division of labour: an unbounded, exact, stateless-weights store---now read and written at
+every layer---with capacity, composition, and meaning supplied above it by gating and
+reasoning.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}l p{0.29\textwidth} p{0.58\textwidth}@{}}
+\toprule
+round & question & result \\
+\midrule
+r5   & where does the key/query live? & layer-0 token key, frozen query: 8 facts \recall{100}/3 seeds \\
+r11  & last-block write, facts seen once & \recall{100} at 32 facts, persisted, control at chance \\
+r24  & where does fact count break? & cliff 8$\to$16 facts, but top-1 slot always correct \\
+r25  & is the cliff capacity? & no---curriculum $\to$ \recall{100}; a bootstrapping deadlock \\
+r26  & can a value decode? & no; keys decode, key-chain reconstructs text (free replay) \\
+r30  & compress by write rate? & content gate: $4\times$ fewer slots, \recall{100} \\
+r36  & char-level answer loss? & $1/n$ delimiter draw: multi-token keys unaddressable \\
+r47  & single-token BPE key, cold? & \recall{49.8} ($5\times$ char), no per-char tax \\
+r49  & BPE curriculum ladder & \recall{100} at 8/16/32 facts \\
+r51  & persistence + context bridge & fresh-process \recall{100}; 31 windows at \recall{90} \\
+r52  & is the bridge cliff capacity? & no---oracle eviction bridges 31 windows from 256 slots \\
+r59  & at the cliff, multi-layer? & read+write@all escapes cold: \recall{99.4}/\recall{96.2} vs \recall{9}/\recall{4} \\
+r61--62 & store $\gg$ window, sparse read & 63 windows, top-1 $=$ \recall{100} on one slot \\
+r64  & candidate pool + reuse & $\approx$2 of 8001 slots at dense recall; reuse free \\
+r65  & low-bit store & 4-bit, $8\times$ smaller, no loss; keys bit-limiting \\
+r66  & is the curriculum required? & no---cold via a delayed phase transition \\
+r67  & revise a re-stated fact? & recency read: \recall{88.9}$\to$\recall{96.7} \\
+r68--75 & chain within one pass? & seven negatives: a value is off the key manifold \\
+r78--79 & bounded managed store? & gated ops, $O(\text{facts})$, \recall{95.9}; one store suffices \\
+r84  & multi-hop via token scratchpad? & \recall{96.4}/\recall{96.9} 2-hop, \recall{95.2} 3-hop, broken \recall{0.0} \\
+r85  & scale: multi-hop, capacity, width$\times$depth, LM & 2/3-hop \recall{96}/\recall{95} at 32 facts; 64 ok / 128 wall; shallow bootstraps, deep fails; LM ppl $3.81$ vs $3.85$ \\
+r97--98 & is fuzzy recall there / semantic? & near-key \recall{33}--\recall{73} (geometric); synonym \recall{4} (not semantic); gate kills it \\
+r99  & multilayer CoT for semantics? & parametric hop + store hop \recall{90.8} (hop1 \recall{100}, broken \recall{2}) \\
+r100 & grow the store like a KV cache? & append (doubling) removes the r51 cliff; recall to 199 windows vs ring's 7 \\
+r101 & grow $+$ top-1 sparse together? & unbounded store, flat top-1 \recall{100} to 199 windows on 1 slot; dense $85\to60$ \\
+r102 & the 1M-token push & top-1 flat \recall{100} to 999 windows / $\approx$128k tok, two models; dense $\to0$; reach then eval-bound (fixed in r108) \\
+r103 & per-layer write vs write-mean? & \recall{80.8}$\to$\recall{95.5}/\recall{98.9} (2 seeds); residual-key control \recall{0.2}; the new default \\
+r108 & the literal 1M-token context & in-place $O(S)$ eval write removes r102's build limit: top-1 \recall{100} at $990{,}473$ slots ($\approx$1M tok) on one slot \\
+r111 & 1M on a 2nd model $+$ controls & cross-model 1M \recall{100} (d256); batch-2 scrambled control \recall{0.0} at 128k/384k; rare-key 75\% at 1M \\
+r112 & passkey: sweep the needle depth & no lost-in-the-middle (monotonic in depth), but a write-order decay: early persists, late lost ($64$k: $100/62.5/50/25/12.5$); control $0\%$ \\
+r113 & why the passkey decay? & saturation-driven, not lapping (grow$=$ring), partly the novelty write-gate (unique keys lift the late tail $6\!\to\!25\%$) \\
+\bottomrule
+\end{tabular}
+\caption{Milestones. The full per-round log---all $113$ rounds, with controls and
+diagnoses---is \appref{app:log} (and \texttt{experiment/README.md} in the
+repository); each round is a folder with its hypothesis, exact commands, and results.}
+\label{tab:milestones}
+\end{table}

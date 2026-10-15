@@ -1,0 +1,52 @@
+{
+  "n_facts": 64,
+  "seg_len": 128,
+  "memory_size": 2048,
+  "rows": [
+    {
+      "read": "top-1",
+      "k": 1,
+      "slots_in_store": 1905,
+      "slots_touched": 1,
+      "bridge_windows": 15,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "read": "top-2",
+      "k": 2,
+      "slots_in_store": 1905,
+      "slots_touched": 2,
+      "bridge_windows": 15,
+      "recall": 0.96875,
+      "n": 160
+    },
+    {
+      "read": "top-4",
+      "k": 4,
+      "slots_in_store": 1905,
+      "slots_touched": 4,
+      "bridge_windows": 15,
+      "recall": 0.9375,
+      "n": 160
+    },
+    {
+      "read": "top-8",
+      "k": 8,
+      "slots_in_store": 1905,
+      "slots_touched": 8,
+      "bridge_windows": 15,
+      "recall": 0.9375,
+      "n": 160
+    },
+    {
+      "read": "graded(all)",
+      "k": 0,
+      "slots_in_store": 1905,
+      "slots_touched": 1905,
+      "bridge_windows": 15,
+      "recall": 0.9375,
+      "n": 160
+    }
+  ]
+}

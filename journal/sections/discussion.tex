@@ -1,0 +1,37 @@
+% discussion  -  part of main.tex (see journal/README.md)
+\section*{Discussion}
+
+Memory can sit inside the model instead of around it. The weights compute and the store
+remembers, and because the store is addressed by the token itself, retrieval is exact and
+cheap: a read touches one slot, even for facts a million tokens back. The store is also
+just a file, so it can be swapped, persisted or deleted. Revision, boundedness, composition and
+meaning all come from gating and reasoning layered above it. The arrangement
+resembles complementary-learning-systems accounts of the brain, in which a fast, index-like
+hippocampal store sits beside slowly learning cortex\cite{teyler1986indexing,mcclelland1995cls,kumaran2016cls}.
+The analogy holds in one further respect: an offline replay phase moves stored episodes
+into the weights, using the store's own key sequence as the transcript (Supplementary Note~8).
+
+Compared with earlier memory-augmented transformers, this trades space for exactness.
+Recurrent and compressed memories\cite{bulatov2022rmt,rae2020compressive,wu2022memformer} hold
+a fixed-size summary in constant space, so a fact mentioned once can be blurred or
+overwritten. Ours does the opposite: it grows, keeps exact content, stays cheap to read,
+and outlives the sequence and the process that wrote it. Every experiment, including the designs we
+tried and discarded, is recorded with its hypothesis and result in Supplementary Data~1.
+
+The limits are worth stating plainly alongside the results (Supplementary Note~9). Scale is the first
+of them: every model here has 7.8--12.1 million parameters, and the larger-scale runs are
+pending. Then capacity. A single shared store binding 128 distinct facts saturates
+near 45\%, and neither more attention heads, a curriculum nor a 3.4-fold wider model closes
+the gap (44--48\%). We believe this is an addressing limit of the kind that positional
+encodings resolve in a key--value cache. A positional or ordinal tag applied symmetrically
+to query and stored key would separate colliding facts without disturbing the exact match.
+The recency read is a first instance of such a tag. Part of the write-order limit is a
+fixed novelty gate, which points towards learning what to store. Our efficiency results
+stop at measurement; nothing has been realised in specialised hashed and 4-bit kernels.
+Most of what we report is controlled recall over natural prose, and the standard long-context
+benchmarks\cite{kuratov2024babilong,hsieh2024ruler} are part of the pending work.
+
+A model whose memory is a file changes what you can do with it. Memory becomes something
+you can load per user, inspect by decoding its keys, and delete outright; deleting a store
+removes whatever has not been consolidated into the weights. The split we use here,
+stateless weights and a stateful store, is a practical way to build models that remember.

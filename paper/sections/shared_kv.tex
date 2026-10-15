@@ -1,0 +1,74 @@
+\section{A shared-KV store}
+\label{sec:sharedkv}
+\label{sec:csa2}
+
+\secref{sec:longcontext} makes retrieval $O(1)$ in \emph{slots}---a query needs
+one or two---but the scan that \emph{finds} those slots is still $O(M)$: the read
+scores $q\!\cdot\!K$ over all $M$ keys. DeepSeek-V4.1-Flash (CSA2) makes
+long-context key--value cheap by exploiting inter-layer redundancy along three
+axes: a sparse candidate pool computed once and reused across layers, cross-layer
+KV reuse (a few anchor layers compute, the rest reuse), and low-bit (FP4) KV. We
+port all three to the store as an eval-time read path---no retraining---and each
+preserves recall.
+
+\subsection{Candidate pool: $O(1)$-slot becomes $O(1)$-compute}
+
+We restrict the read to an index-selected pool of candidate slots rather than the
+whole store. Two indices:
+\begin{itemize}
+\item \textbf{token} (exact). We record each slot's key-token at write; a query
+retrieves the slots whose stored token equals its own. For the position-free
+layer-0 key this is an \emph{exact} hash.
+\item \textbf{ann} (approximate). Random-hyperplane LSH on the key vectors buckets
+slots; a query reads its bucket, which works when keys are fuzzy rather than exact
+tokens.
+\end{itemize}
+\tabref{tab:pool} shows the token index scores $\approx\!2$ of $8001$ slots at
+$63$ windows with recall equal to the dense scan; the LSH index scores $\approx
+M/12$, also equal to dense. Restricting the read to the pool makes it $O(\text{pool})$,
+independent of $M$.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lccc}
+\toprule
+store (63 windows, 8001 slots) & dense (\texttt{none}) & token & ann (LSH) \\
+\midrule
+candidates scored & 8001 & \textbf{1.9} & 642 \\
+recall & \recall{82.5} & \recall{81.9} & \recall{83.1} \\
+\bottomrule
+\end{tabular}
+\caption{Candidate-pool read: the token index scores $\approx2$ of $8001$ slots at
+dense-matching recall---the $O(1)$-slot read becomes $O(1)$-compute---and LSH gives
+a $\sim\!10\times$ cut for fuzzy keys. \texttt{none} reproduces the dense read of
+\S\ref{sec:longcontext}.}
+\label{tab:pool}
+\end{table}
+
+\subsection{Cross-layer reuse is free}
+
+When the model reads at several layers, the pool need not be rebuilt per layer.
+Building it once at an anchor layer and reusing the same candidates at the later
+read layers gives \emph{identical} recall to rebuilding per layer (\recall{100}
+either way on a six-read-layer model), at one pool build instead of six---exactly
+CSA2's ``few anchor layers, the rest reuse.'' This works because, as
+\S\ref{sec:placement} shows independently, the layers are redundant enough that one
+shared retrieval serves them all.
+
+\subsection{Low-bit KV}
+
+Finally we quantize the stored codes. The store survives \textbf{4 bits per element
+with no recall loss} ($8\times$ smaller than the fp32 store and $4\times$ smaller than fp16: $1024\!\to\!256$ bytes/slot against fp16; at
+$63$ windows $4$-bit equals $16$-bit at \recall{82.5}), and $3$-bit is a hard
+cliff. Ablating keys versus values, the \emph{keys} are the limit: matching needs
+$4$ bits to keep near-tied keys apart, while values decode correctly at $3$ bits,
+so an asymmetric keys-$4$/values-$3$ store packs tighter still.
+
+\paragraph{Summary.} Together, the store is a shared key--value memory that holds
+$\gg$ the context window ($63\times$), is retrieved in $O(1)$ slots at
+$O(1)$-compute, is reused across layers for free, and costs $4$ bits per
+element---the DeepSeek shared-KV construction realised on an in-stack episodic
+store. We emphasise these are \emph{measured} properties: the probe still computes
+$q\!\cdot\!K$ densely and fake-quantizes in fp32 to obtain the recall numbers;
+turning them into literal speed and bytes needs a true hashed/int4 kernel, which is
+engineering, not a further result.

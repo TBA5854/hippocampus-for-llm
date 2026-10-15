@@ -1,0 +1,51 @@
+\section{Consolidation: replaying the store into the weights}
+\label{sec:sleep}
+
+If the store is the state (\S\ref{sec:transplant}), it grows without bound; a memory
+system needs a way to move old episodes out of the store and into the weights, and to
+reclaim slots. We add a \emph{sleep} phase---an offline pass that replays store contents
+and consolidates them---and characterise it (r26--r33). Two properties of the exact-token
+key make this cheap.
+
+\paragraph{The store replays itself, with no decoder.} A stored value does not decode
+back to a token (a linear probe on values reads symbols at $0\%$), but a stored
+\emph{key} does, exactly ($100\%$)---it is a token embedding. And because a value is
+shifted by one, slot $i{+}1$'s key is slot $i$'s value token, so \emph{the sequence of
+decoded keys reconstructs the written text} with no separately trained decoder (r26).
+Replay is therefore free: the store is its own transcript.
+
+\paragraph{Sleep consolidates and reclaims.} Replaying that transcript as a
+language-model target moves the episode into the weights: recall from weights alone goes
+$0\%\to\recall{100}$ and every one of the store's slots becomes reclaimable, with the
+language-model loss \emph{improving} under rehearsal ($0.96\to0.83$) (r27). Rehearsing
+the memory \emph{task} during sleep---not only the language stream---keeps the write path
+calibrated so post-sleep new writes stay at \recall{100} (from $75\%$ without it) and
+consolidation holds at the $8\times$ store ($3937$ slots) (r28). Sleep does age the key
+space, though: consolidating shifts the embeddings a store's old keys were written
+against, so an untouched old store decays ($88\%\to38\%$)---the key space cannot both
+stay put for old stores and move for learning. Re-encoding surviving episodes from their
+own decoded transcripts resolves this (r28).
+
+\paragraph{Steady state needs bounded replay.} Across twelve wake/sleep cycles the loop
+is stable---consolidation stays $88$--$100\%$, key drift is sub-linear and stays under
+the destructive threshold, the language-model loss keeps improving---but knowledge is
+not retained for free: without replay each episode is forgotten within about three
+cycles. A fixed per-night replay budget fixes it, lifting twelve-user retention from
+$0\%$ to a mean of $69\%$ at constant cost (r29).
+
+\paragraph{Compression is free along one axis only.} Two ways to shrink an episode in
+the store behave oppositely. Writing \emph{fewer slots} by a content-aware surprisal gate
+is free---keeping the highest-surprisal quarter of tokens holds \recall{100}
+($4\times$ fewer slots, baseline $99.7\%$), while a fixed stride at the same rate
+collapses ($58\%$ / $0.5\%$) and an episode-end-only write is at chance (r30). Shrinking
+the slot \emph{width} with a random projection, by contrast, fails at chance---it
+destroys the exact-token match that the layer-0 key depends on (r31), the same reason a
+contextualised key fails elsewhere. Treating episodes as first-class objects with
+completeness-aware eviction beats ring eviction ($0.5\%\to\recall{90.6}$), given room for
+one complete plus one replaceable episode (r31). Finally, compression interacts with
+sleep: consolidation on a compressed store is unaffected, but the re-encode repair path
+must carry the original written positions or it compresses twice and drops exactly the
+fact tokens (the surprisal gate, after sleep, scores facts as low-surprisal because the
+model now predicts them)---carrying positions restores it ($6.3\%\to75\%$), and
+compression usefully removes the seed variance of full-rate writing ($97.3\%$ mean at an
+$8$-point spread versus $71\%$ at $72$) (r32--r33).

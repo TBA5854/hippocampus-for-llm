@@ -1,0 +1,21 @@
+{
+  "slots": 381,
+  "decode_exact": 1.0,
+  "wake_recall_with_store": 1.0,
+  "wake_recall_heldout_fact": 1.0,
+  "weights_alone_before_sleep": 0.0,
+  "weights_alone_after_sleep": 0.125,
+  "weights_alone_after_sleep_replayed_fact": 0.125,
+  "slots_reclaimable": 48,
+  "post_sleep_store_recall": 0.625,
+  "store_rewritten_after_sleep": 0.125,
+  "lm_loss_before": 0.9427168607711792,
+  "lm_loss_after": 0.9039421916007996,
+  "weight_drift_l2": 146.03097534179688,
+  "sleep_steps": 4000,
+  "sleep_lr": 0.0003,
+  "freeze_keys": true,
+  "rehearse": 1.0,
+  "tag": "r27_prot_s4000_lr3e4",
+  "n": 8
+}

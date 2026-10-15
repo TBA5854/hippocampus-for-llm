@@ -1,0 +1,139 @@
+% results  -  part of main.tex (see journal/README.md)
+\section*{Results}
+
+\subsection*{A memory block addressed by the token itself}
+
+The block has three parts (Fig.~\ref{fig:arch}a, Methods and Supplementary Note~1). A \emph{key} is the
+token's layer-0 embedding without position, and the read head's query projection is
+initialised to the identity and frozen, so a token matches itself exactly. A \emph{read} scores the stored
+keys by cosine similarity, sharpens the scores by an annealed softmax in the manner of a modern Hopfield network\cite{hopfield1982,ramsauer2021hopfield} (an associative memory that returns the stored pattern closest to a cue), and injects the blended values into the residual stream (the running representation that every layer reads and updates) through a gate initialised at zero\cite{bachlechner2021rezero}.
+At initialisation the block is therefore an exact no-op, and the store-disabled model is a
+true control. A \emph{write} stores one slot per token, with the value shifted by one
+position so that the slot keyed on a token returns what followed it.
+
+Where reads and writes happen matters. Writing the mean of all layers' states into one slot
+per token gives 80.8\% recall on a 32-fact task. Letting every layer write its own
+post-block state as its own slot in the one shared store lifts this to 95.5\% and 98.9\% over two seeds (Table~\ref{tab:core}; Supplementary Note~2 and Supplementary Table~1). A control with the same
+number of slots, but keyed by each layer's evolving residual, stays at
+0.2\%. The gain comes from per-depth values that stay exactly addressable. Extra capacity
+on its own does not do it. The exact address is load-bearing. Every attempt to enrich the
+key---moving it deeper, adding position, mixing in a neighbouring token, or projecting it to
+fewer dimensions---collapsed matching to chance (Supplementary Note~2).
+
+\subsection*{Recall of facts stated once, out of context}
+
+We test memory with a task in which no answer can come from the prompt (Supplementary Note~3). The first segment
+states $n$ key--value facts inside PG-19 prose (a corpus of books)\cite{rae2020compressive}; intermediate
+segments are unrelated prose; the final segment holds only a query marker and one key. Two
+matched controls run every time: the store disabled, and a scrambled store in which each
+example reads a neighbour's store.
+
+With single-token sub-word keys\cite{sennrich2016bpe}, recall is 100\% at 8, 16 and 32
+facts and 99.1\% at 64, with the scrambled control at $0.16\%$ (Table~\ref{tab:core}; Supplementary Table~2).
+Memory survives the process: a store written, then reloaded in a fresh interpreter, answers
+at 100\%, and a mismatched store file at $0.0\%$. Two obstacles had to be removed on
+the way. Character-level keys impose a \emph{multi-token-key tax}: the only token at the
+retrieval point is a shared delimiter, so recall falls from
+90\% to 55\% between 4 and 13 facts; a single-token key removes it. The
+familiar fact-count cliff---recall collapsing beyond a threshold even though the top-scoring
+slot is correct---is a training-dynamics deadlock rather than a capacity limit. Multi-layer
+placement clears it from a cold start after a delayed phase transition (99.7\% at 16
+facts, 98.0\% at 32), and a warm-start curriculum reaches the same endpoint in about
+half the steps.
+
+\subsection*{The weights are stateless; the store is the state}
+
+Splitting weights from store predicts that a store can be moved between conversations
+without touching the model. We hold one trained model fixed and build two stores from
+disjoint fact sets (Fig.~\ref{fig:arch}b and Supplementary Note~4). Recall
+is diagonal: 100\% and 96.9\% when the store that holds the queried facts is
+loaded, and $0.0\%$ when the other store is, with a scrambled store at chance (one of 32 queries, $3.1\%$; Table~\ref{tab:core} and Supplementary Table~3). Swapping the store swaps the memory.
+
+The same experiment marks the boundary. Two independently seeded models each read their own
+store at 98.8\% and 100\%, but each other's at $0.0\%$, in both directions,
+although the facts are physically present and the stores are shape-compatible. A store's
+keys are its writer's token embeddings, so a store is a memory only for the model that wrote
+it, and the persistence path refuses a foreign store by its model fingerprint. One frozen
+model can therefore serve many users by loading their stores. Carrying memory across model
+versions requires re-encoding, which is cheap: the stored keys decode exactly to their
+tokens, so the key sequence is itself the transcript of what was written (Methods).
+
+\subsection*{Memory far beyond the attention window}
+
+Because the store sits outside attention, it can span many attention windows. A fixed ring
+buffer eventually overwrites old facts, which is a limit of eviction policy and not of
+capacity. We
+instead grow the store by appending, like a key--value cache, and read it with a top-1 lookup, which uses only the best-matching slot (Supplementary Note~5). Recall then stays at 100\% from 1.9k to 998k tokens between fact and query (Fig.~\ref{fig:long}a and Supplementary Table~4), about 7,800 times the 128-token window, on both a
+two-layer and a six-layer model. A dense read over all slots decays as distractors
+accumulate, from 85\% to 60\% by 25k tokens and to $0\%$ by 128k, so sparse reading is a
+requirement, not a compromise. A scrambled store sits at $0.0\%$ at 128k and 384k tokens.
+Reaching a million tokens needed an evaluation-time change only: building the store in place
+rather than rewriting it every segment (Methods). The read is $O(1)$ per query, so build time
+sets the reach. One caveat runs the other way. Keys drawn from
+the rarest words, whose embeddings are least trained, recall at 50--75\% even at a million
+tokens. That is an effect of embedding quality, not of store size.
+
+The store also behaves as a shared key--value memory in the sense used to compress attention caches\cite{shazeer2019mqa,ainslie2023gqa,deepseekv2mla2024,deepseekv41flash2026} (Supplementary Note~6). An index of
+each slot's key token lets a query score about 2 of 8,001 slots at the recall of a dense scan
+(81.9\% versus 82.5\%; Supplementary Table~5). Building that candidate pool once and reusing it at every read layer
+gives recall identical to rebuilding it per layer. The stored codes survive quantization (storing numbers at reduced precision) to 4 bits per element with no loss (Fig.~\ref{fig:long}b), eight times smaller than the
+32-bit store. Keys are the
+bit-limiting half: they fail at 3 bits, while values hold to 3. Both figures are measured
+properties of the read. Turning them into speed and memory savings needs specialised low-level routines for hashed lookup and 4-bit integers.
+
+\subsection*{No lost-in-the-middle, but a write-order limit}
+
+Attention models retrieve facts placed in the middle of a long context worse than those at
+its ends\cite{liu2024lost}. We tested this with a passkey design\cite{mohtashami2023landmark}, in which a fact is planted at a chosen depth in long filler text and queried at the end, varying that depth (Supplementary Note~5). The store shows no mid-context dip:
+recall is monotonic in depth (Fig.~\ref{fig:passkey}a). In its place there is a \emph{write-order}
+decay that grows with saturation. A fact written first stays at 100\%, but a fact
+written last falls from 81\% to 50\% to 6\% as the store fills from 4k to 16k to 65k slots,
+with a scrambled store at $0\%$ throughout. The store privileges what it saw first, the
+opposite of a recency bias.
+
+Two ablations locate the cause (Fig.~\ref{fig:passkey}b). Ring overwriting is not the
+explanation: an append-only store gives an identical curve. The write policy is part of it. The block stores a
+segment only when it is novel enough relative to the store (Methods), and a late fact whose
+key token recurs in the intervening prose reads as familiar. Keying facts on unique tokens,
+which always read as novel, lifts the late tail fourfold, from 6\% to 25\%, though it lowers
+the early end from 100\% to 75\% because rarely seen tokens have weaker embeddings. On a
+weaker six-layer model the decay is nearly binary: only the first-written fact survives,
+and unique keys do not help (Fig.~\ref{fig:passkey}c). The limit is part fixable write
+policy, part saturation, and nothing to do with position.
+
+\subsection*{From a lookup table to a memory}
+
+A store that can only be appended to and read is a lookup table. A memory must also revise a
+fact when it is restated, stay bounded as text accumulates, and support computation over its
+contents. We added each by changing only the read and write heads (Fig.~\ref{fig:memory}; Supplementary Note~7 and Supplementary Table~6).
+
+\emph{Revision.} An append-only store keeps both the old and new value of a restated fact and
+cannot tell which is current. A small bias towards the most recently written match, read from
+a global write counter, lifts newest-value recall from 88.9\% to 96.7\%, while facts that were never updated stay at 97.5\% (Fig.~\ref{fig:memory}a). The
+position-free key carries no recency of its own; recency has to come from write order.
+
+\emph{Boundedness.} Gated write operations keyed on the token---\textsc{new},
+\textsc{update-in-place} or \textsc{skip}---keep one slot per distinct fact. Recall is
+95.9\% at about 200 occupied slots against 94.1\% at 508 when every occurrence
+is appended, and updates land at 96.2\% against 7.8\%
+(Fig.~\ref{fig:memory}b). A single shared store with these operations matches separate
+per-layer stores (96.2\% recall, 96.6\% update).
+
+\emph{Composition.} Given $A\!\to\!B$ and $B\!\to\!C$ stored beyond the window, answering $A$
+with $C$ needs two retrievals chained through the store. Feeding a retrieved representation
+back as the next query failed in all seven variants we tried, at chance: a stored value does
+not lie on the manifold of keys, so the next exact match never fires. Composition works
+as a working-memory operation. The model emits each intermediate as a token and
+queries again, a chain of thought\cite{wei2022cot} (writing out intermediate steps) whose steps are store reads. Joint recall
+is 96.9\% at two hops and 95.2\% at three over 64 facts, and 91.6\% at
+four and 89.7\% at five over 32 facts, close to 0.98 per hop (Fig.~\ref{fig:memory}c). Feeding the model its own emitted intermediates, in place of the true
+ones, changes nothing. Breaking one link of the chain drops joint recall to $0.0\%$ while
+the preceding hops still succeed, so the model is composing rather than taking a shortcut.
+
+\emph{Meaning.} The exact match is not semantic. A synonym of a stored key retrieves at
+chance (about 4\%), and softening the read narrows what matches further. Meaning
+can come from reasoning instead. When the first hop maps a synonym to its canonical form from
+the weights and the second hop reads the store, synonym-queried facts are recalled at
+90.8\%; replacing the synonym map with a random, unlearnable one drops the first hop
+to 2\%. The store is an exact index, and meaning is supplied above it.
+

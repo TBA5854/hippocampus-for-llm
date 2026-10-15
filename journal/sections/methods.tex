@@ -1,0 +1,91 @@
+% methods  -  part of main.tex (see journal/README.md)
+\section*{Methods}
+
+\paragraph{Model.} We use small decoder-only transformers with byte-pair-encoded
+vocabularies of 8,192 tokens trained on PG-19\cite{rae2020compressive}, in four shapes, each
+with a single attention head: $d_\text{model}=256$ with 6 layers (the default; 7.8M parameters),
+512 with 2 (12.1M), 384 with 3 (9.7M) and 192 with 12 (7.9M). Text is processed in segments of 128
+tokens. The forward pass is stateless per segment and keeps no key--value cache across
+segments, so the store is the only cross-segment channel.
+
+\paragraph{Memory block.} For each token the key is its layer-0 embedding without position
+information. Each read head projects the layer's hidden state to a query; the projection is
+initialised to the identity and frozen, so a token's query equals its key. A read computes
+cosine scores between the query and every stored key (after subtracting a running key mean),
+sharpens them with a softmax at inverse temperature $\beta$ (32 at inference), and returns the
+score-weighted sum of stored values, projected back to the model width and added to the
+residual stream through a scalar gate initialised at zero\cite{bachlechner2021rezero}.
+Because sharp retrieval starves the query of gradient, the forward pass uses the sharp
+softmax and the backward pass a soft one ($\beta=4$), a straight-through
+estimator\cite{bengio2013ste}. The \emph{top-$k$} readout keeps only the $k$ highest-scoring
+slots; the \emph{dense} readout uses all of them. A write stores one slot per token; the value
+is shifted by one position, so the slot keyed on token $t_j$ returns the representation of
+$t_{j+1}$. In the default per-layer arrangement every layer reads the shared store and writes
+its normalised post-block state as its own slot, so each token adds $L$ slots. A write is
+committed only if the segment is novel relative to the store (novelty threshold 0.6). The
+earlier read-early/write-late arrangement adds the normalised layer-0 state to the
+last-block value, which restores content the head has abstracted away.
+
+\paragraph{Store.} The store holds keys and values of shape $[B, M, d_\text{mem}]$ per example,
+with $d_\text{mem}$ equal to the model width. It is either a ring buffer of capacity $M$ or a growable buffer that
+appends and doubles its capacity when full. It is a non-persistent module buffer, so a model
+trained with one capacity runs with another unchanged. A save/load path stamps each store with
+a fingerprint of the model that wrote it and refuses a mismatched model by default. During
+evaluation, which has no backward pass, slots are written in place, so the cost of a write is
+proportional to the segment length, not to $M$. This is what makes a store of
+$\sim$$10^6$ slots buildable on one 16\,GB GPU.
+
+\paragraph{Memory operations.} The recency read adds a bias proportional to normalised write
+order (scale 0.3) to the scores of matching slots. Gated write operations compare each
+incoming token with existing slots carrying the same key token and either append
+(\textsc{new}), overwrite (\textsc{update-in-place}) or drop (\textsc{skip}); pad-valued
+writes are skipped. For multi-hop composition the model emits each intermediate token, which
+is appended to the next segment and used as the next query.
+
+\paragraph{Tasks.} \emph{Recall:} the first segment states $n$ key--value facts using
+single-token words, embedded in PG-19 prose; intermediate segments are unrelated prose; the
+last segment contains a query marker and one key, and the target is its value.
+\emph{Update:} a later segment restates a subset of keys with new values; the target is the
+newest value. \emph{Multi-hop:} several shuffled chains $A\!\to\!B\!\to\!\dots$ are stored and
+one chain, chosen at random, is queried by its head, so returning the last-written value
+cannot score. \emph{Passkey:} the facts are written into one of the context windows, chosen at
+a controlled fractional depth, and queried at the end. \emph{Synonym recall:} queries use a
+synonym of the stored key; the first hop maps it to the canonical key using a fixed lexicon
+learned in the weights.
+
+\paragraph{Training.} We train with AdamW ($\beta_1=0.9$, $\beta_2=0.95$, weight decay 0.1),
+peak learning rate $3\times10^{-4}$ with a one-cycle schedule (10\% warm-up), gradient
+clipping at 1.0, batch 32 and four segments per example, for 8,000--16,000 steps. The
+loss is next-token cross-entropy plus a five-fold weighted cross-entropy on answer tokens.
+A 10,000-step run takes 40--90\,min on one 16\,GB GPU.
+
+\paragraph{Evaluation and controls.} Recall is exact match of the answer token. Every
+experiment runs matched controls: the store disabled; a scrambled store, in which each
+example reads a neighbour's store (this requires batch size $\geq2$; at batch 1 there is no
+neighbour); a broken chain for multi-hop, in which one link is replaced so that the chain
+cannot reach its tail; reload in a fresh process for persistence; and store swap and
+cross-model transplant for the store-as-state experiments. We report final recall, and peak
+recall where the two differ. The long-context and passkey probes evaluate trained checkpoints
+without further training, with top-1 readout; sample sizes are 4--48 queries per cell for the
+million-token sweep and 16 per depth for the passkey decomposition. Each experiment is a folder with its hypothesis, exact commands and results; all 113 are summarised in Supplementary Data~1.
+
+\paragraph{Statistics and reproducibility.} Recall is a proportion of $n$ independent queries,
+each a separate example drawn at random from the evaluation stream. The number of queries is
+$n=640$ for training-time evaluations (20 batches of 32), 160 for the persistence and
+quantization probes, 32 for the store-swap probe, 4--48 for the long-context sweeps, and 16 per
+depth for the passkey probes (8 for their control). Error bars and the intervals in Table~1 are
+95\% Wilson score intervals for a binomial proportion, $\left(\hat p + z^2/2n \pm
+z\sqrt{\hat p(1-\hat p)/n + z^2/4n^2}\right)/(1+z^2/n)$ with $z=1.96$. As an example, 99.1\% at
+$n=640$ has the interval 98.0--99.6\%, and 96.9\% (31 of 32) at $n=32$ has 84.3--99.4\%.
+Several cells have few queries, so the long-context and store-swap intervals are wide, and
+we draw no conclusion from differences smaller than them. We use no hypothesis tests: every
+comparison we report is either a difference far larger than the intervals or a control that
+sits at chance. Most configurations were trained once; where two seeds are compared they are
+stated. The intervals therefore reflect sampling of the evaluation queries, not variability
+across training runs, which we did not estimate for most results. Source data for every figure
+and for Table~1 are provided.
+
+\paragraph{Use of AI tools.} This work was carried out with assistance from a
+large language model, Claude (Anthropic). The model wrote and modified
+the code and drafted the text, tables and figure scripts of this manuscript and its Supplementary Information. The language model is not an author and cannot
+take responsibility for the work.

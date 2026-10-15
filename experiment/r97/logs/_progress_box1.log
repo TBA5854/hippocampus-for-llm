@@ -1,0 +1,38 @@
+r97 box1 starting in /home/adhavan_23bce0839/research/framework at 2026-09-21T09:41:34+05:30
+=== fuzzy_d256_L6 START 2026-09-21T09:41:34+05:30
+=== fuzzy_d256_L6 EXIT 0 2026-09-21T09:42:05+05:30
+nn_rank=0  neighbor_cos=1.000  recall= 84.7%  n=640
+nn_rank=1  neighbor_cos=0.939  recall= 33.0%  n=640
+nn_rank=2  neighbor_cos=0.935  recall= 24.7%  n=640
+nn_rank=3  neighbor_cos=0.934  recall= 22.7%  n=640
+nn_rank=5  neighbor_cos=0.931  recall= 16.4%  n=640
+nn_rank=10  neighbor_cos=0.929  recall= 12.8%  n=640
+=== fuzzy_d512_L2 START 2026-09-21T09:42:05+05:30
+=== fuzzy_d512_L2 EXIT 0 2026-09-21T09:42:34+05:30
+nn_rank=0  neighbor_cos=1.000  recall= 98.8%  n=640
+nn_rank=1  neighbor_cos=0.832  recall= 73.0%  n=640
+nn_rank=2  neighbor_cos=0.822  recall= 58.8%  n=640
+nn_rank=3  neighbor_cos=0.820  recall= 54.8%  n=640
+nn_rank=5  neighbor_cos=0.814  recall= 46.6%  n=640
+nn_rank=10  neighbor_cos=0.806  recall= 32.7%  n=640
+=== ROUND DONE 2026-09-21T09:42:34+05:30
+r97 box1 resuming in /home/adhavan_23bce0839/research/framework at 2026-09-21T10:11:55+05:30
+SKIP fuzzy_d256_L6 (done)
+SKIP fuzzy_d512_L2 (done)
+=== fuzzy_d384_L3 START 2026-09-21T10:11:55+05:30
+=== fuzzy_d384_L3 EXIT 0 2026-09-21T10:12:24+05:30
+nn_rank=0  neighbor_cos=1.000  recall= 97.5%  n=640
+nn_rank=1  neighbor_cos=0.889  recall= 62.7%  n=640
+nn_rank=2  neighbor_cos=0.883  recall= 48.6%  n=640
+nn_rank=3  neighbor_cos=0.882  recall= 45.5%  n=640
+nn_rank=5  neighbor_cos=0.878  recall= 35.3%  n=640
+nn_rank=10  neighbor_cos=0.874  recall= 27.2%  n=640
+=== fuzzy_d192_L12 START 2026-09-21T10:12:24+05:30
+=== fuzzy_d192_L12 EXIT 0 2026-09-21T10:13:01+05:30
+nn_rank=0  neighbor_cos=1.000  recall= 96.9%  n=640
+nn_rank=1  neighbor_cos=0.950  recall= 61.9%  n=640
+nn_rank=2  neighbor_cos=0.944  recall= 48.0%  n=640
+nn_rank=3  neighbor_cos=0.943  recall= 44.7%  n=640
+nn_rank=5  neighbor_cos=0.939  recall= 37.5%  n=640
+nn_rank=10  neighbor_cos=0.936  recall= 25.6%  n=640
+=== ROUND DONE 2026-09-21T10:13:01+05:30

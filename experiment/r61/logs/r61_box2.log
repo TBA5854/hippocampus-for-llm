@@ -1,0 +1,20 @@
+=== r61 sparse-read (store >> window, query only top-k) START 2026-09-18T20:00:20+05:30
+--- M=1024  bridge=7 windows ---
+top-1         store=  889 slots (7 windows)  touched=    1/889  recall=100.0%
+top-2         store=  889 slots (7 windows)  touched=    2/889  recall= 99.4%
+top-4         store=  889 slots (7 windows)  touched=    4/889  recall= 98.8%
+top-8         store=  889 slots (7 windows)  touched=    8/889  recall= 98.8%
+graded(all)   store=  889 slots (7 windows)  touched=  889/889  recall= 98.8%
+--- M=2048  bridge=15 windows ---
+top-1         store= 1905 slots (15 windows)  touched=    1/1905  recall=100.0%
+top-2         store= 1905 slots (15 windows)  touched=    2/1905  recall= 96.9%
+top-4         store= 1905 slots (15 windows)  touched=    4/1905  recall= 93.8%
+top-8         store= 1905 slots (15 windows)  touched=    8/1905  recall= 93.8%
+graded(all)   store= 1905 slots (15 windows)  touched= 1905/1905  recall= 93.8%
+--- M=4096  bridge=31 windows ---
+top-1         store= 3937 slots (31 windows)  touched=    1/3937  recall=100.0%
+top-2         store= 3937 slots (31 windows)  touched=    2/3937  recall= 95.0%
+top-4         store= 3937 slots (31 windows)  touched=    4/3937  recall= 91.2%
+top-8         store= 3937 slots (31 windows)  touched=    8/3937  recall= 90.0%
+graded(all)   store= 3937 slots (31 windows)  touched= 3937/3937  recall= 90.0%
+=== ROUND DONE 2026-09-18T20:01:35+05:30

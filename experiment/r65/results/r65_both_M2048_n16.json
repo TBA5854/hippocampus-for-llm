@@ -1,0 +1,115 @@
+{
+  "n_facts": 64,
+  "quant_what": "both",
+  "memory_size": 2048,
+  "rows": [
+    {
+      "pool": "none",
+      "bits": 16,
+      "quant_what": "both",
+      "bytes_per_slot": 1024.0,
+      "store": 1905,
+      "recall": 0.9375,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 8,
+      "quant_what": "both",
+      "bytes_per_slot": 512.0,
+      "store": 1905,
+      "recall": 0.94375,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 6,
+      "quant_what": "both",
+      "bytes_per_slot": 384.0,
+      "store": 1905,
+      "recall": 0.93125,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 4,
+      "quant_what": "both",
+      "bytes_per_slot": 256.0,
+      "store": 1905,
+      "recall": 0.925,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 3,
+      "quant_what": "both",
+      "bytes_per_slot": 192.0,
+      "store": 1905,
+      "recall": 0.11875,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 2,
+      "quant_what": "both",
+      "bytes_per_slot": 128.0,
+      "store": 1905,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "pool": "token",
+      "bits": 16,
+      "quant_what": "both",
+      "bytes_per_slot": 1024.0,
+      "store": 1905,
+      "recall": 0.9375,
+      "n": 160
+    },
+    {
+      "pool": "token",
+      "bits": 8,
+      "quant_what": "both",
+      "bytes_per_slot": 512.0,
+      "store": 1905,
+      "recall": 0.9375,
+      "n": 160
+    },
+    {
+      "pool": "token",
+      "bits": 6,
+      "quant_what": "both",
+      "bytes_per_slot": 384.0,
+      "store": 1905,
+      "recall": 0.93125,
+      "n": 160
+    },
+    {
+      "pool": "token",
+      "bits": 4,
+      "quant_what": "both",
+      "bytes_per_slot": 256.0,
+      "store": 1905,
+      "recall": 0.91875,
+      "n": 160
+    },
+    {
+      "pool": "token",
+      "bits": 3,
+      "quant_what": "both",
+      "bytes_per_slot": 192.0,
+      "store": 1905,
+      "recall": 0.51875,
+      "n": 160
+    },
+    {
+      "pool": "token",
+      "bits": 2,
+      "quant_what": "both",
+      "bytes_per_slot": 128.0,
+      "store": 1905,
+      "recall": 0.0125,
+      "n": 160
+    }
+  ]
+}

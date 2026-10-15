@@ -1,0 +1,22 @@
+initialised from experiment/r25/ckpt/r25_1x_f16_warm.pt
+hc=on  vocab=337  params=5.11M  trainable=4.92M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 7.4224  val 7.5547  ppl 1909.76  recall   0.6%  [s0:3.885  s1:0.844  s2:0.854  s3:0.077]  gates=0:0.313
+step   500  train 7.4586  val 7.5481  ppl 1897.11  recall   0.8%  [s0:3.896  s1:0.874  s2:0.881  s3:0.077]  gates=0:0.300
+step   750  train 7.3868  val 7.5180  ppl 1840.83  recall   0.2%  [s0:3.884  s1:0.870  s2:0.878  s3:0.077]  gates=0:0.292
+step  1000  train 7.5224  val 7.5390  ppl 1879.87  recall   0.8%  [s0:3.884  s1:0.863  s2:0.870  s3:0.077]  gates=0:0.285
+step  1250  train 7.4459  val 7.5184  ppl 1841.57  recall   0.5%  [s0:3.876  s1:0.857  s2:0.866  s3:0.077]  gates=0:0.275
+step  1500  train 7.4557  val 7.5103  ppl 1826.76  recall   0.3%  [s0:3.873  s1:0.846  s2:0.855  s3:0.076]  gates=0:0.269
+step  1750  train 7.4873  val 7.4890  ppl 1788.28  recall   1.1%  [s0:3.868  s1:0.839  s2:0.846  s3:0.076]  gates=0:0.265
+step  2000  train 7.4801  val 7.5005  ppl 1809.02  recall   1.6%  [s0:3.866  s1:0.831  s2:0.838  s3:0.076]  gates=0:0.260
+step  2250  train 7.5125  val 7.5549  ppl 1910.06  recall   0.3%  [s0:3.863  s1:0.831  s2:0.839  s3:0.077]  gates=0:0.257
+step  2500  train 7.4604  val 7.4770  ppl 1766.94  recall   0.6%  [s0:3.861  s1:0.814  s2:0.822  s3:0.076]  gates=0:0.255
+step  2750  train 7.4925  val 7.4732  ppl 1760.23  recall   0.8%  [s0:3.859  s1:0.806  s2:0.814  s3:0.076]  gates=0:0.252
+step  3000  train 7.4515  val 7.4631  ppl 1742.46  recall   1.2%  [s0:3.855  s1:0.798  s2:0.805  s3:0.076]  gates=0:0.250
+step  3250  train 7.4395  val 7.4495  ppl 1718.94  recall   0.9%  [s0:3.853  s1:0.790  s2:0.798  s3:0.076]  gates=0:0.251
+step  3500  train 7.4373  val 7.4474  ppl 1715.35  recall   0.8%  [s0:3.852  s1:0.785  s2:0.793  s3:0.076]  gates=0:0.250
+step  3750  train 7.4264  val 7.4435  ppl 1708.76  recall   0.8%  [s0:3.851  s1:0.782  s2:0.791  s3:0.076]  gates=0:0.250
+step  4000  train 7.4335  val 7.4433  ppl 1708.45  recall   1.1%  [s0:3.851  s1:0.782  s2:0.790  s3:0.076]  gates=0:0.250
+done in 433s
+-> experiment/r25/ckpt/r25_1x_f48_warm_shuf.pt
+-> experiment/r25/results/r25_1x_f48_warm_shuf.json

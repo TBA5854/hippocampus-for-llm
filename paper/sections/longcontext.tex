@@ -1,0 +1,110 @@
+\section{Memory beyond the context window}
+\label{sec:longcontext}
+
+Because the store is external to attention, the information it holds is not bounded
+by the model's $128$-token window. We measure this directly. The model's attention
+window is one segment; facts are stated in one window and queried from a
+\emph{separate}, empty window, and we vary how many windows of unrelated prose the
+store must reach across.
+
+\paragraph{The store scales past the window.} Under a plain ring buffer, effective
+reach grows linearly with store size $M$: at $M=512$ the store bridges $\approx3$
+windows, and doubling $M$ roughly doubles the reach, up to $31$ windows
+($3968$ tokens) at $M=4096$ answered at $90\%$ from an empty prompt. The collapse
+that eventually occurs is a hard cliff located exactly where the ring buffer laps
+and overwrites the fact slots---a policy limit, not a capacity one. An eviction
+that protects the fact slots (evicting prose instead) bridges $31$ windows at
+$99\%$ from a $256$-slot store: effective context is bounded by how many slots hold
+facts plus a working set, not by $M$. Or one simply removes the cliff: letting the
+store \emph{grow} by appending---like a KV cache, with amortized doubling---instead of
+a fixed ring that laps, the store never overwrites a fact and holds recall out to
+$199$ windows ($25{,}472$ tokens, $25{,}273$ slots) where the fixed ring collapses to
+$0\%$ by $7$ windows (r100). $M$ is then only the seed capacity; the store is unbounded.
+The residual decay under growth ($100\!\to\!62.5\%$ over $199$ windows) is the dense
+read's distractor mass, not the growth---and the sparse top-$1$ read of the next section
+removes it: measured together (r101), top-$1$ holds \recall{100} at every distance out to
+$199$ windows, touching \emph{one} slot, while the dense read decays to $60\%$. Growth and
+the sparse read compose into an unbounded store read at flat recall in $O(1)$ slots.
+
+\paragraph{Retrieval is sparse, and sparse wins.} Although the store may hold
+thousands of slots, each query needs very few. Reading with a top-$k$ readout for
+shrinking $k$ (\tabref{tab:sparse}) shows \textbf{top-$1$ matches or beats the
+dense scan at every scale}: at $M=4096$ ($3937$ slots, $31$ windows) top-$1$ hits
+\recall{100} touching \emph{one} slot, versus \recall{90} for the dense read over
+all $3937$; the pattern holds to $63$ windows ($8001$ slots). Sparse is not a
+trade-off but a strict win: the dense softmax spreads weight onto near-miss and
+distractor slots, and that dilution grows with store size, whereas top-$1$ commits
+to the exact key match and is immune. A matched scrambled-store control drops
+top-$1$ to chance ($0.0$--$0.6\%$) on two models, confirming genuine retrieval. The
+optimal $k$ is small but model-dependent (one model peaks at $k{=}1$, another at
+$k{=}2$, whose answer binding spans two slots); $k\!\approx\!2$ is a safe default.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lccc}
+\toprule
+store (windows / slots) & dense (all slots) & top-1 (1 slot) & scrambled top-1 \\
+\midrule
+15 / 1905  & \recall{93.8} & \recall{100} & --- \\
+31 / 3937  & \recall{90.0} & \recall{100} & $0.0\%$ \\
+63 / 8001  & \recall{82.5} & \recall{100} & --- \\
+\bottomrule
+\end{tabular}
+\caption{The store holds up to $63\times$ the context window and is read sparsely:
+top-$1$ touches one slot and beats the dense scan, whose recall decays as
+distractor mass accumulates. Scrambled control at chance.}
+\label{tab:sparse}
+\end{table}
+
+\paragraph{Flat to a million tokens.} Pushing further (r102), the
+top-$1$ read holds \recall{100} out to $999$ windows---a $126{,}873$-slot store, $\approx$128k
+tokens, roughly $1000\times$ the $128$-token attention window---answered from an empty prompt by
+touching \emph{one} slot, and it does so on \emph{both} a $d{=}512$/$2$-layer and a
+$d{=}256$/$6$-layer model. At the same scale the dense read has fully collapsed
+($87.5\%\!\to\!0\%$ and $37.5\%\!\to\!0\%$ as the store grows from $25$k to $127$k slots): the
+softmax spreads weight over ever more distractor slots, while top-$1$ commits to the exact key
+match and is immune. And the reach is not architecturally bounded: pushing to a
+\emph{million tokens} (r108), top-$1$ holds \recall{100} out to $7{,}799$ windows---a
+$990{,}473$-slot store, $\approx$998k tokens, still on a single slot. This holds on
+\emph{both} models---the $d{=}512$/$2$-layer (r108) and, at the full million, the
+$d{=}256$/$6$-layer (r111)---so the million-token reach is a property of the store, not of
+one architecture; and a matched batch-2 scrambled-store control sits at $0.0\%$ at $128$k
+and $384$k, so the recall is genuine content-addressed retrieval, not a filler artifact.
+The earlier stop at
+$\approx$128k was purely an evaluation artifact: building the store rewrote the entire
+$[B,M,d]$ buffer out of place every window ($O(M{\cdot}d)$ per window, intractable past
+$\approx$$130$k slots), and since evaluation has no backward pass, an in-place $O(S)$ write
+plus a fixed pre-sized store makes a $\approx$$10^{6}$-slot store buildable in bounded memory.
+So the effective context is $\approx\!1000\times$ the attention window, \emph{measured} to a
+million tokens, bounded now only by build wall-clock rather than by the model. Two caveats
+sharpen the mechanism. First, recall requires \emph{well-trained key-token
+embeddings}: keying facts on the rarest words (whose embeddings are the least trained) drops
+top-$1$ to $50$--$62\%$ ($d{=}512$) and $12$--$25\%$ ($d{=}256$), and the larger model---with
+better embeddings---degrades less, so this is a key-quality effect, not a capacity one; it
+persists undiminished at scale ($75\%$ at $\approx$1M tokens on $d{=}512$, r111). Second,
+the sparse win is what makes the long store usable at all: without it the dense read is at chance
+by $\approx$128k tokens.
+
+\paragraph{Passkey: no lost-in-the-middle, but a write-order limit.} The million-token
+number above places every fact at the \emph{start} of the stream. The standard passkey /
+needle-in-a-haystack test also varies \emph{where} in the context the fact sits---the axis
+on which attention transformers show ``lost in the middle,'' a recall dip for
+mid-context needles. We sweep the needle's depth directly (r112--r113). There is
+\textbf{no lost-in-the-middle}: recall is \emph{monotonic in depth}, never anomalously low
+in the middle---at $64$k tokens the mid-context needle recalls at \recall{50} on
+$d{=}512$, between the early ($100\%$) and late ($12.5\%$) ends. Instead the store shows a
+strong \textbf{write-order (primacy) effect}: a fact stated early persists, a fact stated
+late into a saturated store is lost (by depth: $d{=}512$ at $64$k reads
+$100/62.5/50/25/12.5\%$; the weaker $d{=}256$ is near-binary, $\sim\!87.5\%$ for the
+first-written fact and $0\%$ thereafter), with a matched scrambled control at $0\%$
+throughout. This is the \emph{opposite} of a KV cache's recency, and it is the same
+capacity frontier seen earlier along the time axis: the decay
+steepens with store saturation ($d{=}512$ late-needle recall $81\!\to\!50\!\to\!6\%$ as the
+store fills $4$k$\to$$16$k$\to$$65$k slots) and is graded on the high-capacity model,
+catastrophic on the low. It is \emph{not} ring lapping---an appending store gives an
+identical curve---and it is \emph{partly a fixable write policy}: the fixed novelty gate
+(\texttt{write\_threshold}$=0.6$) suppresses a late needle whose key token recurs in the
+intervening prose, and keying on a unique, always-novel token lifts the late tail
+fourfold ($6\%\!\to\!25\%$ at $d{=}512$). A residual write-order decay remains under unique
+keys, pointing to key-centering drift as a second cause; both are limits of the current
+write path, not of content-addressed reading, which has no middle penalty at all.

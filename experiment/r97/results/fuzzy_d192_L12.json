@@ -1,0 +1,41 @@
+{
+  "n_facts": 32,
+  "rows": [
+    {
+      "nn_rank": 0,
+      "neighbor_cos": 1.0,
+      "recall": 0.96875,
+      "n": 640
+    },
+    {
+      "nn_rank": 1,
+      "neighbor_cos": 0.9498862206935883,
+      "recall": 0.61875,
+      "n": 640
+    },
+    {
+      "nn_rank": 2,
+      "neighbor_cos": 0.9439997285604477,
+      "recall": 0.4796875,
+      "n": 640
+    },
+    {
+      "nn_rank": 3,
+      "neighbor_cos": 0.9430484741926193,
+      "recall": 0.446875,
+      "n": 640
+    },
+    {
+      "nn_rank": 5,
+      "neighbor_cos": 0.9390131503343582,
+      "recall": 0.375,
+      "n": 640
+    },
+    {
+      "nn_rank": 10,
+      "neighbor_cos": 0.9361965090036393,
+      "recall": 0.25625,
+      "n": 640
+    }
+  ]
+}

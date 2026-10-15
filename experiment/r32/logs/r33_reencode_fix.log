@@ -1,0 +1,54 @@
+[W917 18:07:05.914584656 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 33554432 bytes (free: 42074112, total: 16743333888).
+[W917 18:07:05.914634660 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 33554432 bytes (free: 42074112, total: 16743333888).
+/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py:134: UserWarning: nvmlInit_v2 failed; omitting per-process memory info from CUDA out-of-memory messages. (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDACachingAllocator.cpp:1348.)
+  return F.linear(input, self.weight, self.bias)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/<user>/fw/mech/sleep_evict.py", line 440, in <module>
+    main()
+  File "/home/<user>/fw/mech/sleep_evict.py", line 339, in main
+    sleep(model, replay, supervised, a.sleep_steps, a.sleep_lr,
+  File "/home/<user>/fw/mech/sleep_evict.py", line 244, in sleep
+    lm_, _, _ = run_example(model, xm, ym, device, mask=mm,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/mech/train.py", line 172, in run_example
+    logits, h_write = model(x[:, s])
+                      ^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/mech/model.py", line 97, in forward
+    x = blk(x)
+        ^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/mech/model.py", line 53, in forward
+    return x + self.mlp(self.ln2(x))
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/.venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 32.00 MiB. GPU 0 has a total capacity of 15.59 GiB of which 40.12 MiB is free. Of the allocated memory 7.62 GiB is allocated by PyTorch, and 70.46 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

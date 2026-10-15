@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+% Target: Nature Machine Intelligence, Article.
+% Main text (intro + Results + Discussion) <= 3,500 words; abstract <= 150 words;
+% <= 6 display items. Methods, references and legends sit outside the limit.
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{caption}
+
+\usepackage[super,sort&compress,comma]{natbib}
+\usepackage{lineno}
+\usepackage[hidelinks]{hyperref}
+
+
+
+\DeclareCaptionLabelSeparator{bar}{ | }
+\captionsetup{font=small,labelfont=bf,labelsep=bar,justification=raggedright,singlelinecheck=false}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\bibnumfmt}[1]{#1.}
+\graphicspath{{figures/}}
+\onehalfspacing
+\setlength{\emergencystretch}{2em}
+\linenumbers
+
+\title{\textbf{Stateless weights, stateful store:\\ memory as a block inside the transformer}}
+\author{Adhavan K,\textsuperscript{1} Prem Vaishnav P\textsuperscript{1} and Vinila Jinny S\textsuperscript{1,*}\\[4pt]
+\small \textsuperscript{1}School of Computer Science and Engineering, Vellore Institute of Technology, Vellore, India\\
+\small \textsuperscript{*}Corresponding author: Dr Vinila Jinny S, vinilajinny.s@vit.ac.in\\
+\small ORCID 0000-0003-2756-6736}
+\date{}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+
+\input{sections/introduction}
+
+\input{sections/results}
+
+\input{sections/discussion}
+
+\input{sections/methods}
+
+\input{sections/availability}
+
+\bibliographystyle{naturemag}
+\bibliography{references}
+
+\input{sections/backmatter}
+
+% Display items follow the references (NMI wants figures and tables after the text).
+\input{sections/display_items}
+
+\end{document}

@@ -1,0 +1,9 @@
+{
+  "n_hops": 2,
+  "final_autoregressive": 0.96875,
+  "per_hop": [
+    0.9859375,
+    0.96875
+  ],
+  "n": 640
+}

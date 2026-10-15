@@ -1,0 +1,61 @@
+\begin{abstract}
+Personal-memory language models today manage long-term memory as an
+\emph{engineering} problem outside the network---retrieval-augmented generation,
+scratchpads, external vector stores. We instead make memory \emph{architectural}:
+a single memory block inside the transformer stack, backed by a persistent
+per-model store, that turns an otherwise stateless model into a stateful one which
+answers from its own store with nothing in the prompt. The store's address is a
+position-free, layer-0 key---equal to the raw token embedding---which gives
+exact-match retrieval and is the load-bearing property of the whole design. By
+default every layer both reads from and writes its own value into the \emph{one
+shared} store, keyed by that exact token; this per-layer read/write improves on the
+original read-early/write-late placement by $+16$ points. The thesis is that the
+weights are stateless and the store is the state: the same frozen model becomes many
+different stateful agents according to which store it carries, and swapping the store
+swaps the memory while not a single weight changes.
+
+On real language (PG-19 prose) the model recalls facts stated once and queried
+entirely out of context at \recall{100} through 32 facts and \recall{99} at 64,
+with store-disabled and scrambled-store controls at chance and the store persisted
+to disk and reloaded in a fresh process at no loss. Because the store is external to
+the attention window, it holds far more than that window: grown like a KV cache and
+read by a top-$1$ lookup, recall stays flat at \recall{100}---\emph{measured to a
+literal million tokens} (a $990{,}473$-slot store, $\approx\!7{,}800\times$ the
+$128$-token window) on a single slot, on two different models---while a dense scan
+collapses to chance. Retrieval is sparse, and sparse \emph{wins}: each query needs
+only one or two of thousands of slots, and top-$1$ reading beats a dense scan because
+it avoids distractor dilution that grows with store size. A passkey
+(needle-in-a-haystack) sweep of the fact's depth shows the store has \emph{no
+lost-in-the-middle}---recall is monotonic in depth---but a \emph{write-order} limit
+instead: a fact stored early persists while one stored late into a saturated store is
+lost, which we trace to a novelty write-gate and store saturation, not position.
+
+We further show the store is a \emph{shared} key--value memory in the sense of
+DeepSeek-V4.1-Flash (CSA2): an index-selected candidate pool makes the
+$O(1)$-slot read also $O(1)$-compute (an exact token hash scores $\approx\!2$ of
+$8001$ slots at full recall), the pool built once at an anchor layer is reused
+across read layers for free, and the store quantizes to $4$ bits per element
+($8\times$ smaller) with no recall loss. Placement ablations independently reveal
+the inter-layer redundancy shared-KV schemes exploit: one shared store read and
+written at every layer matches or beats separate per-layer stores, and the classic
+fact-count cliff is a property of a \emph{single} read/write site that multi-layer
+placement escapes.
+
+Finally we turn the lookup table into a memory: a recency-biased read revises a
+re-stated fact, gated write operations bound the store to one slot per distinct
+fact ($O(\text{facts})$, not $O(\text{tokens})$) at full recall, an offline sleep
+phase replays the store into the weights with no separate decoder, and a model
+reasons across facts held \emph{outside} its context window by emitting each
+intermediate as a token and re-querying---multi-hop chain-of-thought over the store
+at \recall{96} (two hops) and \recall{95} (three), confirmed autoregressively and
+out to five hops, with a broken-chain control at chance. The store's exact-token
+match is not itself semantic (a synonym retrieves at chance), but semantics is
+recovered by reasoning---a chain-of-thought whose first hop is a learned parametric
+map recalls a synonym-queried fact at \recall{90.8}. The division of labour holds
+throughout: a stateless, exact, unbounded store, with capacity, composition, and
+meaning supplied above it by gating and reasoning. Its one persistent frontier is a
+single shared store binding many distinct facts---saturating near \recall{45} at
+$128$---an addressing limit of the kind positional embeddings already solve in a KV
+cache. These conclusions are drawn from a chronicle of $113$ matched-control
+experiments, reported in full.
+\end{abstract}

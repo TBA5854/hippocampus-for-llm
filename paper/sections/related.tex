@@ -1,0 +1,49 @@
+\section{Related work}
+\label{sec:related}
+
+\paragraph{External and retrieval memory.} MemGPT, generative agents, and
+retrieval-augmented generation give language models long-term memory by storing and
+retrieving text \emph{outside} the network and re-injecting it into the prompt.
+This keeps the model stateless and ties recall to the context budget. Our store is
+\emph{inside} the stack and addressed by the model's own representations, so recall
+does not consume context and the model is stateful by construction.
+
+\paragraph{KV-cache compression and shared KV.} A large line of work makes the
+attention KV cache cheaper by sharing it \emph{across heads}: multi-query and
+grouped-query attention share one (or a few) key/value projections among many query
+heads, and multi-head latent attention (MLA, DeepSeek-V2/V3) caches a small latent
+from which each head reconstructs its own KV. DeepSeek-V4.1-Flash's CSA2 shares KV
+\emph{across layers}---a few anchor layers compute fresh KV and sparse selections,
+the rest reuse them---and adds FP4 KV. We port CSA2's three axes (candidate pool,
+cross-layer reuse, low-bit KV) to an \emph{external, persistent} episodic store
+rather than the in-window cache, and find the same inter-layer redundancy from an
+independent ablation of read/write placement.
+
+\paragraph{Associative and hippocampal memory.} The read is a modern-Hopfield /
+associative-memory retrieval with an annealed settling and a surrogate gradient.
+The write/read/consolidate structure and the naming (dentate gyrus for pattern
+separation, CA3 attractor retrieval, CA1 fusion gate, sleep-time consolidation)
+follow hippocampal-indexing accounts of episodic memory; we find, however, that the
+pattern-separation stage is incompatible with the exact-token key that makes the
+system work, and leave it off.
+
+\paragraph{Long-context transformers and memory-augmented models.} Recurrent-memory
+and compressive transformers extend context by carrying or compressing past
+activations---Transformer-XL caches the previous segment, and the Compressive
+Transformer and Recurrent Memory Transformer carry a fixed-size recurrent state.
+Closest to us is \emph{Memformer} (Wu et al., 2020), which adds an \emph{external}
+key--value memory bank of fixed-size slots that the model reads and writes by
+attention with a learned forgetting gate, achieving $O(1)$ inference space over
+unbounded sequences and beating Transformer-XL and the Compressive Transformer on
+WikiText-103. The difference is what the memory \emph{is}. These are lossy, learned
+\emph{summaries} updated by attention with forgetting, so a fact mentioned once is
+compressed into a shared recurrent state and can be overwritten; their aim is
+language-model perplexity, not fact recall. Our store instead holds \emph{exact}
+content addressed by a position-free token key, so a fact stated once is recoverable
+verbatim arbitrarily later (measured to a million tokens); it \emph{grows} rather
+than forgetting, is read in $O(1)$ \emph{slots} by an exact match rather than by
+attention over the whole bank, and is \emph{persistent and detachable}---it survives
+a process restart and swaps between models (the stateless-weights / stateful-store
+thesis of \S\ref{sec:transplant})---none of which an in-sequence recurrent summary
+provides. Memformer trades space for compression ($O(1)$ space, lossy); we trade
+space for exactness (a growable store, $O(1)$ \emph{read}).

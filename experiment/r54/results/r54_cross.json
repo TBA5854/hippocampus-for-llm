@@ -1,0 +1,385 @@
+{
+  "n_facts": 16,
+  "seg_len": 128,
+  "F": 127,
+  "rows": [
+    {
+      "policy": "ring",
+      "M_phys": 256,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 256,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 256,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 256,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 256,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 256,
+      "recall": 0.025,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 384,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 384,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 384,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 384,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 384,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 384,
+      "recall": 0.7375,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 512,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 512,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 512,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 512,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 512,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 512,
+      "recall": 0.75625,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 768,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 768,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 768,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 768,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 768,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 768,
+      "recall": 0.725,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 1024,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1024,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 1024,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1024,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 1024,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1024,
+      "recall": 0.7125,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 1536,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1536,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 1536,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1536,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 1536,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1536,
+      "recall": 0.6875,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 2048,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1905,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 2048,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1905,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 2048,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 1905,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 256,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 256,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 256,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 256,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 256,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 256,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 384,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 384,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 384,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 384,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 384,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 384,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 512,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 512,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 512,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 512,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 512,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 512,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 768,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 768,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 768,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 768,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 768,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 768,
+      "recall": 0.7875,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 1024,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 1024,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 1024,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 1024,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 1024,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 1024,
+      "recall": 0.76875,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 1536,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 1536,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 1536,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 1536,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 1536,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 1536,
+      "recall": 0.75625,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 2048,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 2048,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 2048,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 2048,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 2048,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 2048,
+      "recall": 0.74375,
+      "n": 160
+    }
+  ]
+}

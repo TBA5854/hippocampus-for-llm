@@ -1,0 +1,16 @@
+{
+  "n_facts": 32,
+  "seg_len": 128,
+  "memory_size": 1024000,
+  "rows": [
+    {
+      "read": "top-1",
+      "k": 1,
+      "slots_in_store": 990473,
+      "slots_touched": 1,
+      "bridge_windows": 7799,
+      "recall": 0.75,
+      "n": 4
+    }
+  ]
+}

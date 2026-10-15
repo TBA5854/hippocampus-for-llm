@@ -1,0 +1,39 @@
+panel,series,x,y_percent,n_queries,ci95_low,ci95_high,note
+a,top1_d512,1920,100.0,48,92.59,100.0,
+a,dense_d512,1920,85.417,48,72.833,92.752,
+a,top1_d512,8064,100.0,48,92.59,100.0,
+a,dense_d512,8064,75.0,48,61.216,85.079,
+a,top1_d512,16256,100.0,48,92.59,100.0,
+a,dense_d512,16256,64.583,48,50.439,76.566,
+a,top1_d512,25472,100.0,48,92.59,100.0,
+a,dense_d512,25472,60.417,48,46.31,72.979,
+a,top1_d512,127872,100.0,4,51.011,100.0,
+a,top1_d512,383872,100.0,4,51.011,100.0,
+a,top1_d512,998272,100.0,4,51.011,100.0,
+a,dense_d512,127872,0.0,8,0.0,32.441,
+a,top1_d256,25472,100.0,8,67.559,100.0,
+a,dense_d256,25472,37.5,8,13.684,69.426,
+a,top1_d256,127872,100.0,8,67.559,100.0,
+a,dense_d256,127872,0.0,8,0.0,32.441,
+a,top1_d256,383872,100.0,4,51.011,100.0,
+a,top1_d256,998272,100.0,4,51.011,100.0,
+a,scrambled,127872,0.0,8,0.0,32.441,
+a,scrambled,383872,0.0,8,0.0,32.441,
+b,keys + values,16,100.0,160,108.506,111.111,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys + values,8,100.0,160,108.506,111.111,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys + values,6,99.306,160,107.146,110.964,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys + values,4,97.222,160,103.74,109.849,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys + values,3,6.944,160,4.37,13.306,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys + values,2,0.0,160,0.0,2.605,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys only,16,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys only,8,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys only,6,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys only,4,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys only,3,0.0,160,0.0,2.359,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,keys only,2,0.0,160,0.0,2.359,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,values only,16,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,values only,8,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,values only,6,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,values only,4,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,values only,3,100.0,160,98.27,100.629,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall
+b,values only,2,23.27,160,17.506,30.589,recall relative to the 16-bit recall of the same model; CI = Wilson CI of the quantized recall divided by the 16-bit recall

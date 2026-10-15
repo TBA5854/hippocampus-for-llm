@@ -1,0 +1,20 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+initialised from experiment/r77/ckpt/r77_gate_update_6k.pt
+hc=on  vocab=8192  params=7.78M  trainable=7.26M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 8.8345  val 8.5835  ppl 5342.59  recall  53.3%  mem 251/512  char  53.3% 53 ce 3.737  [s0:5.612  s1:4.990  s2:4.956  s3:0.089]  gates=0:0.352,1:0.131,2:0.164,3:0.145,4:0.041,5:0.071
+step  1000  train 8.7732  val 8.4053  ppl 4470.69  recall  52.7%  mem 251/512  char  52.7% 53 ce 3.608  [s0:5.595  s1:4.967  s2:4.931  s3:0.088]  gates=0:0.345,1:0.137,2:0.191,3:0.158,4:0.043,5:0.078
+step  1500  train 7.2264  val 7.7572  ppl 2338.27  recall  61.9%  mem 251/512  char  61.9% 62 ce 3.096  [s0:5.591  s1:4.951  s2:4.923  s3:0.084]  gates=0:0.335,1:0.145,2:0.211,3:0.164,4:0.044,5:0.084
+step  2000  train 6.5689  val 7.3087  ppl 1493.26  recall  68.0%  mem 251/512  char  68.0% 68 ce 2.758  [s0:5.560  s1:4.917  s2:4.886  s3:0.081]  gates=0:0.329,1:0.148,2:0.219,3:0.166,4:0.041,5:0.088
+step  2500  train 6.1214  val 6.5844  ppl 723.72  recall  77.8%  mem 251/512  char  77.8% 78 ce 2.187  [s0:5.551  s1:4.906  s2:4.870  s3:0.078]  gates=0:0.319,1:0.155,2:0.233,3:0.169,4:0.041,5:0.088
+step  3000  train 5.8189  val 5.9160  ppl 370.92  recall  83.9%  mem 251/512  char  83.9% 84 ce 1.673  [s0:5.523  s1:4.871  s2:4.835  s3:0.073]  gates=0:0.316,1:0.158,2:0.241,3:0.167,4:0.037,5:0.089
+step  3500  train 4.9881  val 5.3262  ppl 205.66  recall  90.8%  mem 251/512  char  90.8% 91 ce 1.213  [s0:5.506  s1:4.850  s2:4.815  s3:0.069]  gates=0:0.315,1:0.163,2:0.250,3:0.168,4:0.037,5:0.090
+step  4000  train 5.0872  val 4.8085  ppl 122.54  recall  94.5%  mem 251/512  char  94.5% 95 ce 0.810  [s0:5.491  s1:4.830  s2:4.795  s3:0.066]  gates=0:0.315,1:0.165,2:0.252,3:0.169,4:0.037,5:0.091
+step  4500  train 4.5676  val 4.4854  ppl 88.71  recall  96.1%  mem 251/512  char  96.1% 96 ce 0.563  [s0:5.476  s1:4.810  s2:4.775  s3:0.064]  gates=0:0.315,1:0.166,2:0.252,3:0.167,4:0.038,5:0.090
+step  5000  train 4.0223  val 4.3310  ppl 76.02  recall  96.1%  mem 251/512  char  96.1% 96 ce 0.452  [s0:5.461  s1:4.788  s2:4.755  s3:0.063]  gates=0:0.314,1:0.165,2:0.249,3:0.166,4:0.037,5:0.089
+step  5500  train 3.6054  val 4.2614  ppl 70.91  recall  96.2%  mem 251/512  char  96.2% 96 ce 0.400  [s0:5.455  s1:4.781  s2:4.748  s3:0.062]  gates=0:0.315,1:0.165,2:0.248,3:0.165,4:0.037,5:0.088
+step  6000  train 3.8179  val 4.2543  ppl 70.41  recall  96.2%  mem 251/512  char  96.2% 96 ce 0.395  [s0:5.454  s1:4.779  s2:4.746  s3:0.062]  gates=0:0.315,1:0.165,2:0.248,3:0.165,4:0.037,5:0.088
+done in 2664s
+-> experiment/r78/ckpt/r78_gate_update_12k.pt
+-> experiment/r78/results/r78_gate_update_12k.json

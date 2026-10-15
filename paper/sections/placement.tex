@@ -1,0 +1,67 @@
+\section{Placement ablations and the fact-count cliff}
+\label{sec:placement}
+
+Where memory lives in the stack is itself informative, and connects our store to
+the redundancy shared-KV schemes exploit.
+
+\paragraph{Below the cliff, placement is a flat tie.} On a $2\times2$ grid of read
+placement (layer~0 only vs.\ every layer) $\times$ write placement (last block vs.\
+every layer), an easy 8-fact task is \recall{100} in every cell; a scrambled
+control is at chance. Reading or writing at every layer buys nothing over reading
+early and writing late, because the layer-0 token key does the matching wherever
+the value is read or written, and a separate store per layer is no better than one
+shared store read at every layer.
+
+\paragraph{At the cliff, placement is decisive.} The picture changes at the
+fact-count breaking point. A single read/write site (the objective placement)
+reproduces the cliff---at $128$ symbols, recall falls from \recall{99.7} at 8 facts
+to $9.1\%$ at 16 and $4.2\%$ at 32. Reading \emph{and} writing at every layer into
+one shared store escapes it \emph{cold}, with no curriculum: \recall{99.4} and
+\recall{96.2} at 16 and 32 facts, versus $9.1\%$ and $4.2\%$ for the single site
+(\tabref{tab:cliff}). A unique store per layer also escapes but no better and
+more expensively (six stores, seed-noisy), so a single shared multi-layer store is
+the better design---the same conclusion CSA2 reaches, from the opposite direction:
+the layers are redundant, so one shared KV serves them all.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lccc}
+\toprule
+fact count (128 symbols) & single-layer & shared, read+write @ all & per-layer stores \\
+\midrule
+16 & $9.1\%$ & \recall{99.4} & \recall{92.7} \\
+32 & $4.2\%$ & \recall{96.2} & \recall{100} \\
+\bottomrule
+\end{tabular}
+\caption{The fact-count cliff is a property of a \emph{single} read/write site.
+Reading and writing at every layer escapes it cold; a single shared store is as
+good as or better than per-layer stores, at lower cost.}
+\label{tab:cliff}
+\end{table}
+
+\paragraph{On real language the cliff is a delayed transition, not a wall.} On
+synthetic keys, multi-layer placement is a complete, curriculum-free escape. On
+real-language (BPE) keys it clears the cliff \emph{cold} as well, but only once
+training runs past a delayed phase transition. A cold multi-layer model on BPE sits
+near-zero recall for thousands of steps, then groks: recall is $0.3\%$ at step
+$2{,}000$, $8.8\%$ at $4{,}000$, $77.2\%$ at $6{,}000$ and $98.9\%$ at $8{,}000$
+(16 facts), converging to \recall{99.7} by $16{,}000$; 32 facts follows the same
+curve one notch later and reaches \recall{98.0}. An earlier, shorter run stopped
+inside the pre-transition plateau and read out as a partial lift ($53\%\!\to\!87\%$
+at 16, $16\%\!\to\!50\%$ at 32), which we had attributed to a second,
+embedding-competition bottleneck; with a sufficient budget that residual gap
+closes. The warm-start curriculum reaches the same endpoint---\recall{100} at both
+16 and 32 facts---in roughly half the steps, because each warm rung starts with the
+read/write loop already established. The curriculum is therefore a training-budget
+\emph{optimisation}, not a prerequisite: multi-layer placement removes the cliff,
+and the embedding competition survives only as the cost that pushes the transition
+late and stalls the lowest-fact cold rung.
+
+\paragraph{Why the exact key is load-bearing.} Every escape and every retrieval
+depends on the layer-0 exact-token key. Reading at deep layers gains nothing
+because deep queries are contextualised states that no longer match the layer-0
+keys; a contextual key---needed for pattern separation---collapses matching to
+chance; and dentate-gyrus-style separation is architecturally incompatible with
+the exact-match property, because the keys it would separate are byte-identical
+token embeddings. The exact key is simultaneously the reason the store works and
+the constraint that shapes what can be built on it.

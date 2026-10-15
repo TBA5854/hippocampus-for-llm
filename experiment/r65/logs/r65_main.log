@@ -1,0 +1,41 @@
+=== r65 main (bits x pool) START 2026-09-18T22:43:47+05:30
+--- M=2048  bridge=15 windows ---
+none   16bit (both  )    1024 B/slot  recall= 93.8%
+none    8bit (both  )     512 B/slot  recall= 94.4%
+none    6bit (both  )     384 B/slot  recall= 93.1%
+none    4bit (both  )     256 B/slot  recall= 92.5%
+none    3bit (both  )     192 B/slot  recall= 11.9%
+none    2bit (both  )     128 B/slot  recall=  0.0%
+token  16bit (both  )    1024 B/slot  recall= 93.8%
+token   8bit (both  )     512 B/slot  recall= 93.8%
+token   6bit (both  )     384 B/slot  recall= 93.1%
+token   4bit (both  )     256 B/slot  recall= 91.9%
+token   3bit (both  )     192 B/slot  recall= 51.9%
+token   2bit (both  )     128 B/slot  recall=  1.2%
+--- M=4096  bridge=31 windows ---
+none   16bit (both  )    1024 B/slot  recall= 90.0%
+none    8bit (both  )     512 B/slot  recall= 90.0%
+none    6bit (both  )     384 B/slot  recall= 89.4%
+none    4bit (both  )     256 B/slot  recall= 87.5%
+none    3bit (both  )     192 B/slot  recall=  6.2%
+none    2bit (both  )     128 B/slot  recall=  0.0%
+token  16bit (both  )    1024 B/slot  recall= 89.4%
+token   8bit (both  )     512 B/slot  recall= 89.4%
+token   6bit (both  )     384 B/slot  recall= 89.4%
+token   4bit (both  )     256 B/slot  recall= 86.9%
+token   3bit (both  )     192 B/slot  recall= 47.5%
+token   2bit (both  )     128 B/slot  recall=  0.0%
+--- M=8192  bridge=63 windows ---
+none   16bit (both  )    1024 B/slot  recall= 82.5%
+none    8bit (both  )     512 B/slot  recall= 82.5%
+none    6bit (both  )     384 B/slot  recall= 82.5%
+none    4bit (both  )     256 B/slot  recall= 82.5%
+none    3bit (both  )     192 B/slot  recall=  4.4%
+none    2bit (both  )     128 B/slot  recall=  0.6%
+token  16bit (both  )    1024 B/slot  recall= 81.9%
+token   8bit (both  )     512 B/slot  recall= 81.9%
+token   6bit (both  )     384 B/slot  recall= 81.9%
+token   4bit (both  )     256 B/slot  recall= 81.2%
+token   3bit (both  )     192 B/slot  recall= 42.5%
+token   2bit (both  )     128 B/slot  recall=  0.0%
+=== ROUND DONE 2026-09-18T22:48:10+05:30

@@ -1,0 +1,10 @@
+r98 box2 starting in /home/<user>/fw at 2026-09-21T10:29:42+05:30
+=== sem_recall_exact START 2026-09-21T10:29:42+05:30
+  exact (query=word)     recall  41.7%
+  synonym (query=synonym) recall   4.2%   [cos(word,syn)=0.906]
+  random (query=random)   recall   0.0%   [cos(word,rnd)=0.870]  chance~4.2%
+=== sem_store_f64 START 2026-09-21T10:29:57+05:30
+  exact (query=word)     recall  50.0%
+  synonym (query=synonym) recall   0.0%   [cos(word,syn)=0.909]
+  random (query=random)   recall   0.0%   [cos(word,rnd)=0.879]  chance~4.2%
+=== ROUND DONE 2026-09-21T10:30:12+05:30

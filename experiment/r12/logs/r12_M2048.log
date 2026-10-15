@@ -1,0 +1,2 @@
+hc=on  vocab=130  params=5.06M  trainable=4.87M  device=cuda
+example = 16 x 128 tokens, store carries across segments

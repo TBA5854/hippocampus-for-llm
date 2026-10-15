@@ -1,0 +1,42 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We made memory a part of the model rather than a harness around it: one memory
+block that reads early and writes at the last block, addressed by a position-free
+layer-0 key, turns a stateless transformer into a stateful one. On real language it
+recalls facts stated once and queried out of context at \recall{100} through 32
+facts and \recall{99} at 64, with matched controls at chance and the store
+persisted across a process restart. Because the store is external to attention it
+holds far more than the window---unbounded when grown like a KV cache, with a top-$1$
+read holding \recall{100} on a single slot across a store of nearly a million slots---and
+is retrieved sparsely, with sparse reading beating a dense scan. Reading \emph{and} writing at every layer of the one shared store, each layer
+storing its own value, improves on read-early/write-late by $+16$ points. Ported
+to this store, the three axes of DeepSeek-V4.1-Flash's shared-KV scheme each hold:
+an index pool makes the read $O(1)$-compute, cross-layer reuse is free, and 4-bit
+quantization is lossless. Placement ablations independently reveal the inter-layer
+redundancy shared KV relies on, and decompose the classic fact-count cliff into a
+single-site bottleneck that multi-layer placement escapes and a delayed-transition
+bootstrapping cost that a larger training budget clears cold---the warm-start
+curriculum reaching the same recall in about half the steps.
+
+The result is a working, shared key--value episodic store inside the stack: it holds
+$\gg$ the context window, is read in $O(1)$ slots at 4 bits per element, and answers
+from nothing in the prompt. Its two open frontiers are, on present evidence,
+\emph{compute} limits rather than limits of the method. Long-context reach is measured to a
+\emph{million tokens}---top-$1$ at \recall{100} over a $990{,}473$-slot store on one slot---once
+the store build is made memory-frugal (an in-place eval write); nothing in the model caps it,
+the read is $O(1)$ per query, and the limit is now build wall-clock. Sweeping a passkey's
+\emph{depth} in the filler finds \emph{no} lost-in-the-middle---recall is monotonic in
+depth---but a write-order decay instead: a fact stored early persists while one stored late
+into a saturated store is lost, which decomposes into store saturation and a fixed novelty
+write-gate (unique keys partly lift it), not position. The store privileges what it saw
+first, the opposite of attention's recency. And a single shared store
+saturates near
+\recall{45} at $128$ distinct facts, which is an \emph{addressing} problem of the kind
+positional embeddings already solve in a KV cache: a symmetric positional/RoPE-style tag on
+the query and the stored key---generalising the ordinal recency read that already
+disambiguates same-key facts---should separate them without disturbing the exact-token match,
+and several shared stores or more read heads on the store are the structural alternatives. We
+leave both to future work with more compute. What remains beyond them is to make the measured
+pool and 4-bit savings literal with hashed and int4 kernels, and to train with the
+sparse/quantized read.

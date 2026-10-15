@@ -1,0 +1,8 @@
+r95 box2 starting in /home/<user>/fw at 2026-09-21T07:41:43+05:30
+=== ar_2hop_f64 START 2026-09-21T07:41:43+05:30
+=== ar_2hop_f64 EXIT 0 2026-09-21T07:42:03+05:30
+AR 2-hop: final(own intermediates) 96.9%  per-hop ['98.6%', '96.9%']  n=640
+=== ar_3hop_f64 START 2026-09-21T07:42:03+05:30
+=== ar_3hop_f64 EXIT 0 2026-09-21T07:42:24+05:30
+AR 3-hop: final(own intermediates) 95.2%  per-hop ['98.8%', '96.4%', '95.2%']  n=640
+=== ROUND DONE 2026-09-21T07:42:24+05:30

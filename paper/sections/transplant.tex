@@ -1,0 +1,61 @@
+\section{Stateless weights, stateful store: memory transplant}
+\label{sec:transplant}
+
+The thesis of the construction is that the weights are stateless and the store is the
+state: a single frozen model is turned into many different stateful agents purely by
+which store it carries. We test this literally by transplanting stores (r86).
+
+\paragraph{The store \emph{is} the state.} Take one frozen model and build two stores
+from two disjoint fact sets (two ``conversations''). With the model held fixed, we vary
+only which store is loaded and ask each store's query. \tabref{tab:swap} shows the
+result is diagonal: the model answers a query at full recall when the matching store is
+loaded and at \emph{chance} when the other store is loaded---swapping the store swaps
+the memory, with no change to a single weight. A scrambled-store control is also at
+chance. So the store carries the state in full; the weights carry none of it.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lcc}
+\toprule
+loaded store $\rightarrow$ query & query set 1 & query set 2 \\
+\midrule
+store 1 & \recall{100} & $0.0\%$ \\
+store 2 & $0.0\%$ & \recall{96.9} \\
+\midrule
+store 1, scrambled & $3.1\%$ (1 of 32 queries) & --- \\
+\bottomrule
+\end{tabular}
+\caption{One frozen model, two stores. Recall is high on the diagonal (the store that
+holds the queried facts) and at chance off it (the other store) and under scrambling.
+The model's behaviour is set entirely by the loaded store: the store is the state.}
+\label{tab:swap}
+\end{table}
+
+\paragraph{But the state is bound to its weights.} The store's keys are the writing
+model's token embeddings, and retrieval is an exact match against the reading model's
+query. So a store should be portable across a store-swap on the \emph{same} weights (as
+above) but \emph{not} across different weights: a store written by model $B$ should not
+read back on model $A$, even though the facts are physically present in it, because
+$A$'s exact-match query is computed from $A$'s embeddings, not $B$'s. This is why the
+persistence path (\S\ref{sec:method}) stamps each store with a model fingerprint and
+refuses a foreign one by default. We force the transplant anyway to measure what
+``refuse'' is protecting against: model $A$ reads model $B$'s store on $B$'s own facts
+(and vice-versa), the store present and shape-compatible, the only change being the
+weights. The result is unambiguous (r86, two independently-seeded $d{=}256$, $6$-layer
+recall models). Each model reads its \emph{own} store at full recall---model $A$ at
+\recall{98.8}, model $B$ at \recall{100}---but a store written by the \emph{other} model
+reads back at \textbf{$0.0\%$ in both directions}, despite the facts being physically
+present and the store shape-compatible. A store is a memory only for the model that wrote
+it: its keys are that model's token embeddings, and a differently-seeded model's
+exact-match query does not align with them. This is exactly what the fingerprint check
+prevents, and it holds for the gated managed store as well as this plain-store pair.
+
+\paragraph{Why this matters.} The two halves together give a concrete operational
+picture. A store is a detachable, swappable unit of memory: one shared frozen model can
+serve many users by hot-swapping their stores, each recovering its own memory exactly
+(the diagonal of \tabref{tab:swap}), which is the multi-tenant version of ``memory as
+a block.'' At the same time memory is not a universal artifact that can be moved between
+models---it is encoded in the writing model's representation space, so porting it to a
+different model requires re-encoding, not a file copy. Statelessness of the weights buys
+the swappability; the exact-token key that makes retrieval work is exactly what binds a
+store to its author.

@@ -1,0 +1,20 @@
+hc=on  vocab=130  params=5.06M  trainable=4.93M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 6.0923  val 6.0113  ppl 408.02  recall   3.8%  [s0:0.738  s1:2.673  s2:2.675  s3:0.191]  gates=1:0.001
+step   500  train 5.4651  val 5.5641  ppl 260.88  recall   2.3%  [s0:0.179  s1:2.248  s2:2.254  s3:0.059]  gates=1:0.001
+step   750  train 5.2426  val 5.3914  ppl 219.51  recall   2.7%  [s0:0.135  s1:1.948  s2:1.951  s3:0.057]  gates=1:0.000
+step  1000  train 5.2145  val 5.3007  ppl 200.48  recall   2.5%  [s0:0.113  s1:1.785  s2:1.795  s3:0.055]  gates=1:0.000
+step  1250  train 5.2552  val 5.2595  ppl 192.39  recall   1.7%  [s0:0.104  s1:1.686  s2:1.697  s3:0.056]  gates=1:0.001
+step  1500  train 5.0486  val 5.2132  ppl 183.68  recall   3.6%  [s0:0.097  s1:1.614  s2:1.632  s3:0.056]  gates=1:0.002
+step  1750  train 5.1227  val 5.1793  ppl 177.57  recall   3.8%  [s0:0.094  s1:1.560  s2:1.580  s3:0.056]  gates=1:0.000
+step  2000  train 5.0557  val 5.1494  ppl 172.33  recall   3.6%  [s0:0.092  s1:1.533  s2:1.553  s3:0.055]  gates=1:0.001
+step  2250  train 4.9881  val 5.1440  ppl 171.39  recall   3.4%  [s0:0.090  s1:1.512  s2:1.530  s3:0.055]  gates=1:0.002
+step  2500  train 4.9802  val 5.1313  ppl 169.24  recall   4.1%  [s0:0.089  s1:1.495  s2:1.515  s3:0.055]  gates=1:0.001
+step  2750  train 4.9809  val 5.1198  ppl 167.30  recall   3.9%  [s0:0.088  s1:1.486  s2:1.503  s3:0.055]  gates=1:0.001
+step  3000  train 5.0063  val 5.1127  ppl 166.12  recall   3.6%  [s0:0.087  s1:1.484  s2:1.503  s3:0.055]  gates=1:0.001
+step  3250  train 4.9682  val 5.1110  ppl 165.83  recall   3.9%  [s0:0.086  s1:1.476  s2:1.495  s3:0.055]  gates=1:0.002
+step  3500  train 4.9789  val 5.1082  ppl 165.37  recall   3.0%  [s0:0.086  s1:1.472  s2:1.494  s3:0.055]  gates=1:0.001
+step  3750  train 4.9285  val 5.1073  ppl 165.23  recall   4.2%  [s0:0.086  s1:1.472  s2:1.493  s3:0.055]  gates=1:0.001
+step  4000  train 4.9450  val 5.1072  ppl 165.21  recall   4.2%  [s0:0.086  s1:1.471  s2:1.493  s3:0.055]  gates=1:0.001
+done in 663s
+-> experiment/r1/results/r1_w5_shuf.json

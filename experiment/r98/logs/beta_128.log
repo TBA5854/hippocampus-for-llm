@@ -1,0 +1,5 @@
+[settle beta overridden to 128.0]
+nn_rank=0  neighbor_cos=1.000  recall= 99.0%  n=480
+nn_rank=1  neighbor_cos=0.832  recall= 74.8%  n=480
+nn_rank=2  neighbor_cos=0.823  recall= 62.5%  n=480
+nn_rank=3  neighbor_cos=0.818  recall= 54.8%  n=480

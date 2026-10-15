@@ -1,0 +1,7 @@
+M=  512  n_seg=  4  bridge=  3win (  384 tok)  slots=381/512  recall=100.0%
+M=  512  n_seg=  8  bridge=  7win (  896 tok)  slots=512/512  recall=  0.0%
+M=  512  n_seg= 16  bridge= 15win ( 1920 tok)  slots=512/512  recall=  0.0%
+M=  512  n_seg= 32  bridge= 31win ( 3968 tok)  slots=512/512  recall=  0.0%
+M=  512  n_seg= 64  bridge= 63win ( 8064 tok)  slots=512/512  recall=  0.0%
+M=  512  n_seg=128  bridge=127win (16256 tok)  slots=512/512  recall=  0.0%
+M=  512  n_seg=200  bridge=199win (25472 tok)  slots=512/512  recall=  0.0%

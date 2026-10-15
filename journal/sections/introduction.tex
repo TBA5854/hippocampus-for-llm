@@ -1,0 +1,41 @@
+% introduction  -  part of main.tex (see journal/README.md)
+A transformer carries no state from one call to the next. Everything it knows about a
+conversation has to be supplied again in its prompt, the window of text it reads at once
+\cite{vaswani2017attention}. Systems that give language models long-term memory therefore
+treat memory as a layer of engineering wrapped around a frozen network: text is embedded,
+stored in an external database, retrieved by similarity and pasted back into the context
+window\cite{lewis2020rag,packer2023memgpt,park2023generative}. That works, but it ties
+recall to the context budget, leaves the model itself stateless, and hands memory to the
+harness instead of the model. Memory-augmented architectures move memory inside the network
+instead---as recurrent or compressed
+state\cite{dai2019transformerxl,rae2020compressive,bulatov2022rmt}, as a memory bank read
+and written by attention\cite{graves2014ntm,graves2016dnc,weston2015memnet,sukhbaatar2015e2e,wu2022memformer},
+or as a cache of past attention keys searched by nearest neighbour\cite{wu2022memorizing}.
+That memory is bound to one sequence, is addressed by contextual representations that drift
+during training, and is not a portable artefact of the model.
+
+We ask whether memory can be part of the model. We add one memory block inside the stack
+(Fig.~\ref{fig:arch}a). Every layer reads from, and writes its own state into, a single
+persistent store shared across layers. The store's address is the raw embedding of each
+token (a word or word fragment) at layer~0, before any processing and without position
+information, so retrieval is an exact token match. Text is processed in fixed segments,
+and the model keeps no key--value cache (the attention state a
+transformer would otherwise carry forward) between them, so the store is the only channel
+from one segment to the next.
+
+The design puts the weights and the store in separate roles. The weights are stateless and
+the store is the state. A frozen model carries nothing of a conversation; all of it lives in
+a detachable file. We show this literally: swapping the store swaps the memory without
+changing a weight (Fig.~\ref{fig:arch}b). We also show where the property stops. A store can
+be read only by the model that wrote it.
+
+Across 113 controlled experiments, we find that this block
+(i)~recalls facts stated once in natural-language text and queried entirely out of context,
+and keeps them across a process restart; (ii)~holds facts far beyond the attention window,
+read by touching a single slot, with recall flat to a million tokens and no lost-in-the-middle
+effect (the weaker retrieval of facts placed mid-context\cite{liu2024lost}); (iii)~can be
+revised, bounded and reasoned over, which turns a lookup table into a memory; and
+(iv)~maps onto the shared key--value constructions now used to compress attention
+caches\cite{deepseekv41flash2026}. We also locate where it fails. A single store saturates
+near 128 distinct facts, and a fact written late into a saturated store is lost. Both limits
+come from addressing and from the write policy. Position is not the problem.

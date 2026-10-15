@@ -1,0 +1,87 @@
+\section{Introduction}
+
+A transformer is stateless between calls: everything it ``knows'' about the
+current conversation must be re-supplied in the prompt. Systems that give a model
+long-term memory---MemGPT, generative agents, retrieval stores---therefore treat
+memory as an \emph{engineering} layer around a frozen network: text is embedded,
+stored in an external database, retrieved by similarity, and pasted back into the
+context window. This is effective but leaves the model itself stateless, ties
+recall to the context budget, and makes ``memory'' a property of the harness
+rather than of the model.
+
+We ask a different question: can memory be a \emph{part of the model}? We add one
+\emph{memory block} inside the transformer stack. It reads from a persistent,
+per-model store at an early layer and writes to that store at the last block
+before the head. The read injects retrieved content into the residual stream; the
+write commits the late, semantically complete representation of the current
+segment. With this block the model becomes \emph{stateful}: across segments it
+answers questions whose evidence appears in no part of the current prompt, with
+no retrieval-augmented context and no external database.
+
+The design rests on one property. The store's key is taken at layer~0, without
+position information, so a key is exactly the token embedding. Retrieval is then
+an \emph{exact} token match rather than a learned soft lookup, which is what lets
+a single read head recover a specific binding rather than a blurred average.
+Every result in this paper depends on that layer-0 exact key; when we contextualise
+the key (move it deeper, or add position) matching collapses.
+
+This yields a clean division of labour: \textbf{the weights are stateless and the
+store is the state}. A frozen model carries no memory of its own; all of it lives in
+the store, which is a detachable, swappable file. We show this literally---one frozen
+model with two stores answers each store's questions and only its own, and swapping the
+store swaps the memory with no weight changed---and we show its boundary: a store is a
+memory only for the model that wrote it, because its keys are that model's embeddings
+(\S\ref{sec:transplant}).
+
+\paragraph{Contributions.}
+\begin{itemize}
+\item \textbf{A stateful transformer via an in-stack memory block} (\S\ref{sec:method}):
+a persistent per-model store addressed by a position-free layer-0 key; by default
+every layer reads from and writes its own value into the \emph{one shared} store,
+keyed by the exact token---improving the original read-early/write-late placement,
+whose normalised block-0 value skip it subsumes.
+\item \textbf{Cross-segment recall on real language} (\S\ref{sec:language}):
+facts stated once in PG-19 prose and queried out of context are recalled at
+\recall{100} through 32 facts and \recall{99} at 64, with matched controls at
+chance and the store persisted across a process restart. We identify a
+multi-token-key tax that caps character-level keys and show single-token
+(sub-word) keys remove it, and a fact-count cliff that a warm-start curriculum
+escapes.
+\item \textbf{Memory beyond the context window} (\S\ref{sec:longcontext}): the
+store holds far more than the attention window, answered from an empty prompt,
+and is retrieved \emph{sparsely}---one to two of thousands of slots per query,
+with sparse reading matching or beating a dense scan. Growing the store like a
+KV cache instead of a lapping ring makes it unbounded; grown and read by a
+top-$1$ lookup, recall stays flat at \recall{100} to a \emph{literal million
+tokens} ($990{,}473$ slots, $\approx\!7{,}800\times$ the window) on one slot, on two
+models, while the dense scan collapses to chance. A passkey (needle-in-a-haystack)
+sweep of the fact's depth finds \emph{no} lost-in-the-middle but a write-order
+limit---early facts persist, late facts into a saturated store are lost---traced to
+a novelty write-gate and saturation, not position.
+\item \textbf{A shared-KV store} (\S\ref{sec:sharedkv}): we port the three axes of
+DeepSeek-V4.1-Flash's CSA2 to the store---an index-selected candidate pool
+(exact token hash / LSH), cross-layer reuse of that pool, and 4-bit
+quantization---each preserving recall, so the store holds $\gg$ the window, is
+read in $O(1)$ slots, and costs 4 bits per element.
+\item \textbf{Placement ablations} (\S\ref{sec:placement}) that independently
+surface the inter-layer redundancy shared-KV schemes rely on, and locate the
+fact-count cliff at a single read/write site. Read-early/write-late is in turn
+improved on: reading \emph{and} writing at every layer of the one shared store,
+each layer storing its own value keyed by the exact token, lifts cold recall
+\recall{80.8}$\to$\recall{95.5}/\recall{98.9} (two seeds), with a residual-key
+control at chance isolating the cause as per-depth values, not slot capacity.
+\item \textbf{From lookup table to memory} (\S\ref{sec:memory}): a recency-biased
+read that revises a re-stated fact, gated write operations that bound the store to
+$O(\text{facts})$ at full recall on one shared store, and multi-hop
+chain-of-thought over the store---reasoning across facts held outside the context
+window---at \recall{96} (two hops) and \recall{95} (three), broken-chain control at
+chance.
+\item \textbf{Consolidation} (\S\ref{sec:sleep}): an offline sleep phase replays
+the store into the weights with no separate decoder (the key sequence \emph{is} the
+transcript), reclaiming slots while the language-model loss improves.
+\item \textbf{Memory transplant} (\S\ref{sec:transplant}): a direct test of the
+stateless-weights / stateful-store thesis---stores swap cleanly on the same weights
+and fail across different weights---and a full chronicle of the $113$
+experiments behind these results (\S\ref{sec:chronicle}), logged round by round in
+\appref{app:log}.
+\end{itemize}

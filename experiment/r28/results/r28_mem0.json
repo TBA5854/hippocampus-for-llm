@@ -1,0 +1,23 @@
+{
+  "slots": 381,
+  "decode_exact": 1.0,
+  "wake_recall_with_store": 1.0,
+  "wake_recall_heldout_fact": 1.0,
+  "weights_alone_before_sleep": 0.0,
+  "weights_alone_after_sleep": 1.0,
+  "weights_alone_after_sleep_replayed_fact": 1.0,
+  "slots_reclaimable": 381,
+  "post_sleep_store_recall": 0.875,
+  "store_rewritten_after_sleep": 0.75,
+  "lm_loss_before": 0.9607740759849548,
+  "lm_loss_after": 0.8326423585414886,
+  "weight_drift_l2": 120.51396179199219,
+  "sleep_steps": 1500,
+  "sleep_lr": 0.0003,
+  "freeze_keys": false,
+  "rehearse": 1.0,
+  "rehearse_mem": 0.0,
+  "tag": "r28_mem0",
+  "shared_facts": true,
+  "n": 64
+}

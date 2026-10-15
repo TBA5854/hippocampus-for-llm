@@ -1,0 +1,56 @@
+_progress_box2.log:=== r25_1x_f16_warm START 2026-09-16T22:41:36+05:30 [box2]
+_progress_box2.log:=== r25_1x_f16_warm START 2026-09-16T22:41:40+05:30 [box2]
+r25_1x_f16_warm_box2.log:step   250  train 1.5328  val 1.4986  ppl 4.48  recall  88.4%  slot@1 100.0% mass 0.99 content-miss 11.6% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.889  s1:0.915  s2:0.916  s3:0.043]  gates=0:0.153
+r25_1x_f16_warm_box2.log:step   500  train 1.3382  val 1.4002  ppl 4.06  recall  90.6%  slot@1 100.0% mass 0.99 content-miss  9.4% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.900  s1:0.936  s2:0.936  s3:0.043]  gates=0:0.189
+r25_1x_f16_warm_box2.log:step   750  train 1.0127  val 1.1254  ppl 3.08  recall  96.2%  slot@1 100.0% mass 0.99 content-miss  3.8% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.903  s1:0.930  s2:0.933  s3:0.044]  gates=0:0.229
+r25_1x_f16_warm_box2.log:step  1000  train 0.9970  val 1.0137  ppl 2.76  recall  98.9%  slot@1 100.0% mass 0.99 content-miss  1.1% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.901  s1:0.930  s2:0.932  s3:0.039]  gates=0:0.261
+r25_1x_f16_warm_box2.log:step  1250  train 0.9903  val 1.0507  ppl 2.86  recall  98.0%  slot@1 100.0% mass 0.99 content-miss  2.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.910  s1:0.939  s2:0.945  s3:0.040]  gates=0:0.289
+r25_1x_f16_warm_box2.log:step  1500  train 1.0222  val 1.0126  ppl 2.75  recall  98.8%  slot@1 100.0% mass 0.99 content-miss  1.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.892  s1:0.916  s2:0.921  s3:0.039]  gates=0:0.306
+r25_1x_f16_warm_box2.log:step  1750  train 0.9069  val 0.9483  ppl 2.58  recall  99.4%  slot@1 100.0% mass 0.99 content-miss  0.6% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.867  s1:0.883  s2:0.887  s3:0.039]  gates=0:0.316
+r25_1x_f16_warm_box2.log:step  2000  train 0.8855  val 0.9217  ppl 2.51  recall  99.7%  slot@1 100.0% mass 0.99 content-miss  0.3% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.859  s1:0.871  s2:0.875  s3:0.038]  gates=0:0.325
+r25_1x_f16_warm_box2.log:step  2250  train 0.8665  val 0.9087  ppl 2.48  recall  99.8%  slot@1 100.0% mass 0.99 content-miss  0.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.847  s1:0.855  s2:0.861  s3:0.038]  gates=0:0.329
+r25_1x_f16_warm_box2.log:step  2500  train 0.8706  val 0.8916  ppl 2.44  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.838  s1:0.840  s2:0.849  s3:0.038]  gates=0:0.328
+r25_1x_f16_warm_box2.log:step  2750  train 0.8763  val 0.8850  ppl 2.42  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.831  s1:0.831  s2:0.839  s3:0.038]  gates=0:0.323
+r25_1x_f16_warm_box2.log:step  3000  train 0.8561  val 0.8774  ppl 2.40  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.823  s1:0.821  s2:0.828  s3:0.038]  gates=0:0.320
+_progress_box2.log:=== r25_1x_f16_warm EXIT 0 2026-09-16T22:49:13+05:30 [box2]
+_progress_box2.log:=== r25_1x_f48_warm START 2026-09-16T22:49:13+05:30 [box2]
+r25_1x_f16_warm_box2.log:step  3250  train 0.8471  val 0.8722  ppl 2.39  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.817  s1:0.813  s2:0.821  s3:0.038]  gates=0:0.319
+r25_1x_f16_warm_box2.log:step  3500  train 0.8537  val 0.8683  ppl 2.38  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.813  s1:0.807  s2:0.815  s3:0.038]  gates=0:0.318
+r25_1x_f16_warm_box2.log:step  3750  train 0.8310  val 0.8658  ppl 2.38  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.811  s1:0.803  s2:0.812  s3:0.038]  gates=0:0.318
+r25_1x_f16_warm_box2.log:step  4000  train 0.8606  val 0.8653  ppl 2.38  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:1.810  s1:0.802  s2:0.811  s3:0.038]  gates=0:0.318
+r25_1x_f48_warm_box2.log:step   250  train 1.3951  val 1.4297  ppl 4.18  recall  99.7%  slot@1 100.0% mass 0.99 content-miss  0.3% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.871  s1:0.861  s2:0.871  s3:0.038]  gates=0:0.320
+r25_1x_f48_warm_box2.log:step   500  train 1.4548  val 1.4881  ppl 4.43  recall  98.4%  slot@1 100.0% mass 0.99 content-miss  1.6% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.881  s1:0.899  s2:0.908  s3:0.039]  gates=0:0.342
+r25_1x_f48_warm_box2.log:step   750  train 1.4164  val 1.4563  ppl 4.29  recall  99.5%  slot@1 100.0% mass 0.99 content-miss  0.5% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.875  s1:0.880  s2:0.888  s3:0.038]  gates=0:0.360
+r25_1x_f48_warm_box2.log:step  1000  train 1.4159  val 1.4322  ppl 4.19  recall  99.4%  slot@1 100.0% mass 0.99 content-miss  0.6% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.872  s1:0.866  s2:0.871  s3:0.039]  gates=0:0.376
+r25_1x_f48_warm_box2.log:step  1250  train 1.3887  val 1.4165  ppl 4.12  recall  99.8%  slot@1 100.0% mass 1.00 content-miss  0.2% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.868  s1:0.859  s2:0.868  s3:0.038]  gates=0:0.389
+r25_1x_f48_warm_box2.log:step  1500  train 1.3995  val 1.4053  ppl 4.08  recall 100.0%  slot@1 100.0% mass 1.00 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.867  s1:0.850  s2:0.858  s3:0.038]  gates=0:0.396
+r25_1x_f48_warm_box2.log:step  1750  train 1.3877  val 1.3975  ppl 4.05  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.863  s1:0.839  s2:0.845  s3:0.038]  gates=0:0.402
+r25_1x_f48_warm_box2.log:step  2000  train 1.3695  val 1.3908  ppl 4.02  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.862  s1:0.828  s2:0.835  s3:0.038]  gates=0:0.401
+r25_1x_f48_warm_box2.log:step  2250  train 1.3576  val 1.3863  ppl 4.00  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.859  s1:0.820  s2:0.827  s3:0.038]  gates=0:0.403
+r25_1x_f48_warm_box2.log:step  2500  train 1.3648  val 1.3798  ppl 3.97  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.856  s1:0.808  s2:0.816  s3:0.038]  gates=0:0.402
+r25_1x_f48_warm_box2.log:step  2750  train 1.3659  val 1.3753  ppl 3.96  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.854  s1:0.802  s2:0.807  s3:0.038]  gates=0:0.397
+r25_1x_f48_warm_box2.log:step  3000  train 1.3540  val 1.3706  ppl 3.94  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.851  s1:0.793  s2:0.800  s3:0.038]  gates=0:0.394
+r25_1x_f48_warm_box2.log:step  3250  train 1.3412  val 1.3665  ppl 3.92  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.850  s1:0.786  s2:0.793  s3:0.038]  gates=0:0.393
+r25_1x_f48_warm_box2.log:step  3500  train 1.3485  val 1.3639  ppl 3.91  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.848  s1:0.781  s2:0.788  s3:0.038]  gates=0:0.393
+_progress_box2.log:=== r25_1x_f48_warm EXIT 0 2026-09-16T22:56:25+05:30 [box2]
+_progress_box2.log:=== r25_1x_f48_warm_shuf START 2026-09-16T22:56:25+05:30 [box2]
+r25_1x_f48_warm_box2.log:step  3750  train 1.3377  val 1.3623  ppl 3.91  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.848  s1:0.778  s2:0.785  s3:0.038]  gates=0:0.392
+r25_1x_f48_warm_box2.log:step  4000  train 1.3582  val 1.3619  ppl 3.90  recall 100.0%  slot@1 100.0% mass 0.99 content-miss  0.0% match-miss  0.0% align -1:0 +0:100 +1:0  [s0:3.847  s1:0.777  s2:0.785  s3:0.038]  gates=0:0.392
+r25_1x_f48_warm_shuf_box2.log:step   250  train 7.4224  val 7.5547  ppl 1909.76  recall   0.6%  [s0:3.885  s1:0.844  s2:0.854  s3:0.077]  gates=0:0.313
+r25_1x_f48_warm_shuf_box2.log:step   500  train 7.4586  val 7.5481  ppl 1897.11  recall   0.8%  [s0:3.896  s1:0.874  s2:0.881  s3:0.077]  gates=0:0.300
+r25_1x_f48_warm_shuf_box2.log:step   750  train 7.3868  val 7.5180  ppl 1840.83  recall   0.2%  [s0:3.884  s1:0.870  s2:0.878  s3:0.077]  gates=0:0.292
+r25_1x_f48_warm_shuf_box2.log:step  1000  train 7.5224  val 7.5390  ppl 1879.87  recall   0.8%  [s0:3.884  s1:0.863  s2:0.870  s3:0.077]  gates=0:0.285
+r25_1x_f48_warm_shuf_box2.log:step  1250  train 7.4459  val 7.5184  ppl 1841.57  recall   0.5%  [s0:3.876  s1:0.857  s2:0.866  s3:0.077]  gates=0:0.275
+r25_1x_f48_warm_shuf_box2.log:step  1500  train 7.4557  val 7.5103  ppl 1826.76  recall   0.3%  [s0:3.873  s1:0.846  s2:0.855  s3:0.076]  gates=0:0.269
+r25_1x_f48_warm_shuf_box2.log:step  1750  train 7.4873  val 7.4890  ppl 1788.28  recall   1.1%  [s0:3.868  s1:0.839  s2:0.846  s3:0.076]  gates=0:0.265
+r25_1x_f48_warm_shuf_box2.log:step  2000  train 7.4801  val 7.5005  ppl 1809.02  recall   1.6%  [s0:3.866  s1:0.831  s2:0.838  s3:0.076]  gates=0:0.260
+r25_1x_f48_warm_shuf_box2.log:step  2250  train 7.5125  val 7.5549  ppl 1910.06  recall   0.3%  [s0:3.863  s1:0.831  s2:0.839  s3:0.077]  gates=0:0.257
+r25_1x_f48_warm_shuf_box2.log:step  2500  train 7.4604  val 7.4770  ppl 1766.94  recall   0.6%  [s0:3.861  s1:0.814  s2:0.822  s3:0.076]  gates=0:0.255
+r25_1x_f48_warm_shuf_box2.log:step  2750  train 7.4925  val 7.4732  ppl 1760.23  recall   0.8%  [s0:3.859  s1:0.806  s2:0.814  s3:0.076]  gates=0:0.252
+r25_1x_f48_warm_shuf_box2.log:step  3000  train 7.4515  val 7.4631  ppl 1742.46  recall   1.2%  [s0:3.855  s1:0.798  s2:0.805  s3:0.076]  gates=0:0.250
+r25_1x_f48_warm_shuf_box2.log:step  3250  train 7.4395  val 7.4495  ppl 1718.94  recall   0.9%  [s0:3.853  s1:0.790  s2:0.798  s3:0.076]  gates=0:0.251
+r25_1x_f48_warm_shuf_box2.log:step  3500  train 7.4373  val 7.4474  ppl 1715.35  recall   0.8%  [s0:3.852  s1:0.785  s2:0.793  s3:0.076]  gates=0:0.250
+_progress_box2.log:=== r25_1x_f48_warm_shuf EXIT 0 2026-09-16T23:03:41+05:30 [box2]
+_progress_box2.log:=== ROUND DONE 2026-09-16T23:03:41+05:30 [box2]
+r25_1x_f48_warm_shuf_box2.log:step  3750  train 7.4264  val 7.4435  ppl 1708.76  recall   0.8%  [s0:3.851  s1:0.782  s2:0.791  s3:0.076]  gates=0:0.250
+r25_1x_f48_warm_shuf_box2.log:step  4000  train 7.4335  val 7.4433  ppl 1708.45  recall   1.1%  [s0:3.851  s1:0.782  s2:0.790  s3:0.076]  gates=0:0.250

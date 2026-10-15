@@ -1,0 +1,61 @@
+{
+  "n_facts": 16,
+  "quant_what": "keys",
+  "memory_size": 4096,
+  "rows": [
+    {
+      "pool": "none",
+      "bits": 16,
+      "quant_what": "keys",
+      "bytes_per_slot": 512.0,
+      "store": 3937,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 8,
+      "quant_what": "keys",
+      "bytes_per_slot": 256.0,
+      "store": 3937,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 6,
+      "quant_what": "keys",
+      "bytes_per_slot": 192.0,
+      "store": 3937,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 4,
+      "quant_what": "keys",
+      "bytes_per_slot": 128.0,
+      "store": 3937,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 3,
+      "quant_what": "keys",
+      "bytes_per_slot": 96.0,
+      "store": 3937,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "pool": "none",
+      "bits": 2,
+      "quant_what": "keys",
+      "bytes_per_slot": 64.0,
+      "store": 3937,
+      "recall": 0.0,
+      "n": 160
+    }
+  ]
+}

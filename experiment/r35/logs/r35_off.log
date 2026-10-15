@@ -1,0 +1,31 @@
+pg19: 100 train books (40.4M tokens), 50 held-out books (17.4M), vocab 252, 0.0011% of held-out chars outside the train vocab
+pg19: flattened for --task recall (distractor prose)
+hc=off  vocab=252  params=4.83M  trainable=4.83M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 6.2488  val 6.3249  ppl 558.31  recall   0.0%  char   4.3% ce 3.377  [s0:2.247  s1:2.909  s2:2.912  s3:0.345]
+step   500  train 5.9011  val 5.9070  ppl 367.61  recall   0.2%  char   4.7% ce 3.277  [s0:2.120  s1:2.506  s2:2.503  s3:0.113]
+step   750  train 5.7642  val 5.7395  ppl 310.91  recall   0.2%  char   4.5% ce 3.276  [s0:2.111  s1:2.179  s2:2.182  s3:0.107]
+step  1000  train 5.6511  val 5.6663  ppl 288.96  recall   0.0%  char   4.2% ce 3.269  [s0:2.109  s1:2.030  s2:2.036  s3:0.146]
+step  1250  train 5.6599  val 5.5974  ppl 269.73  recall   0.3%  char   4.2% ce 3.280  [s0:2.106  s1:1.887  s2:1.891  s3:0.106]
+step  1500  train 5.5356  val 5.5259  ppl 251.10  recall   0.0%  char   3.8% ce 3.262  [s0:2.099  s1:1.793  s2:1.798  s3:0.105]
+step  1750  train 5.4457  val 5.4867  ppl 241.45  recall   0.0%  char   3.9% ce 3.261  [s0:2.099  s1:1.717  s2:1.721  s3:0.106]
+step  2000  train 5.4726  val 5.4658  ppl 236.46  recall   0.0%  char   3.0% ce 3.263  [s0:2.097  s1:1.671  s2:1.673  s3:0.106]
+step  2250  train 5.4238  val 5.4506  ppl 232.90  recall   0.5%  char   3.3% ce 3.268  [s0:2.098  s1:1.629  s2:1.631  s3:0.105]
+step  2500  train 5.3499  val 5.4300  ppl 228.16  recall   0.0%  char   3.7% ce 3.267  [s0:2.099  s1:1.588  s2:1.591  s3:0.105]
+step  2750  train 5.3766  val 5.4069  ppl 222.95  recall   0.2%  char   4.6% ce 3.260  [s0:2.096  s1:1.562  s2:1.565  s3:0.105]
+step  3000  train 5.3164  val 5.3990  ppl 221.19  recall   0.0%  char   4.3% ce 3.262  [s0:2.096  s1:1.541  s2:1.545  s3:0.104]
+step  3250  train 5.3560  val 5.3939  ppl 220.05  recall   0.3%  char   3.8% ce 3.263  [s0:2.095  s1:1.529  s2:1.533  s3:0.105]
+step  3500  train 5.3379  val 5.3826  ppl 217.58  recall   0.2%  char   3.5% ce 3.262  [s0:2.094  s1:1.508  s2:1.513  s3:0.105]
+step  3750  train 5.2942  val 5.3707  ppl 215.01  recall   0.0%  char   3.5% ce 3.257  [s0:2.094  s1:1.497  s2:1.502  s3:0.105]
+step  4000  train 5.2927  val 5.3637  ppl 213.51  recall   0.6%  char   4.6% ce 3.257  [s0:2.092  s1:1.485  s2:1.488  s3:0.105]
+step  4250  train 5.3002  val 5.3544  ppl 211.54  recall   0.6%  char   5.4% ce 3.254  [s0:2.093  s1:1.474  s2:1.476  s3:0.104]
+step  4500  train 5.2873  val 5.3512  ppl 210.87  recall   0.0%  char   3.4% ce 3.254  [s0:2.090  s1:1.468  s2:1.472  s3:0.105]
+step  4750  train 5.2795  val 5.3479  ppl 210.17  recall   0.0%  char   3.6% ce 3.256  [s0:2.091  s1:1.457  s2:1.461  s3:0.104]
+step  5000  train 5.2990  val 5.3399  ppl 208.49  recall   0.0%  char   4.0% ce 3.253  [s0:2.087  s1:1.450  s2:1.452  s3:0.104]
+step  5250  train 5.2664  val 5.3309  ppl 206.62  recall   0.5%  char   4.4% ce 3.253  [s0:2.056  s1:1.447  s2:1.449  s3:0.104]
+step  5500  train 5.2400  val 5.3253  ppl 205.46  recall   0.2%  char   3.8% ce 3.253  [s0:2.043  s1:1.443  s2:1.445  s3:0.104]
+step  5750  train 5.2692  val 5.3241  ppl 205.21  recall   0.2%  char   4.3% ce 3.253  [s0:2.042  s1:1.442  s2:1.445  s3:0.104]
+step  6000  train 5.2693  val 5.3238  ppl 205.17  recall   0.2%  char   4.2% ce 3.253  [s0:2.042  s1:1.441  s2:1.444  s3:0.104]
+done in 589s
+-> experiment/r35/ckpt/r35_off.pt
+-> experiment/r35/results/r35_off.json

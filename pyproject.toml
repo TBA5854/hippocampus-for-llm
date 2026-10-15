@@ -1,0 +1,24 @@
+[project]
+name = "hippocampus-for-llm"
+version = "0.1.0"
+description = "Memory as a block: an in-stack, shared episodic store for transformers"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.4",
+    "tokenizers>=0.19",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+# The experiment scripts under experiment/ call `uv run --group sleep`.
+sleep = [
+    "peft>=0.13",
+]
+
+[tool.pytest.ini_options]
+# `mech` is imported as a top-level package straight from the repo root.
+pythonpath = ["."]
+testpaths = ["tests_mech"]

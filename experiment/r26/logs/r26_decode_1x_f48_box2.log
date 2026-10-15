@@ -1,0 +1,20 @@
+{
+  "slots": 381,
+  "batch": 8,
+  "symbol_fraction": 0.24934382736682892,
+  "n_symbols": 128,
+  "emb": 0.03280840069055557,
+  "head": 0.0337926521897316,
+  "probe_heldout": 0.9491469860076904,
+  "probe_on_symbols": 0.8276315927505493,
+  "probe_on_text": 0.9895104765892029,
+  "emb_on_symbols": 0.0,
+  "emb_on_text": 0.043706294149160385,
+  "head_on_symbols": 0.0,
+  "head_on_text": 0.04501748085021973,
+  "key_emb": 1.0,
+  "key_emb_on_symbols": 1.0,
+  "key_emb_on_text": 1.0,
+  "value_via_next_key": 0.9957237243652344,
+  "value_via_next_key_on_symbols": 1.0
+}

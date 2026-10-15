@@ -1,0 +1,10 @@
+r104 box2 (NF=64) starting in /home/<user>/fw at 2026-09-21T19:10:47+05:30
+r104 box2 (NF=64) starting in /home/<user>/fw at 2026-09-21T19:10:47+05:30
+=== r104_baseline_mean_f64 START 2026-09-21T19:10:47+05:30
+=== r104_baseline_mean_f64 EXIT 0 2026-09-21T20:28:58+05:30
+step  9500  train 4.4636  val 4.4366  ppl 84.49  recall  96.1%  mem 1016/512  char  96.1% 96 ce 0.304  [s0:7.499  s1:4.403  s2:4.398  s3:4.443  s4:4.388  s5:4.381  s6:4.399  s7:0.062]  gates=0:0.636,1:0.100,2:0.074,3:0.050,4:0.041,5:0.050
+step 10000  train 3.9954  val 4.4350  ppl 84.35  recall  96.2%  mem 1016/512  char  96.2% 96 ce 0.302  [s0:7.499  s1:4.402  s2:4.397  s3:4.442  s4:4.388  s5:4.380  s6:4.398  s7:0.062]  gates=0:0.637,1:0.100,2:0.074,3:0.050,4:0.041,5:0.050
+=== r104_spl_token_f64 START 2026-09-21T20:28:58+05:30
+=== r104_spl_token_f64 EXIT 1 2026-09-21T20:29:14+05:30
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+=== ROUND DONE 2026-09-21T20:29:14+05:30

@@ -1,0 +1,47 @@
+[W922 17:57:37.399643850 CUDACachingAllocator.cpp:528] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 47448064, total: 16751919104).
+[W922 17:57:37.643379735 CUDACachingAllocator.cpp:528] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 53739520, total: 16751919104).
+[W922 17:57:37.731957364 CUDACachingAllocator.cpp:528] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 53739520, total: 16751919104).
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/adhavan_23bce0839/research/framework/mech/persist.py", line 923, in <module>
+    main()
+  File "/home/adhavan_23bce0839/research/framework/mech/persist.py", line 916, in main
+    {"write": write, "read": read, "taxonomy": taxonomy,
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/persist.py", line 196, in sparse
+    _, h_write = model(x[:, s])
+                 ^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/model.py", line 118, in forward
+    x = self.memory.read(i, x, q=q)           # read before attention
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 883, in read
+    out = self.read_heads[key](h, self.store, q_src=q_used, pool_mask=pool_mask)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 598, in forward
+    r_raw = self.retrieve(h, store, q_src=q_src, pool_mask=pool_mask)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 577, in retrieve
+    r_raw, _ = settle(q, K, V, mask, self.cfg, stash=self.stash, pool_mask=pool_mask,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 439, in settle
+    K = F.normalize(keys, dim=-1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/functional.py", line 6127, in normalize
+    return input / denom
+           ~~~~~~^~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.74 GiB. GPU 0 has a total capacity of 15.60 GiB of which 3.66 GiB is free. Including non-PyTorch memory, this process has 11.61 GiB memory in use. Of the allocated memory 11.38 GiB is allocated by PyTorch, and 35.08 MiB is reserved by PyTorch but unallocated.

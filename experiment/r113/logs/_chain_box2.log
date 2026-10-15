@@ -1,0 +1,38 @@
+chain_r113_box2 waiting for r112 ROUND DONE @ 2026-09-22T23:11:32+05:30
+chain_r113_box2: r112 done @ 2026-09-22T23:11:32+05:30 -> launching r113 d256
+r113 box2/d256 start 2026-09-22T23:11:32+05:30
+=== d256_sat_ctx128 EXIT 0 2026-09-22T23:16:27+05:30
+depth=0.00 (window     0/128)  store= 16256 slots  top-1 recall= 75.0%
+depth=0.25 (window    32/128)  store= 16256 slots  top-1 recall= 12.5%
+depth=0.50 (window    64/128)  store= 16256 slots  top-1 recall=  6.2%
+depth=0.75 (window    95/128)  store= 16256 slots  top-1 recall=  6.2%
+depth=1.00 (window   127/128)  store= 16256 slots  top-1 recall=  6.2%
+=== d256_sat_ctx512 (nseg 513 M=76690) [baseline] START 2026-09-22T23:16:27+05:30
+=== d256_sat_ctx512 EXIT 0 2026-09-23T00:16:45+05:30
+depth=0.00 (window     0/512)  store= 65024 slots  top-1 recall= 81.2%
+depth=0.10 (window    51/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.25 (window   128/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.50 (window   256/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.75 (window   383/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.90 (window   460/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=1.00 (window   511/512)  store= 65024 slots  top-1 recall=  0.0%
+=== d256_rarekeys_ctx512 (nseg 513 M=76690) [--rare-keys] START 2026-09-23T00:16:45+05:30
+=== d256_rarekeys_ctx512 EXIT 0 2026-09-23T01:17:09+05:30
+depth=0.00 (window     0/512)  store= 65024 slots  top-1 recall= 31.2%
+depth=0.10 (window    51/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.25 (window   128/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.50 (window   256/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.75 (window   383/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.90 (window   460/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=1.00 (window   511/512)  store= 65024 slots  top-1 recall=  0.0%
+=== d256_grow_ctx512 (nseg 513 M=76690) [--store-grow] START 2026-09-23T01:17:09+05:30
+=== d256_grow_ctx512 EXIT 0 2026-09-23T02:17:37+05:30
+depth=0.00 (window     0/512)  store= 65024 slots  top-1 recall= 81.2%
+depth=0.10 (window    51/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.25 (window   128/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.50 (window   256/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.75 (window   383/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.90 (window   460/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=1.00 (window   511/512)  store= 65024 slots  top-1 recall=  0.0%
+=== ROUND DONE 2026-09-23T02:17:37+05:30
+chain_r113_box2 done @ 2026-09-23T02:17:37+05:30

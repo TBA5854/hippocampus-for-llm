@@ -1,0 +1,23 @@
+r97 box2 resuming in /home/<user>/fw at 2026-09-21T10:11:32+05:30
+=== fuzzy_recall_exact START 2026-09-21T10:11:32+05:30
+=== fuzzy_recall_exact EXIT 0 2026-09-21T10:11:56+05:30
+nn_rank=0  neighbor_cos=1.000  recall= 84.7%  n=640
+nn_rank=1  neighbor_cos=0.939  recall= 33.0%  n=640
+nn_rank=2  neighbor_cos=0.935  recall= 24.7%  n=640
+nn_rank=3  neighbor_cos=0.934  recall= 22.7%  n=640
+nn_rank=5  neighbor_cos=0.931  recall= 16.4%  n=640
+nn_rank=10  neighbor_cos=0.929  recall= 12.8%  n=640
+=== fuzzy_store_f64 START 2026-09-21T10:11:56+05:30
+r97 box2 resuming in /home/<user>/fw at 2026-09-21T10:12:31+05:30
+SKIP fuzzy_recall_exact (done)
+=== fuzzy_store_f64 START 2026-09-21T10:12:31+05:30
+=== fuzzy_store_f64 EXIT 0 2026-09-21T10:12:37+05:30
+=== ROUND DONE 2026-09-21T10:12:37+05:30
+=== fuzzy_store_f64 EXIT 0 2026-09-21T10:13:12+05:30
+nn_rank=0  neighbor_cos=1.000  recall= 95.9%  n=640
+nn_rank=1  neighbor_cos=0.930  recall=  0.2%  n=640
+nn_rank=2  neighbor_cos=0.926  recall=  0.2%  n=640
+nn_rank=3  neighbor_cos=0.924  recall=  0.2%  n=640
+nn_rank=5  neighbor_cos=0.921  recall=  0.0%  n=640
+nn_rank=10  neighbor_cos=0.917  recall=  0.0%  n=640
+=== ROUND DONE 2026-09-21T10:13:12+05:30

@@ -1,0 +1,115 @@
+\section{From lookup to memory: revision, bounded capacity, and reasoning over the store}
+\label{sec:memory}
+
+\secsref{sec:longcontext}--\ref{sec:placement} give a store that holds $\gg$ the
+context window and is read in $O(1)$ slots. But a store one can only append to and
+read is a \emph{lookup table}, not a memory. A memory must also (i)~\emph{revise} a
+fact when it is re-stated, (ii)~stay \emph{bounded}---cost scaling with the number of
+distinct facts, not the number of tokens seen---and (iii)~support \emph{computation
+over its contents}: answering a query whose evidence is several stored facts chained
+together, none of them in the context window. We add each in turn by changing only
+the read/write heads; the retrieval path of the preceding sections is untouched, and
+with these features disabled the model is byte-identical to it.
+
+\subsection{Revision: a recency-biased read}
+\label{sec:memory:recency}
+
+When a key $k$ is re-stated with a new value $v'$, the append-only writer stores a
+second slot; a plain read then blends or arbitrates between $v$ and $v'$ with no
+notion of ``latest.'' We record a global monotonic write counter (a slot's
+write-order) at commit and add a small bias toward the most recently written slot
+among the key matches, keeping both slots so history stays queryable while the newest
+value wins by default. On a restate-then-query task this lifts latest-value recall
+from \recall{88.9} (bias off) to \recall{96.7} (bias on), while a non-updated control
+is undisturbed at \recall{97.5}. The bias is necessary: the position-free layer-0 key
+carries \emph{no} free recency---with the bias off the read sits at chance between the
+two stored values---so recency is supplied by the explicit write-order signal, not by
+key position.
+
+\subsection{Bounded capacity: gated write operations}
+\label{sec:memory:gated}
+
+Appending a slot per occurrence makes the store grow with tokens seen; prose that
+merely mentions a key token spends slots. We replace the append with a gated write
+operation keyed on the token: \{\textsc{new}, \textsc{update-in-place},
+\textsc{skip}\}, so the store holds \emph{one slot per distinct key}---$O(\text{facts})$,
+not $O(\text{tokens})$. At convergence the gate reaches \recall{95.9} recall at $198$
+occupied slots against the ungated store's \recall{94.1} at $508$ (a $2.6\times$
+reduction with no recall cost), and---because \textsc{update-in-place} overwrites
+rather than appends---lands revisions at \recall{96.2} where the ungated store, forced
+to arbitrate duplicate slots, manages only \recall{7.8}. The same gate runs on
+\emph{one} store shared across layers: a single shared store with gated ops matches
+the per-layer arrangement (\recall{96.2}/\recall{96.6} recall/update versus
+\recall{95.9}/\recall{96.2}) at roughly six times fewer total slots. No learned
+per-layer adapter is needed---each read head's output projection already translates
+the one shared content into its layer, so the destination of \S\ref{sec:sharedkv} (one
+store, read everywhere) is reached directly.
+
+\subsection{Reasoning over the store: multi-hop as an emitted-token scratchpad}
+\label{sec:memory:multihop}
+
+The sharpest test of a memory is composition: store $A\!\to\!B$ and $B\!\to\!C$,
+evict them past the context window, then query $A$ with target $C$. Answering needs
+two retrievals chained through the store, the intermediate $B$ never appearing in the
+input. We find that the natural \emph{latent} route---feed a retrieved representation
+back as the next hop's query key, within a single forward pass---does not work, across
+seven variants (shared and per-layer stores, a learned re-projection of the retrieval,
+end-to-end gradient through the hops, a decoded-pointer re-query, and a layer-looping
+hard-decode). The reason is geometric: a stored value is off the key manifold, so the
+next hop's exact-match retrieval never fires reliably however the representation is
+threaded backward.
+
+Composition instead works as a \emph{working-memory} operation. The model
+\emph{emits each intermediate as a token} and re-enters the stack, so hop $L\!+\!1$ is
+an ordinary single-hop lookup keyed by a genuine token embedding---a chain-of-thought
+whose steps are store reads rather than arithmetic. One store artifact had to be
+removed first: a chain intermediate is simultaneously the value of $A\!\to\!B$ and the
+key of $B\!\to\!C$, and with value-shifted writes its spurious pad-valued slot
+clobbers its real slot half the time under the token gate, capping the second hop at
+$0.5\times$ the first. Skipping pad-valued writes (a pad is not a fact) removes the
+collision order-independently.
+
+\tabref{tab:multihop} reports the result. Two-hop recall is \recall{96.4} and
+\recall{96.9} across seeds---each hop $\approx\!98\%$---and composition extends to
+three hops at \recall{95.2} with every hop at $98$--$99\%$. The decisive control is
+the broken chain: replacing $B\!\to\!C$ with $X\!\to\!C$ so the head cannot reach the
+tail collapses joint recall to \recall{0.0} while the first hop still fires
+(\recall{88.8}); cutting the link kills exactly the second hop. The model is therefore
+genuinely chaining retrievals, not returning the most recently written value---the
+leak that a single-chain task invites, here removed by querying a random one of
+several shuffled chains. These numbers are teacher-forced (each emitted intermediate
+is scored against ground truth), but the honest end-to-end figure matches them: feeding
+the model its \emph{own} emitted intermediate at each hop (r95) reaches the same recall to
+the digit---\recall{96.9} at two hops, \recall{91.6} at four, \recall{89.7} at five---with
+joint recall tracking the product of the per-hop lookups ($\approx0.98$ each). So the
+result is not a teacher-forcing artifact: the emitted intermediates are correct as often as
+the final hop, and the model genuinely composes over its own steps. The result extends
+across a frontier of 2--5 hops and 16--64 facts (\chronref), every point with a
+broken-chain control at chance.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lccc}
+\toprule
+task (facts out of window) & joint recall & per-hop & control \\
+\midrule
+2-hop, seed 0 & \recall{96.4} & $98/98$ & --- \\
+2-hop, seed 1 & \recall{96.9} & $98/98$ & --- \\
+3-hop, seed 0 & \recall{95.2} & $99/98/99$ & --- \\
+2-hop, broken chain & \recall{0.0} & $89/\mathbf{0}$ & at chance \\
+\bottomrule
+\end{tabular}
+\caption{Multi-hop reasoning over the store via an emitted-token scratchpad. Joint
+recall requires every hop correct; per-hop is the character accuracy at each answer
+position. The broken-chain control ($A\!\to\!B,\ X\!\to\!C$, query $A\Rightarrow C$)
+sends joint recall to chance while the first hop is untouched, so the result is
+composition, not a return-latest shortcut.}
+\label{tab:multihop}
+\end{table}
+
+\paragraph{Summary.} The store is now a memory rather than a lookup table: it is
+revisable (recency-biased read), bounded to $O(\text{facts})$ (gated write ops on one
+shared store), and computable-over (an emitted-token scratchpad that chains
+single-hop reads). The last is the point of the construction---a model that reasons
+across facts it is holding \emph{outside} its context window, in one bounded shared
+store read $O(1)$ slots per hop.

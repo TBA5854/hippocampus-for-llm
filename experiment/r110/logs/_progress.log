@@ -1,0 +1,11 @@
+r110 (sharding capacity scaling @256 facts) start 2026-09-22T15:51:54+05:30
+=== r110_shard2_f256 START 2026-09-22T15:51:54+05:30
+=== r110_shard2_f256 EXIT 2 2026-09-22T15:51:55+05:30
+                [--task {lm,recall,mqar,bpe_recall,bpe_update,bpe_hop,bpe_chain,bpe_collision,bpe_semchain}]
+=== r110_shard4_f256 START 2026-09-22T15:51:55+05:30
+=== r110_shard4_f256 EXIT 2 2026-09-22T15:51:56+05:30
+                [--task {lm,recall,mqar,bpe_recall,bpe_update,bpe_hop,bpe_chain,bpe_collision,bpe_semchain}]
+=== r110_shard8_f256 START 2026-09-22T15:51:56+05:30
+=== r110_shard8_f256 EXIT 2 2026-09-22T15:51:57+05:30
+                [--task {lm,recall,mqar,bpe_recall,bpe_update,bpe_hop,bpe_chain,bpe_collision,bpe_semchain}]
+=== ROUND DONE 2026-09-22T15:51:57+05:30

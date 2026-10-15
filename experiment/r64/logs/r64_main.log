@@ -1,0 +1,14 @@
+=== r64 main pool ablation (none/token/ann) START 2026-09-18T22:35:20+05:30
+--- M=2048  bridge=15 windows ---
+none    store= 1905  candidates=  1905.0/1905  recall= 93.8%
+token   store= 1905  candidates=     1.3/1905  recall= 93.8%
+ann     store= 1905  candidates=   153.3/1905  recall= 93.8%
+--- M=4096  bridge=31 windows ---
+none    store= 3937  candidates=  3937.0/3937  recall= 90.0%
+token   store= 3937  candidates=     1.5/3937  recall= 89.4%
+ann     store= 3937  candidates=   337.9/3937  recall= 90.0%
+--- M=8192  bridge=63 windows ---
+none    store= 8001  candidates=  8001.0/8001  recall= 82.5%
+token   store= 8001  candidates=     1.9/8001  recall= 81.9%
+ann     store= 8001  candidates=   641.9/8001  recall= 83.1%
+=== ROUND DONE 2026-09-18T22:36:58+05:30

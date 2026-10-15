@@ -1,0 +1,8 @@
+r104-fixed box1 (detach) starting 2026-09-21T20:45:16+05:30
+=== r103_spl_token_detach_s0 START 2026-09-21T20:45:16+05:30
+=== r103_spl_token_detach_s0 EXIT 0 2026-09-21T22:06:39+05:30
+step 10000  train 6.4974  val 6.5106  ppl 672.20  recall  95.5%  mem 3048/512  char  95.5% 95 ce 1.706  [s0:7.514  s1:4.978  s2:4.948  s3:0.073]  gates=0:0.087,1:0.407,2:0.492,3:0.514,4:0.363,5:0.276
+=== r104_spl_token_f128 START 2026-09-21T22:06:39+05:30
+=== r104_spl_token_f128 EXIT 1 2026-09-21T22:06:58+05:30
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+=== ROUND DONE 2026-09-21T22:06:58+05:30

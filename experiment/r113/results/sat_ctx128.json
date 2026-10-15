@@ -1,0 +1,55 @@
+{
+  "n_facts": 32,
+  "seg_len": 128,
+  "memory_size": 26770,
+  "ctx_windows": 128,
+  "shuffle": false,
+  "rare_keys": false,
+  "rows": [
+    {
+      "depth_frac": 0.0,
+      "needle_seg": 0,
+      "ctx_windows": 128,
+      "tokens": 16384,
+      "slots_in_store": 16256,
+      "recall": 1.0,
+      "n": 16
+    },
+    {
+      "depth_frac": 0.25,
+      "needle_seg": 32,
+      "ctx_windows": 128,
+      "tokens": 16384,
+      "slots_in_store": 16256,
+      "recall": 0.875,
+      "n": 16
+    },
+    {
+      "depth_frac": 0.5,
+      "needle_seg": 64,
+      "ctx_windows": 128,
+      "tokens": 16384,
+      "slots_in_store": 16256,
+      "recall": 0.6875,
+      "n": 16
+    },
+    {
+      "depth_frac": 0.75,
+      "needle_seg": 95,
+      "ctx_windows": 128,
+      "tokens": 16384,
+      "slots_in_store": 16256,
+      "recall": 0.5625,
+      "n": 16
+    },
+    {
+      "depth_frac": 1.0,
+      "needle_seg": 127,
+      "ctx_windows": 128,
+      "tokens": 16384,
+      "slots_in_store": 16256,
+      "recall": 0.5,
+      "n": 16
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+r111 box1 start 2026-09-22T17:57:19+05:30
+=== box1_ns15000 (nseg 15000, fixed M=1960000) START 2026-09-22T17:57:19+05:30
+=== box1_ns15000 EXIT 1 2026-09-22T17:57:38+05:30
+[W922 17:57:37.731957364 CUDACachingAllocator.cpp:528] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 53739520, total: 16751919104).
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.74 GiB. GPU 0 has a total capacity of 15.60 GiB of which 3.66 GiB is free. Including non-PyTorch memory, this process has 11.61 GiB memory in use. Of the allocated memory 11.38 GiB is allocated by PyTorch, and 35.08 MiB is reserved by PyTorch but unallocated.
+=== ROUND DONE 2026-09-22T17:57:38+05:30

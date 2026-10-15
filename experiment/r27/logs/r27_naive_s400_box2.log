@@ -1,0 +1,22 @@
+{
+  "slots": 381,
+  "decode_exact": 1.0,
+  "wake_recall_with_store": 1.0,
+  "wake_recall_heldout_fact": 1.0,
+  "weights_alone_before_sleep": 0.0,
+  "weights_alone_after_sleep": 1.0,
+  "weights_alone_after_sleep_replayed_fact": 1.0,
+  "slots_reclaimable": 381,
+  "post_sleep_store_recall": 0.984375,
+  "store_rewritten_after_sleep": 1.0,
+  "lm_loss_before": 0.9607740759849548,
+  "lm_loss_after": 2.5992239713668823,
+  "weight_drift_l2": 43.91179656982422,
+  "sleep_steps": 400,
+  "sleep_lr": 0.0001,
+  "freeze_keys": false,
+  "rehearse": 0.0,
+  "tag": "r27_naive_s400",
+  "shared_facts": true,
+  "n": 64
+}

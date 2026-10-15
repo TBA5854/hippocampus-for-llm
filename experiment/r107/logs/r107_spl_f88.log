@@ -1,0 +1,4 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+hc=on  vocab=8192  params=7.78M  trainable=7.26M  device=cuda
+example = 8 x 128 tokens, store carries across segments

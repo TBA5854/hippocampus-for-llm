@@ -1,0 +1,319 @@
+{
+  "args": {
+    "hc": "off",
+    "task": "lm",
+    "n_hops": 2,
+    "broken_chain": false,
+    "n_chains": 1,
+    "write_op_gate": false,
+    "write_skip_pad": false,
+    "recency_read": false,
+    "recency_tau": 0.3,
+    "hop_key": "token",
+    "hop_ptr_beta": 8.0,
+    "loop_read": false,
+    "loop_iters": 2,
+    "loop_layer": null,
+    "hop_reindex": false,
+    "hop_grad": false,
+    "query_nonupdated": false,
+    "n_facts": 8,
+    "episode_evict": false,
+    "write_select": "all",
+    "write_stride": 1,
+    "write_frac": 1.0,
+    "n_symbols": 32,
+    "answer_weight": 1.0,
+    "no_tile": false,
+    "facts_in_context": false,
+    "data": "data/tinyshakespeare.txt",
+    "suppress_empty_read": false,
+    "data_books": "data/pg19",
+    "max_books": null,
+    "bpe": null,
+    "bpe_vocab": 8192,
+    "steps": 8000,
+    "batch": 32,
+    "accum": 1,
+    "n_seg": 4,
+    "seg_len": 128,
+    "d_model": 256,
+    "n_layers": 6,
+    "n_heads": 1,
+    "lr": 0.0003,
+    "seed": 0,
+    "d_mem": 256,
+    "memory_size": 1024,
+    "readout": "graded",
+    "beta_grad": 4.0,
+    "beta_max": 64.0,
+    "beta": 32.0,
+    "read_grad_floor": 0.0,
+    "n_steps": 0,
+    "flat_lr": false,
+    "read_layers": [
+      1
+    ],
+    "write_layer": 4,
+    "write_layers": null,
+    "per_layer_store": false,
+    "key_layer": 0,
+    "value_skip_layer": 0,
+    "value_skip_norm": true,
+    "freeze_query": true,
+    "key_pos_free": true,
+    "query_init": "identity",
+    "value_shift": 1,
+    "write_threshold": 0.6,
+    "no_write_gate": false,
+    "dg_bypass": true,
+    "no_write_identity": false,
+    "shuffle_store": false,
+    "eval_every": 500,
+    "init": null,
+    "out": "experiment/r85/results/lm_hc_off.json",
+    "save": "experiment/r85/ckpt/lm_hc_off.pt"
+  },
+  "history": [
+    {
+      "step": 500,
+      "train": 2.243955612182617,
+      "val": 2.1986467242240906,
+      "val_per_segment": [
+        2.206009805202484,
+        2.1944645404815675,
+        2.196142113208771,
+        2.197970449924469
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 1000,
+      "train": 1.7784607410430908,
+      "val": 1.7815973877906799,
+      "val_per_segment": [
+        1.7880425453186035,
+        1.778418058156967,
+        1.7820164561271667,
+        1.7779124140739442
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 1500,
+      "train": 1.5454723834991455,
+      "val": 1.6101933598518372,
+      "val_per_segment": [
+        1.6190605878829956,
+        1.6086502850055695,
+        1.6075838685035706,
+        1.605478686094284
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 2000,
+      "train": 1.4437830448150635,
+      "val": 1.5346740424633025,
+      "val_per_segment": [
+        1.5433214902877808,
+        1.5330740630626678,
+        1.533866035938263,
+        1.5284345865249633
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 2500,
+      "train": 1.3678128719329834,
+      "val": 1.4987900257110596,
+      "val_per_segment": [
+        1.5057403802871705,
+        1.5006625771522522,
+        1.4956006050109862,
+        1.4931565880775453
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 3000,
+      "train": 1.420954704284668,
+      "val": 1.4613166570663452,
+      "val_per_segment": [
+        1.4727320849895478,
+        1.4608968019485473,
+        1.4595009624958037,
+        1.4521367788314818
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 3500,
+      "train": 1.3543846607208252,
+      "val": 1.4369764089584351,
+      "val_per_segment": [
+        1.446023815870285,
+        1.4383815050125122,
+        1.435509878396988,
+        1.4279905319213868
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 4000,
+      "train": 1.325475811958313,
+      "val": 1.41773419380188,
+      "val_per_segment": [
+        1.42547926902771,
+        1.4193629443645477,
+        1.4158240497112273,
+        1.4102705717086792
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 4500,
+      "train": 1.2819682359695435,
+      "val": 1.4022211134433746,
+      "val_per_segment": [
+        1.4113881766796113,
+        1.4049107789993287,
+        1.3994042694568634,
+        1.3931812644004822
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 5000,
+      "train": 1.259948968887329,
+      "val": 1.3875368475914,
+      "val_per_segment": [
+        1.3982911348342895,
+        1.3905849039554596,
+        1.3840566158294678,
+        1.3772147178649903
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 5500,
+      "train": 1.259119987487793,
+      "val": 1.374993872642517,
+      "val_per_segment": [
+        1.3834561705589294,
+        1.3780594527721406,
+        1.3719338119029998,
+        1.366526061296463
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 6000,
+      "train": 1.2773470878601074,
+      "val": 1.3647132992744446,
+      "val_per_segment": [
+        1.3728634893894196,
+        1.3685298442840577,
+        1.3609718322753905,
+        1.3564880073070527
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 6500,
+      "train": 1.2314434051513672,
+      "val": 1.3565337240695954,
+      "val_per_segment": [
+        1.3643223226070404,
+        1.361335438489914,
+        1.3528684675693512,
+        1.3476086556911469
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 7000,
+      "train": 1.254284381866455,
+      "val": 1.3517529487609863,
+      "val_per_segment": [
+        1.3602040112018585,
+        1.3568859994411469,
+        1.347498595714569,
+        1.3424232125282287
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 7500,
+      "train": 1.2162903547286987,
+      "val": 1.3483607470989227,
+      "val_per_segment": [
+        1.3565342724323273,
+        1.3537370026111604,
+        1.3441654562950134,
+        1.3390062630176545
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    },
+    {
+      "step": 8000,
+      "train": 1.1898424625396729,
+      "val": 1.3468339443206787,
+      "val_per_segment": [
+        1.355084776878357,
+        1.3520983457565308,
+        1.3427347660064697,
+        1.3374179005622864
+      ],
+      "recall": null,
+      "gates": {},
+      "slots": null,
+      "answer": null
+    }
+  ]
+}

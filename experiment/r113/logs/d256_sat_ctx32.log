@@ -1,0 +1,5 @@
+depth=0.00 (window     0/32)  store=  4064 slots  top-1 recall= 87.5%
+depth=0.25 (window     8/32)  store=  4064 slots  top-1 recall= 12.5%
+depth=0.50 (window    16/32)  store=  4064 slots  top-1 recall= 12.5%
+depth=0.75 (window    23/32)  store=  4064 slots  top-1 recall= 12.5%
+depth=1.00 (window    31/32)  store=  4064 slots  top-1 recall=  0.0%

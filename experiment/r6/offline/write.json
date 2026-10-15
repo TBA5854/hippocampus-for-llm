@@ -1,0 +1,7 @@
+{
+  "in_process_recall": 1.0,
+  "n": 320,
+  "fingerprint": "422bb5d52a88227fd58b95c73612a39d5e8192f77d3040721f0f68f61d27c616",
+  "store_bytes_per_file": 16781371,
+  "slots_per_example": 384
+}

@@ -1,0 +1,26 @@
+initialised from experiment/r19/ckpt/r19_warm_skipnorm_M2048.pt
+hc=on  vocab=145  params=5.07M  trainable=4.87M  device=cuda
+example = 32 x 128 tokens, store carries across segments
+step   250  train 1.2251  val 1.2790  ppl 3.59  recall   1.2%  [s0:1.058  s1:0.744  s2:0.734  s3:0.744  s4:0.688  s5:0.698  s6:0.758  s7:0.727  s8:0.717  s9:0.735  s10:0.724  s11:0.733  s12:0.738  s13:0.774  s14:0.754  s15:0.715  s16:0.759  s17:0.721  s18:0.748  s19:0.745  s20:0.728  s21:0.718  s22:0.735  s23:0.721  s24:0.726  s25:0.725  s26:0.720  s27:0.720  s28:0.755  s29:0.753  s30:0.745  s31:0.057]  gates=0:0.310
+step   500  train 1.2281  val 1.2687  ppl 3.56  recall   2.5%  [s0:1.045  s1:0.743  s2:0.730  s3:0.738  s4:0.689  s5:0.687  s6:0.756  s7:0.720  s8:0.709  s9:0.732  s10:0.715  s11:0.723  s12:0.731  s13:0.769  s14:0.746  s15:0.711  s16:0.753  s17:0.714  s18:0.741  s19:0.739  s20:0.724  s21:0.709  s22:0.721  s23:0.721  s24:0.722  s25:0.716  s26:0.715  s27:0.709  s28:0.746  s29:0.747  s30:0.742  s31:0.058]  gates=0:0.304
+step   750  train 1.1876  val 1.2577  ppl 3.52  recall   3.8%  [s0:1.044  s1:0.732  s2:0.727  s3:0.735  s4:0.682  s5:0.678  s6:0.747  s7:0.714  s8:0.706  s9:0.726  s10:0.708  s11:0.719  s12:0.729  s13:0.764  s14:0.741  s15:0.702  s16:0.747  s17:0.710  s18:0.734  s19:0.734  s20:0.715  s21:0.702  s22:0.719  s23:0.713  s24:0.718  s25:0.712  s26:0.711  s27:0.705  s28:0.746  s29:0.744  s30:0.732  s31:0.057]  gates=0:0.298
+step  1000  train 1.1830  val 1.2443  ppl 3.47  recall   3.8%  [s0:1.032  s1:0.724  s2:0.718  s3:0.726  s4:0.671  s5:0.669  s6:0.739  s7:0.705  s8:0.694  s9:0.716  s10:0.702  s11:0.707  s12:0.716  s13:0.757  s14:0.735  s15:0.694  s16:0.738  s17:0.706  s18:0.725  s19:0.724  s20:0.708  s21:0.696  s22:0.711  s23:0.703  s24:0.705  s25:0.702  s26:0.700  s27:0.697  s28:0.732  s29:0.733  s30:0.721  s31:0.057]  gates=0:0.296
+step  1250  train 1.1960  val 1.2372  ppl 3.45  recall   5.0%  [s0:1.030  s1:0.720  s2:0.712  s3:0.721  s4:0.668  s5:0.665  s6:0.737  s7:0.698  s8:0.690  s9:0.711  s10:0.694  s11:0.704  s12:0.710  s13:0.755  s14:0.728  s15:0.686  s16:0.732  s17:0.697  s18:0.718  s19:0.720  s20:0.702  s21:0.691  s22:0.703  s23:0.695  s24:0.702  s25:0.696  s26:0.693  s27:0.694  s28:0.727  s29:0.726  s30:0.715  s31:0.056]  gates=0:0.296
+step  1500  train 1.1777  val 1.2366  ppl 3.44  recall   5.0%  [s0:1.028  s1:0.716  s2:0.710  s3:0.719  s4:0.666  s5:0.661  s6:0.735  s7:0.696  s8:0.687  s9:0.708  s10:0.690  s11:0.702  s12:0.709  s13:0.753  s14:0.726  s15:0.684  s16:0.730  s17:0.695  s18:0.718  s19:0.718  s20:0.700  s21:0.689  s22:0.702  s23:0.695  s24:0.700  s25:0.694  s26:0.692  s27:0.690  s28:0.726  s29:0.725  s30:0.712  s31:0.057]  gates=0:0.295
+done in 3668s
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/<user>/research/framework/mech/train.py", line 363, in <module>
+    main()
+  File "/home/<user>/research/framework/mech/train.py", line 350, in main
+    torch.save(model.state_dict(), args.save)
+  File "/home/<user>/research/framework/.venv/lib/python3.12/site-packages/torch/serialization.py", line 1002, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/research/framework/.venv/lib/python3.12/site-packages/torch/serialization.py", line 864, in _open_zipfile_writer
+    return container(name_or_buffer)  # type: ignore[arg-type]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/research/framework/.venv/lib/python3.12/site-packages/torch/serialization.py", line 828, in __init__
+    torch._C.PyTorchFileWriter(
+RuntimeError: [enforce fail at inline_container.cc:747] . open file failed with strerror: Permission denied

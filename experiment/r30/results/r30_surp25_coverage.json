@@ -1,0 +1,11 @@
+{
+  "slots": 96,
+  "batch": 8,
+  "symbol_fraction": 0.15625,
+  "n_symbols": 128,
+  "write_select": "surprisal",
+  "probe_on_symbols": 0.2750000059604645,
+  "probe_on_text": 0.08487654477357864,
+  "fact_key_coverage": 1.0,
+  "alignment_metrics_valid": false
+}

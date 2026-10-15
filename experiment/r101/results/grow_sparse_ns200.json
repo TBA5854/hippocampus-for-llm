@@ -1,0 +1,34 @@
+{
+  "n_facts": 32,
+  "seg_len": 128,
+  "memory_size": 512,
+  "rows": [
+    {
+      "read": "top-1",
+      "k": 1,
+      "slots_in_store": 25273,
+      "slots_touched": 1,
+      "bridge_windows": 199,
+      "recall": 1.0,
+      "n": 48
+    },
+    {
+      "read": "top-2",
+      "k": 2,
+      "slots_in_store": 25273,
+      "slots_touched": 2,
+      "bridge_windows": 199,
+      "recall": 1.0,
+      "n": 48
+    },
+    {
+      "read": "graded(all)",
+      "k": 0,
+      "slots_in_store": 25273,
+      "slots_touched": 25273,
+      "bridge_windows": 199,
+      "recall": 0.6041666666666666,
+      "n": 48
+    }
+  ]
+}

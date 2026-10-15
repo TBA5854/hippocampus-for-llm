@@ -1,0 +1,6 @@
+nn_rank=0  neighbor_cos=1.000  recall= 95.9%  n=640
+nn_rank=1  neighbor_cos=0.930  recall=  0.2%  n=640
+nn_rank=2  neighbor_cos=0.926  recall=  0.2%  n=640
+nn_rank=3  neighbor_cos=0.924  recall=  0.2%  n=640
+nn_rank=5  neighbor_cos=0.921  recall=  0.0%  n=640
+nn_rank=10  neighbor_cos=0.917  recall=  0.0%  n=640

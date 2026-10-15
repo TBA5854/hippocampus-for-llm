@@ -1,0 +1,21 @@
+experiment,condition,k_correct,n_queries,recall_percent,ci95_low,ci95_high,source
+single-token keys,8 facts,640,640,100.0,99.4,100.0,r50/results/r50_bpe8_s2.json
+single-token keys,16 facts,640,640,100.0,99.4,100.0,r49/results/r49_bpe16_curr.json
+single-token keys,32 facts,640,640,100.0,99.4,100.0,r49/results/r49_bpe32_curr.json
+single-token keys,64 facts,634,640,99.06,97.97,99.57,r50/results/r50_bpe64.json
+single-token keys,scrambled store (64 facts),1,640,0.16,0.03,0.88,r50/results/r50_bpe64_shuf.json
+persistence,store reloaded in a fresh process,160,160,100.0,97.66,100.0,SOURCE: r51/RESULTS.md (100.0%)
+persistence,mismatched store file,0,160,0.0,0.0,2.34,SOURCE: r51/RESULTS.md (0.0%)
+placement,"mean of all layers, one slot per token",517,640,80.78,77.55,83.65,SOURCE: r103 log line 'recall 80.8%' (517/640)
+placement,"every layer writes its own slot, seed 0",611,640,95.47,93.57,96.83,SOURCE: r103 (95.5% = 611/640)
+placement,"every layer writes its own slot, seed 1",633,640,98.91,97.76,99.47,SOURCE: r103 (98.9% = 633/640)
+placement,same slots keyed by the layer's residual (control),1,640,0.16,0.03,0.88,SOURCE: r103 (0.2% = 1/640)
+store swap (one frozen model),"store A loaded, A's facts",32,32,100.0,89.28,100.0,r86/results/swap.json
+store swap (one frozen model),"store B loaded, B's facts",31,32,96.88,84.26,99.45,r86/results/swap.json
+store swap (one frozen model),"store B loaded, A's facts",0,32,0.0,0.0,10.72,r86/results/swap.json
+store swap (one frozen model),"store A loaded, B's facts",0,32,0.0,0.0,10.72,r86/results/swap.json
+store swap (one frozen model),scrambled store,1,32,3.12,0.55,15.74,r86/results/swap.json
+cross-model,model 1 on its own store,632,640,98.75,97.55,99.37,r86/results/r86_modelA.json
+cross-model,model 2 on its own store,640,640,100.0,99.4,100.0,r86/results/r86_modelB.json
+cross-model,model 2 reads model 1's store,0,32,0.0,0.0,10.72,r86/results/swap.json
+cross-model,model 1 reads model 2's store,0,32,0.0,0.0,10.72,r86/results/swap.json

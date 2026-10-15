@@ -1,0 +1,20 @@
+hc=on  vocab=130  params=5.06M  trainable=4.93M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 6.0910  val 6.0104  ppl 407.63  recall   4.4%  [s0:0.741  s1:2.673  s2:2.676  s3:0.192]  gates=1:0.022
+step   500  train 5.4680  val 5.5640  ppl 260.87  recall   2.3%  [s0:0.183  s1:2.253  s2:2.260  s3:0.059]  gates=1:0.074
+step   750  train 5.2336  val 5.3846  ppl 218.02  recall   2.7%  [s0:0.137  s1:1.958  s2:1.961  s3:0.056]  gates=1:0.131
+step  1000  train 3.9620  val 4.2594  ppl 70.77  recall  44.1%  [s0:0.198  s1:1.866  s2:1.875  s3:0.067]  gates=1:0.195
+step  1250  train 2.4620  val 2.4345  ppl 11.41  recall  80.6%  [s0:0.137  s1:1.847  s2:1.856  s3:0.048]  gates=1:0.239
+step  1500  train 0.9201  val 1.4878  ppl 4.43  recall  93.8%  [s0:0.102  s1:1.785  s2:1.793  s3:0.035]  gates=1:0.272
+step  1750  train 1.9915  val 1.6707  ppl 5.32  recall  88.3%  [s0:0.114  s1:1.731  s2:1.740  s3:0.033]  gates=1:0.290
+step  2000  train 0.7974  val 0.9392  ppl 2.56  recall  99.2%  [s0:0.089  s1:1.682  s2:1.700  s3:0.029]  gates=1:0.297
+step  2250  train 0.7517  val 0.8651  ppl 2.38  recall  99.8%  [s0:0.084  s1:1.621  s2:1.641  s3:0.028]  gates=1:0.300
+step  2500  train 0.8300  val 0.9281  ppl 2.53  recall  98.8%  [s0:0.084  s1:1.584  s2:1.605  s3:0.029]  gates=1:0.301
+step  2750  train 0.7130  val 0.8372  ppl 2.31  recall  99.7%  [s0:0.084  s1:1.562  s2:1.580  s3:0.028]  gates=1:0.301
+step  3000  train 0.6975  val 0.8013  ppl 2.23  recall 100.0%  [s0:0.083  s1:1.535  s2:1.558  s3:0.028]  gates=1:0.301
+step  3250  train 0.6752  val 0.8086  ppl 2.24  recall  99.8%  [s0:0.083  s1:1.516  s2:1.537  s3:0.028]  gates=1:0.302
+step  3500  train 0.6916  val 0.7867  ppl 2.20  recall 100.0%  [s0:0.082  s1:1.507  s2:1.530  s3:0.028]  gates=1:0.302
+step  3750  train 0.6606  val 0.7844  ppl 2.19  recall 100.0%  [s0:0.082  s1:1.502  s2:1.525  s3:0.028]  gates=1:0.302
+step  4000  train 0.6699  val 0.7835  ppl 2.19  recall 100.0%  [s0:0.082  s1:1.501  s2:1.523  s3:0.028]  gates=1:0.302
+done in 654s
+-> experiment/r1/results/r1_w4.json

@@ -1,0 +1,44 @@
+=== r54 cross margin curve START 2026-09-18T14:38:28+05:30
+ring       M=  256  n_seg= 16  bridge= 15win  kept=256/256  recall=  0.0%
+oracle     M=  256  n_seg= 16  bridge= 15win  kept=256/256  recall=100.0%
+surprisal  M=  256  n_seg= 16  bridge= 15win  kept=256/256  recall=  2.5%
+ring       M=  384  n_seg= 16  bridge= 15win  kept=384/384  recall=  0.0%
+oracle     M=  384  n_seg= 16  bridge= 15win  kept=384/384  recall=100.0%
+surprisal  M=  384  n_seg= 16  bridge= 15win  kept=384/384  recall= 73.8%
+ring       M=  512  n_seg= 16  bridge= 15win  kept=512/512  recall=  0.0%
+oracle     M=  512  n_seg= 16  bridge= 15win  kept=512/512  recall=100.0%
+surprisal  M=  512  n_seg= 16  bridge= 15win  kept=512/512  recall= 75.6%
+ring       M=  768  n_seg= 16  bridge= 15win  kept=768/768  recall=  0.0%
+oracle     M=  768  n_seg= 16  bridge= 15win  kept=768/768  recall=100.0%
+surprisal  M=  768  n_seg= 16  bridge= 15win  kept=768/768  recall= 72.5%
+ring       M= 1024  n_seg= 16  bridge= 15win  kept=1024/1024  recall=  0.0%
+oracle     M= 1024  n_seg= 16  bridge= 15win  kept=1024/1024  recall=100.0%
+surprisal  M= 1024  n_seg= 16  bridge= 15win  kept=1024/1024  recall= 71.2%
+ring       M= 1536  n_seg= 16  bridge= 15win  kept=1536/1536  recall=  0.0%
+oracle     M= 1536  n_seg= 16  bridge= 15win  kept=1536/1536  recall=100.0%
+surprisal  M= 1536  n_seg= 16  bridge= 15win  kept=1536/1536  recall= 68.8%
+ring       M= 2048  n_seg= 16  bridge= 15win  kept=1905/2048  recall= 99.4%
+oracle     M= 2048  n_seg= 16  bridge= 15win  kept=1905/2048  recall= 99.4%
+surprisal  M= 2048  n_seg= 16  bridge= 15win  kept=1905/2048  recall= 99.4%
+ring       M=  256  n_seg= 32  bridge= 31win  kept=256/256  recall=  0.0%
+oracle     M=  256  n_seg= 32  bridge= 31win  kept=256/256  recall=100.0%
+surprisal  M=  256  n_seg= 32  bridge= 31win  kept=256/256  recall=  0.0%
+ring       M=  384  n_seg= 32  bridge= 31win  kept=384/384  recall=  0.0%
+oracle     M=  384  n_seg= 32  bridge= 31win  kept=384/384  recall=100.0%
+surprisal  M=  384  n_seg= 32  bridge= 31win  kept=384/384  recall=  0.0%
+ring       M=  512  n_seg= 32  bridge= 31win  kept=512/512  recall=  0.0%
+oracle     M=  512  n_seg= 32  bridge= 31win  kept=512/512  recall=100.0%
+surprisal  M=  512  n_seg= 32  bridge= 31win  kept=512/512  recall=  0.0%
+ring       M=  768  n_seg= 32  bridge= 31win  kept=768/768  recall=  0.0%
+oracle     M=  768  n_seg= 32  bridge= 31win  kept=768/768  recall=100.0%
+surprisal  M=  768  n_seg= 32  bridge= 31win  kept=768/768  recall= 78.8%
+ring       M= 1024  n_seg= 32  bridge= 31win  kept=1024/1024  recall=  0.0%
+oracle     M= 1024  n_seg= 32  bridge= 31win  kept=1024/1024  recall=100.0%
+surprisal  M= 1024  n_seg= 32  bridge= 31win  kept=1024/1024  recall= 76.9%
+ring       M= 1536  n_seg= 32  bridge= 31win  kept=1536/1536  recall=  0.0%
+oracle     M= 1536  n_seg= 32  bridge= 31win  kept=1536/1536  recall=100.0%
+surprisal  M= 1536  n_seg= 32  bridge= 31win  kept=1536/1536  recall= 75.6%
+ring       M= 2048  n_seg= 32  bridge= 31win  kept=2048/2048  recall=  0.0%
+oracle     M= 2048  n_seg= 32  bridge= 31win  kept=2048/2048  recall=100.0%
+surprisal  M= 2048  n_seg= 32  bridge= 31win  kept=2048/2048  recall= 74.4%
+=== ROUND DONE 2026-09-18T14:41:04+05:30

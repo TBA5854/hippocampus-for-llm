@@ -1,0 +1,19 @@
+{
+  "n": 320,
+  "answer_right": {
+    "correct": 0.0,
+    "other_fact_key": 0.0,
+    "value_symbol": 0.0,
+    "query_marker": 0.0,
+    "distractor_text": 0.025,
+    "fact_segment_other": 0.009375
+  },
+  "answer_wrong": {
+    "correct": 0.0,
+    "other_fact_key": 0.0,
+    "value_symbol": 0.0,
+    "query_marker": 0.0,
+    "distractor_text": 0.553125,
+    "fact_segment_other": 0.4125
+  }
+}

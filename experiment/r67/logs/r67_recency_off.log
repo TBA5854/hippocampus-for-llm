@@ -1,0 +1,20 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+initialised from experiment/r66/ckpt/r66_mlcurr_f16.pt
+hc=on  vocab=8192  params=7.78M  trainable=7.26M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 9.4490  val 9.0363  ppl 8402.31  recall  42.2%  char  42.2% 42 ce 4.151  [s0:5.552  s1:4.895  s2:4.849  s3:0.095]  gates=0:1.359,1:0.152,2:0.322,3:0.347,4:0.424,5:0.429
+step  1000  train 9.2159  val 9.1943  ppl 9841.26  recall  41.4%  char  41.4% 41 ce 4.281  [s0:5.541  s1:4.885  s2:4.846  s3:0.102]  gates=0:1.423,1:0.149,2:0.313,3:0.347,4:0.408,5:0.450
+step  1500  train 8.4536  val 8.9483  ppl 7694.47  recall  44.7%  char  44.7% 45 ce 4.094  [s0:5.528  s1:4.867  s2:4.829  s3:0.100]  gates=0:1.441,1:0.150,2:0.308,3:0.357,4:0.400,5:0.457
+step  2000  train 8.2540  val 9.0314  ppl 8361.52  recall  41.6%  char  41.6% 42 ce 4.164  [s0:5.524  s1:4.862  s2:4.823  s3:0.098]  gates=0:1.440,1:0.156,2:0.302,3:0.353,4:0.395,5:0.446
+step  2500  train 7.5652  val 8.1790  ppl 3565.44  recall  55.0%  char  55.0% 55 ce 3.515  [s0:5.480  s1:4.802  s2:4.767  s3:0.091]  gates=0:1.427,1:0.163,2:0.302,3:0.349,4:0.396,5:0.434
+step  3000  train 7.5681  val 7.9772  ppl 2913.81  recall  60.0%  char  60.0% 60 ce 3.360  [s0:5.470  s1:4.791  s2:4.756  s3:0.091]  gates=0:1.396,1:0.171,2:0.298,3:0.345,4:0.397,5:0.426
+step  3500  train 7.2580  val 7.2534  ppl 1412.86  recall  69.4%  char  69.4% 69 ce 2.795  [s0:5.451  s1:4.769  s2:4.735  s3:0.085]  gates=0:1.370,1:0.175,2:0.299,3:0.345,4:0.396,5:0.422
+step  4000  train 7.1184  val 6.8509  ppl 944.71  recall  76.9%  char  76.9% 77 ce 2.479  [s0:5.441  s1:4.762  s2:4.723  s3:0.081]  gates=0:1.348,1:0.177,2:0.297,3:0.345,4:0.395,5:0.418
+step  4500  train 5.7253  val 6.3599  ppl 578.17  recall  84.4%  char  84.4% 84 ce 2.099  [s0:5.426  s1:4.738  s2:4.704  s3:0.078]  gates=0:1.333,1:0.178,2:0.295,3:0.344,4:0.396,5:0.417
+step  5000  train 5.7866  val 5.9072  ppl 367.69  recall  87.5%  char  87.5% 88 ce 1.751  [s0:5.406  s1:4.714  s2:4.679  s3:0.074]  gates=0:1.327,1:0.178,2:0.295,3:0.345,4:0.395,5:0.417
+step  5500  train 5.3937  val 5.6820  ppl 293.54  recall  88.6%  char  88.6% 89 ce 1.575  [s0:5.402  s1:4.707  s2:4.673  s3:0.073]  gates=0:1.324,1:0.178,2:0.295,3:0.345,4:0.396,5:0.417
+step  6000  train 5.5548  val 5.6494  ppl 284.13  recall  88.9%  char  88.9% 89 ce 1.550  [s0:5.399  s1:4.705  s2:4.670  s3:0.073]  gates=0:1.324,1:0.178,2:0.295,3:0.344,4:0.396,5:0.417
+done in 1447s
+-> experiment/r67/ckpt/r67_recency_off.pt
+-> experiment/r67/results/r67_recency_off.json

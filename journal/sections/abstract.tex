@@ -1,0 +1,12 @@
+% abstract  -  part of main.tex (see journal/README.md)
+\noindent Language models forget everything between conversations, so long-term memory is
+usually bolted on outside the network. We put it inside instead. A memory block in the
+transformer reads from and writes to a persistent store addressed by each word's identity,
+so retrieval is an exact match. State then lives in the store: one frozen model is a
+different agent with each store it loads, and swapping stores swaps the memory without
+touching a weight. Facts stated once in text are recalled out of context at 99--100\% for
+up to 64 facts, while controls sit at chance. A read touches one slot per query, and recall
+survives a million tokens. Nothing is lost in the middle, although facts written late into
+a full store are. The store revises facts, stays bounded, and supports reasoning across up to
+five stored facts.
+\par\bigskip

@@ -1,0 +1,223 @@
+{
+  "n_facts": 64,
+  "seg_len": 128,
+  "F": 127,
+  "rows": [
+    {
+      "policy": "ring",
+      "M_phys": 256,
+      "n_seg": 4,
+      "bridge_windows": 3,
+      "kept": 256,
+      "recall": 0.0125,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 256,
+      "n_seg": 4,
+      "bridge_windows": 3,
+      "kept": 256,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 256,
+      "n_seg": 4,
+      "bridge_windows": 3,
+      "kept": 256,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 512,
+      "n_seg": 4,
+      "bridge_windows": 3,
+      "kept": 381,
+      "recall": 0.9875,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 512,
+      "n_seg": 4,
+      "bridge_windows": 3,
+      "kept": 381,
+      "recall": 0.9875,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 512,
+      "n_seg": 4,
+      "bridge_windows": 3,
+      "kept": 381,
+      "recall": 0.9875,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 256,
+      "n_seg": 8,
+      "bridge_windows": 7,
+      "kept": 256,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 256,
+      "n_seg": 8,
+      "bridge_windows": 7,
+      "kept": 256,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 256,
+      "n_seg": 8,
+      "bridge_windows": 7,
+      "kept": 256,
+      "recall": 0.95625,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 512,
+      "n_seg": 8,
+      "bridge_windows": 7,
+      "kept": 512,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 512,
+      "n_seg": 8,
+      "bridge_windows": 7,
+      "kept": 512,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 512,
+      "n_seg": 8,
+      "bridge_windows": 7,
+      "kept": 512,
+      "recall": 0.9875,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 256,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 256,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 256,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 256,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 256,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 256,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 512,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 512,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 512,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 512,
+      "recall": 0.98125,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 512,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "kept": 512,
+      "recall": 0.975,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 256,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 256,
+      "recall": 0.00625,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 256,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 256,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 256,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 256,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "ring",
+      "M_phys": 512,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 512,
+      "recall": 0.0,
+      "n": 160
+    },
+    {
+      "policy": "oracle",
+      "M_phys": 512,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 512,
+      "recall": 0.9875,
+      "n": 160
+    },
+    {
+      "policy": "surprisal",
+      "M_phys": 512,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "kept": 512,
+      "recall": 0.0,
+      "n": 160
+    }
+  ]
+}

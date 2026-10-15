@@ -1,0 +1,3 @@
+top-1         store=25273 slots (199 windows)  touched=    1/25273  recall=100.0%
+top-2         store=25273 slots (199 windows)  touched=    2/25273  recall=100.0%
+graded(all)   store=25273 slots (199 windows)  touched=25273/25273  recall= 60.4%

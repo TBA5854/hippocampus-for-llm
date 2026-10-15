@@ -1,0 +1,22 @@
+_progress.log:=== r31_ring_m192 START 2026-09-17T15:46:50+05:30
+_progress.log:=== r31_ring_m192 EXIT 0 2026-09-17T16:03:17+05:30
+_progress.log:=== r31_ep_m192 START 2026-09-17T16:03:17+05:30
+_progress.log:=== r31_ep_m192 EXIT 0 2026-09-17T16:19:24+05:30
+_progress.log:=== ROUND DONE 2026-09-17T16:19:24+05:30
+_progress.log:=== r31_ring_m64 START 2026-09-17T16:19:37+05:30
+_progress.log:=== r31_ring_m64 EXIT 1 2026-09-17T16:20:09+05:30
+_progress.log:=== r31_ep_m64 START 2026-09-17T16:20:09+05:30
+_progress.log:=== r31_ep_m64 EXIT 1 2026-09-17T16:20:43+05:30
+_progress.log:=== ROUND DONE 2026-09-17T16:20:43+05:30
+r31_ep_m64.log:Traceback (most recent call last):
+r31_ep_m64.log:RuntimeError: The expanded size of the tensor (63) must match the existing size (126) at non-singleton dimension 1.  Target sizes: [32, 63].  Tensor sizes: [32, 126]
+r31_ring_m64.log:Traceback (most recent call last):
+r31_ring_m64.log:RuntimeError: The expanded size of the tensor (63) must match the existing size (126) at non-singleton dimension 1.  Target sizes: [32, 63].  Tensor sizes: [32, 126]
+_progress.log:=== r31_ring_m64 START 2026-09-17T16:22:03+05:30
+_progress.log:=== r31_ring_m64 EXIT 0 2026-09-17T16:38:19+05:30
+_progress.log:=== r31_ep_m64 START 2026-09-17T16:38:19+05:30
+_progress.log:=== r31_ep_m64 EXIT 0 2026-09-17T16:54:26+05:30
+_progress.log:=== ROUND DONE 2026-09-17T16:54:26+05:30
+_progress.log:=== r31_ep_m192 START 2026-09-17T16:55:46+05:30
+_progress.log:=== r31_ep_m192 EXIT 0 2026-09-17T17:12:12+05:30
+_progress.log:=== ROUND DONE 2026-09-17T17:12:12+05:30

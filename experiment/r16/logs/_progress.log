@@ -1,0 +1,3 @@
+=== r16_skip_M2048 START 2026-09-14T08:27:46+05:30
+=== r16_skip_M2048 STOPPED by design 2026-09-14T09:25:15+05:30: at step 5000 recall 2.8% (chance), gate 0.010 and falling since step 1500, read mass 0.54 and falling, matching 100%. Stop rule from STATE.md. Continued as r17 with --value-skip-norm; the 4x scrambled control moves to r17.
+=== ROUND DONE 2026-09-14T09:25:15+05:30

@@ -1,0 +1,9 @@
+r104-fixed box2 (detach) starting 2026-09-21T20:44:26+05:30
+r104-fixed box2 (detach) starting 2026-09-21T20:44:26+05:30
+=== r103_spl_token_detach_s1 START 2026-09-21T20:44:26+05:30
+=== r103_spl_token_detach_s1 EXIT 1 2026-09-21T20:44:40+05:30
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+=== r104_spl_token_f64 START 2026-09-21T20:44:40+05:30
+=== r104_spl_token_f64 EXIT 1 2026-09-21T20:44:55+05:30
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+=== ROUND DONE 2026-09-21T20:44:55+05:30

@@ -1,0 +1,14 @@
+_progress.log:=== r28_8x_mem0 START 2026-09-17T00:47:44+05:30
+_progress.log:=== r28_8x_mem0 EXIT 0 2026-09-17T00:56:47+05:30
+_progress.log:=== r28_8x_mem1 START 2026-09-17T00:56:47+05:30
+_progress.log:=== r28_8x_mem1 EXIT 0 2026-09-17T01:17:11+05:30
+_progress.log:=== r28_8x_n16_mem0 START 2026-09-17T01:19:40+05:30
+_progress.log:=== r28_8x_n16_mem0 EXIT 0 2026-09-17T01:32:53+05:30
+_progress.log:=== r28_8x_n16_mem1 START 2026-09-17T01:32:53+05:30
+_progress.log:=== r28_8x_n16_mem1 EXIT 1 2026-09-17T01:32:58+05:30
+_progress.log:=== ROUND DONE 2026-09-17T01:32:58+05:30
+r28_8x_n16_mem1.log:[W917 01:32:57.692183147 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 33554432 bytes (free: 65404928, total: 16743333888).
+r28_8x_n16_mem1.log:[W917 01:32:57.692255561 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 33554432 bytes (free: 65404928, total: 16743333888).
+r28_8x_n16_mem1.log:Traceback (most recent call last):
+r28_8x_n16_mem1.log:    w_soft = torch.nan_to_num(torch.softmax(cfg.beta_grad * s, dim=-1))
+r28_8x_n16_mem1.log:torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 32.00 MiB. GPU 0 has a total capacity of 15.59 GiB of which 62.38 MiB is free. Including non-PyTorch memory, this process has 14.96 GiB memory in use. Of the allocated memory 14.76 GiB is allocated by PyTorch, and 12.81 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

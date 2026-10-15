@@ -1,0 +1,31 @@
+pg19: 100 train books (40.4M tokens), 50 held-out books (17.4M), vocab 252, 0.0011% of held-out chars outside the train vocab
+pg19: flattened for --task recall (distractor prose)
+hc=on  vocab=252  params=5.09M  trainable=4.90M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 6.3015  val 6.3029  ppl 546.16  recall   0.3%  char   4.0% 4/4 ce 3.363  [s0:2.213  s1:2.921  s2:2.923  s3:0.338]  gates=0:0.003
+step   500  train 5.8638  val 5.8844  ppl 359.39  recall   0.0%  char   3.8% 3/4 ce 3.274  [s0:2.024  s1:2.517  s2:2.517  s3:0.111]  gates=0:0.019
+step   750  train 5.7237  val 5.7188  ppl 304.54  recall   0.3%  char   4.4% 4/4 ce 3.267  [s0:2.018  s1:2.208  s2:2.209  s3:0.107]  gates=0:0.029
+step  1000  train 5.3112  val 5.4917  ppl 242.67  recall   0.0%  char   5.9% 4/8 ce 3.123  [s0:2.024  s1:2.108  s2:2.110  s3:0.111]  gates=0:0.050
+step  1250  train 5.5947  val 5.3264  ppl 205.70  recall   0.6%  char   9.7% 6/14 ce 3.007  [s0:2.047  s1:2.061  s2:2.060  s3:0.104]  gates=0:0.061
+step  1500  train 5.0055  val 5.1017  ppl 164.30  recall   0.8%  char  11.6% 6/18 ce 2.852  [s0:2.027  s1:2.006  s2:2.008  s3:0.103]  gates=0:0.069
+step  1750  train 4.8406  val 4.9519  ppl 141.44  recall   3.1%  char  17.7% 9/26 ce 2.758  [s0:2.027  s1:1.948  s2:1.947  s3:0.096]  gates=0:0.078
+step  2000  train 4.7532  val 4.6601  ppl 105.64  recall   2.5%  char  24.1% 9/40 ce 2.598  [s0:1.710  s1:1.923  s2:1.925  s3:0.093]  gates=0:0.091
+step  2250  train 3.4525  val 3.5369  ppl 34.36  recall   9.1%  char  43.1% 12/74 ce 1.937  [s0:0.600  s1:1.888  s2:1.893  s3:0.083]  gates=0:0.111
+step  2500  train 2.9807  val 3.3979  ppl 29.90  recall  13.3%  char  46.6% 17/76 ce 1.869  [s0:0.429  s1:1.869  s2:1.868  s3:0.079]  gates=0:0.134
+step  2750  train 3.0221  val 3.1347  ppl 22.98  recall  16.2%  char  50.6% 20/82 ce 1.678  [s0:0.408  s1:1.832  s2:1.833  s3:0.074]  gates=0:0.153
+step  3000  train 3.1076  val 3.0473  ppl 21.06  recall  16.6%  char  51.5% 21/82 ce 1.622  [s0:0.400  s1:1.804  s2:1.804  s3:0.071]  gates=0:0.168
+step  3250  train 3.0084  val 3.0077  ppl 20.24  recall  17.5%  char  51.7% 23/81 ce 1.603  [s0:0.397  s1:1.773  s2:1.777  s3:0.069]  gates=0:0.179
+step  3500  train 2.6004  val 2.8498  ppl 17.28  recall  17.8%  char  52.9% 23/83 ce 1.488  [s0:0.394  s1:1.750  s2:1.749  s3:0.066]  gates=0:0.188
+step  3750  train 2.7238  val 2.7769  ppl 16.07  recall  18.1%  char  53.8% 22/86 ce 1.438  [s0:0.393  s1:1.731  s2:1.732  s3:0.063]  gates=0:0.194
+step  4000  train 2.8914  val 2.6782  ppl 14.56  recall  20.3%  char  54.9% 23/87 ce 1.368  [s0:0.392  s1:1.709  s2:1.710  s3:0.061]  gates=0:0.198
+step  4250  train 2.8468  val 2.6549  ppl 14.22  recall  21.7%  char  55.5% 25/86 ce 1.355  [s0:0.391  s1:1.696  s2:1.697  s3:0.060]  gates=0:0.202
+step  4500  train 2.7034  val 2.6543  ppl 14.21  recall  20.2%  char  54.8% 24/85 ce 1.360  [s0:0.391  s1:1.683  s2:1.683  s3:0.059]  gates=0:0.203
+step  4750  train 2.9448  val 2.5571  ppl 12.90  recall  20.3%  char  55.7% 25/87 ce 1.286  [s0:0.390  s1:1.674  s2:1.675  s3:0.057]  gates=0:0.204
+step  5000  train 2.6171  val 2.5000  ppl 12.18  recall  21.2%  char  55.9% 25/87 ce 1.244  [s0:0.390  s1:1.666  s2:1.669  s3:0.056]  gates=0:0.204
+step  5250  train 2.2497  val 2.4722  ppl 11.85  recall  21.1%  char  56.5% 25/88 ce 1.224  [s0:0.389  s1:1.662  s2:1.663  s3:0.055]  gates=0:0.204
+step  5500  train 2.5146  val 2.4633  ppl 11.74  recall  20.2%  char  56.0% 25/87 ce 1.218  [s0:0.389  s1:1.658  s2:1.659  s3:0.055]  gates=0:0.204
+step  5750  train 2.3296  val 2.4403  ppl 11.48  recall  20.5%  char  55.9% 25/87 ce 1.201  [s0:0.389  s1:1.656  s2:1.658  s3:0.055]  gates=0:0.204
+step  6000  train 2.6237  val 2.4491  ppl 11.58  recall  20.9%  char  56.1% 26/86 ce 1.208  [s0:0.389  s1:1.656  s2:1.658  s3:0.055]  gates=0:0.204
+done in 640s
+-> experiment/r39/ckpt/r39_f4_frac25.pt
+-> experiment/r39/results/r39_f4_frac25.json

@@ -1,0 +1,10 @@
+{
+  "A_store1_query1_own": 1.0,
+  "A_store2_query2_own": 0.96875,
+  "A_store2_query1_swap": 0.0,
+  "A_store1_query2_swap": 0.0,
+  "A_store1_query1_scrambled": 0.03125,
+  "B_storeB_queryB_own": 1.0,
+  "B_store1_query1_foreign": 0.0,
+  "A_storeB_queryB_foreign": 0.0
+}

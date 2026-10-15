@@ -1,0 +1,28 @@
+r112 box2 start 2026-09-22T22:46:22+05:30
+=== SMOKE 2026-09-22T22:46:22+05:30
+SMOKE OK
+depth=0.00 (window     0/64)  store=  8128 slots  top-1 recall=100.0%
+depth=0.50 (window    32/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=1.00 (window    63/64)  store=  8128 slots  top-1 recall=  0.0%
+=== box2_ctx64 (nseg 65, M=18450) sweep START 2026-09-22T22:46:43+05:30
+=== box2_ctx64 EXIT 0 2026-09-22T22:47:37+05:30
+depth=0.00 (window     0/64)  store=  8128 slots  top-1 recall= 87.5%
+depth=0.25 (window    16/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=0.50 (window    32/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=0.75 (window    47/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=1.00 (window    63/64)  store=  8128 slots  top-1 recall=  0.0%
+=== box2_ctx512 (nseg 513, M=76690) sweep START 2026-09-22T22:47:37+05:30
+=== box2_ctx512 EXIT 0 2026-09-22T23:09:14+05:30
+depth=0.00 (window     0/512)  store= 65024 slots  top-1 recall= 87.5%
+depth=0.25 (window   128/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.50 (window   256/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=0.75 (window   383/512)  store= 65024 slots  top-1 recall=  0.0%
+depth=1.00 (window   511/512)  store= 65024 slots  top-1 recall=  0.0%
+=== box2_ctx64_ctrl (nseg 65, M=18450) --shuffle START 2026-09-22T23:09:14+05:30
+=== box2_ctx64_ctrl EXIT 0 2026-09-22T23:10:13+05:30
+depth=0.00 (window     0/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=0.25 (window    16/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=0.50 (window    32/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=0.75 (window    47/64)  store=  8128 slots  top-1 recall=  0.0%
+depth=1.00 (window    63/64)  store=  8128 slots  top-1 recall=  0.0%
+=== ROUND DONE 2026-09-22T23:10:13+05:30

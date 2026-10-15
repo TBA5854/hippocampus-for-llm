@@ -1,0 +1,17 @@
+=== r62 bpe16s2 START 2026-09-18T21:00:42+05:30
+--- bpe16s2  M=2048  bridge=15 windows  (real) ---
+top-1         store= 1905 slots (15 windows)  touched=    1/1905  recall= 78.8%
+top-2         store= 1905 slots (15 windows)  touched=    2/1905  recall=100.0%
+top-4         store= 1905 slots (15 windows)  touched=    4/1905  recall=100.0%
+top-8         store= 1905 slots (15 windows)  touched=    8/1905  recall=100.0%
+graded(all)   store= 1905 slots (15 windows)  touched= 1905/1905  recall= 99.4%
+--- bpe16s2  M=4096  bridge=31 windows  (real) ---
+top-1         store= 3937 slots (31 windows)  touched=    1/3937  recall= 80.6%
+top-2         store= 3937 slots (31 windows)  touched=    2/3937  recall=100.0%
+top-4         store= 3937 slots (31 windows)  touched=    4/3937  recall=100.0%
+top-8         store= 3937 slots (31 windows)  touched=    8/3937  recall=100.0%
+graded(all)   store= 3937 slots (31 windows)  touched= 3937/3937  recall= 99.4%
+--- bpe16s2  M=4096  bridge=31 windows  (SHUFFLE control) ---
+top-1         store= 3937 slots (31 windows)  touched=    1/3937  recall=  0.6%
+graded(all)   store= 3937 slots (31 windows)  touched= 3937/3937  recall=  0.0%
+=== ROUND DONE 2026-09-18T21:02:11+05:30

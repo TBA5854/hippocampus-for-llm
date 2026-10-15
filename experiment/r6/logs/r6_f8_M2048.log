@@ -1,0 +1,43 @@
+hc=on  vocab=130  params=5.06M  trainable=4.93M  device=cuda
+example = 16 x 128 tokens, store carries across segments
+[W913 21:59:58.863089128 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 33554432 bytes (free: 68943872, total: 16743333888).
+[W913 21:59:58.863148653 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 33554432 bytes (free: 68943872, total: 16743333888).
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/adhavan_23bce0839/research/framework/mech/train.py", line 325, in <module>
+    main()
+  File "/home/adhavan_23bce0839/research/framework/mech/train.py", line 284, in main
+    loss, _, _ = run_example(model, x, y, device, m, args.answer_weight)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/train.py", line 140, in run_example
+    logits, h_write = model(x[:, s])
+                      ^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/model.py", line 93, in forward
+    x = self.memory.read(i, x)                # read before attention
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 423, in read
+    return self.read_heads[key](h, self.store)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 316, in forward
+    r, _ = settle(q, K, V, mask, self.cfg, stash=self.stash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 238, in settle
+    w = weights(torch.einsum("bsd,bmd->bsm", q, K), beta)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adhavan_23bce0839/research/framework/mech/hippo_layer.py", line 228, in weights
+    w_soft = torch.nan_to_num(torch.softmax(cfg.beta_grad * s, dim=-1))
+                                            ~~~~~~~~~~~~~~^~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 32.00 MiB. GPU 0 has a total capacity of 15.59 GiB of which 65.75 MiB is free. Including non-PyTorch memory, this process has 15.05 GiB memory in use. Of the allocated memory 14.81 GiB is allocated by PyTorch, and 51.94 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

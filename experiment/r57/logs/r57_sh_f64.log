@@ -1,0 +1,17 @@
+hc=on  vocab=145  params=5.72M  trainable=5.20M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/<user>/fw/mech/train.py", line 511, in <module>
+    main()
+  File "/home/<user>/fw/mech/train.py", line 463, in main
+    x, y, m = get_batch(train_ids, tok, args, device, gen)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/mech/train.py", line 258, in get_batch
+    return mqar_batch(ids, tok.vocab_size, args.batch, args.n_seg,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/<user>/fw/mech/tasks.py", line 287, in mqar_batch
+    tail = [qtok, kbase + int(ks[j]), vbase + int(vs[j])]
+                              ~~^^^
+IndexError: index 40 is out of bounds for dimension 0 with size 32

@@ -1,0 +1,76 @@
+{
+  "n_facts": 32,
+  "seg_len": 128,
+  "rows": [
+    {
+      "M": 512,
+      "n_seg": 4,
+      "bridge_windows": 3,
+      "written_tokens": 384,
+      "slots_used": 381,
+      "slots_capacity": 512,
+      "recall": 1.0,
+      "n": 64
+    },
+    {
+      "M": 512,
+      "n_seg": 8,
+      "bridge_windows": 7,
+      "written_tokens": 896,
+      "slots_used": 512,
+      "slots_capacity": 512,
+      "recall": 0.0,
+      "n": 64
+    },
+    {
+      "M": 512,
+      "n_seg": 16,
+      "bridge_windows": 15,
+      "written_tokens": 1920,
+      "slots_used": 512,
+      "slots_capacity": 512,
+      "recall": 0.0,
+      "n": 64
+    },
+    {
+      "M": 512,
+      "n_seg": 32,
+      "bridge_windows": 31,
+      "written_tokens": 3968,
+      "slots_used": 512,
+      "slots_capacity": 512,
+      "recall": 0.0,
+      "n": 64
+    },
+    {
+      "M": 512,
+      "n_seg": 64,
+      "bridge_windows": 63,
+      "written_tokens": 8064,
+      "slots_used": 512,
+      "slots_capacity": 512,
+      "recall": 0.0,
+      "n": 64
+    },
+    {
+      "M": 512,
+      "n_seg": 128,
+      "bridge_windows": 127,
+      "written_tokens": 16256,
+      "slots_used": 512,
+      "slots_capacity": 512,
+      "recall": 0.0,
+      "n": 64
+    },
+    {
+      "M": 512,
+      "n_seg": 200,
+      "bridge_windows": 199,
+      "written_tokens": 25472,
+      "slots_used": 512,
+      "slots_capacity": 512,
+      "recall": 0.0,
+      "n": 64
+    }
+  ]
+}

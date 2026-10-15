@@ -1,0 +1,72 @@
+\section{The memory block}
+\label{sec:method}
+
+\subsection{Architecture}
+
+We take a small GPT ($n_\text{layers}=6$, $d_\text{model}=256$, single head) and
+insert one memory module with three interfaces to the residual stream: a
+\emph{read} at an early block, a \emph{write} at the last block before the head,
+and a per-model \emph{store}. Input text is processed in fixed segments of
+$\text{seg\_len}=128$ tokens. Crucially the model does \emph{not} carry a KV cache
+across segments: \texttt{forward} is stateless per segment, so the store is the
+\emph{only} channel between segments. This makes the controls decisive---with the
+store disabled or its contents scrambled, cross-segment recall must fall to
+chance, and it does.
+
+\paragraph{Key, query, value.} At layer $\ell_\text{key}=0$ we capture, before the
+read, the pre-read hidden state as the key source. With \texttt{key\_pos\_free}
+the key uses the token embedding \emph{without} the position embedding, so a key is
+a pure function of the token. The read head's query projection is initialised to
+the identity and frozen, so at every step query and key are the same function of
+the same state and an identical token matches itself exactly. This is the
+load-bearing choice: a learned or contextualised key drifts away from the token
+and matching collapses to chance (\S\ref{sec:placement}).
+
+\paragraph{Reading.} Retrieval is a batched, annealed Hopfield settling over the
+store's keys: cosine scores $q\!\cdot\!K$ are sharpened by a softmax and used to
+blend the stored values, which are projected back and injected into the residual
+stream through a ReZero gate ($\alpha$ initialised to $0$, so the block is an
+exact no-op at initialisation and the store-off baseline is a true control). A
+surrogate-gradient trick takes the forward value from a sharp softmax and the
+gradient from a soft one, because sharp retrieval and gradient flow are in direct
+conflict: on a small store the query gradient vanishes by the second settling step
+under a hard schedule.
+
+\paragraph{Writing.} We write one slot per token position (\texttt{write\_per\_token}),
+so the store holds exact content rather than a pooled topic vector. A value shift
+of $1$ makes the slot keyed on token $j$ return token $j\!+\!1$, i.e.\ the answer
+that follows a key. The value is taken at the last block; because the last block's
+representation is specialised for next-token prediction, a bare last-block write
+degrades, and we add a \emph{normalised block-0 value skip}: the stored value is
+the normalised sum of the last-block state and the block-0 state, which restores
+the early content the head has abstracted away. This normalised skip is what lets
+the objective's ``write at the last block'' work at all, and to scale as the store
+grows.
+
+\paragraph{Per-layer read/write improves on read-early/write-late.} The placement
+above uses one write (a late block, or the mean of all blocks) and an early read. A
+stronger arrangement keeps the \emph{one shared store} but lets \emph{every} layer
+both read from it and write its own post-block state into it, so a token contributes
+$L$ slots---one per depth---rather than one. Keyed by the same exact position-free
+token, this lifts cold single-fact recall from $\recall{80.8}$ (write-the-mean, one
+slot per token) to \recall{95.5} and \recall{98.9} over two seeds, and reaches its
+recall transition earlier in training. A matched control isolates the cause: keying
+each layer's slot by that layer's \emph{evolving residual} instead of the token---the
+identical $L\times$ slot count---collapses to \recall{0.2} (the read gates never open,
+having nothing to match). So the gain is per-depth \emph{values} that remain
+\emph{addressable} because the key is still the exact token, not the extra capacity;
+and the block-0 value skip above is subsumed, since layer $0$'s own slot already
+carries the early, identity-bearing content. We take per-layer read/write as the
+default.
+
+\subsection{Store and persistence}
+
+The store is a fixed-capacity ring buffer, one per example, holding
+$[\,\text{keys},\text{values}\,]$ of shape $[B,M,d_\text{mem}]$ plus a running key
+mean for centring. It is a non-persistent buffer, so a checkpoint trained at one
+capacity loads and runs at another unchanged---store size is a deployment knob,
+not a trained constant. A \texttt{save}/\texttt{load} path stamps the file with a
+model fingerprint (a foreign model's store is refused, not silently degraded), so
+the store survives a process death: we write a store, kill the process, reload it
+in a fresh interpreter, and answer from an empty prompt at no loss
+(\S\ref{sec:language}).

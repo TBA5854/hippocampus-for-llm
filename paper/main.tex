@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\usepackage{authblk}
+
+\newcommand{\recall}[1]{\textbf{#1\%}}
+% cross-reference wrappers (the journal Supplementary Information redefines these)
+\newcommand{\appref}[1]{Appendix~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\secsref}[1]{Sections~\ref{#1}}
+\newcommand{\chronref}{\S\ref{sec:chronicle}}
+
+\title{Memory as a Block: A Stateful Transformer with an\\
+In-Stack, Shared-KV Episodic Store}
+\author{TBA}
+\affil{}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/method}
+\input{sections/language}
+\input{sections/longcontext}
+\input{sections/shared_kv}
+\input{sections/placement}
+\input{sections/memory}
+\input{sections/sleep}
+\input{sections/transplant}
+\input{sections/chronicle}
+\input{sections/limitations}
+\input{sections/related}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\appendix
+\input{sections/appendix_log}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

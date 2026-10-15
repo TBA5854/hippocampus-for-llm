@@ -1,0 +1,19 @@
+bpe: loaded data/pg19/bpe_8192.json, vocab 8192
+bpe_recall: 1899 keys / 1899 values, prose 11.3M / 5.0M tokens
+initialised from experiment/r49/ckpt/r49_bpe32_curr.pt
+hc=on  vocab=8192  params=7.13M  trainable=6.93M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   500  train 13.6843  val 13.9254  ppl 1116152.98  recall   0.0%  char   0.0% 0 ce 7.804  [s0:7.615  s1:4.497  s2:4.451  s3:0.120]  gates=0:1.109
+step  1000  train 13.6941  val 13.9324  ppl 1124003.40  recall   0.0%  char   0.0% 0 ce 7.810  [s0:7.624  s1:4.489  s2:4.447  s3:0.121]  gates=0:1.088
+step  1500  train 13.3348  val 13.9080  ppl 1096872.79  recall   0.0%  char   0.0% 0 ce 7.800  [s0:7.622  s1:4.466  s2:4.422  s3:0.121]  gates=0:1.069
+step  2000  train 13.4256  val 13.8332  ppl 1017879.52  recall   0.0%  char   0.0% 0 ce 7.747  [s0:7.613  s1:4.453  s2:4.409  s3:0.120]  gates=0:1.052
+step  2500  train 13.0771  val 13.7556  ppl 941820.18  recall   0.0%  char   0.0% 0 ce 7.696  [s0:7.597  s1:4.436  s2:4.392  s3:0.119]  gates=0:1.038
+step  3000  train 13.3721  val 13.7677  ppl 953292.87  recall   0.0%  char   0.0% 0 ce 7.718  [s0:7.582  s1:4.413  s2:4.365  s3:0.120]  gates=0:1.029
+step  3500  train 13.3416  val 13.6879  ppl 880152.34  recall   0.3%  char   0.3% 0 ce 7.668  [s0:7.573  s1:4.383  s2:4.334  s3:0.119]  gates=0:1.019
+step  4000  train 13.4574  val 13.6403  ppl 839274.19  recall   0.0%  char   0.0% 0 ce 7.642  [s0:7.556  s1:4.362  s2:4.313  s3:0.119]  gates=0:1.012
+step  4500  train 13.3697  val 13.6223  ppl 824318.30  recall   0.0%  char   0.0% 0 ce 7.638  [s0:7.546  s1:4.343  s2:4.293  s3:0.119]  gates=0:1.008
+step  5000  train 13.2265  val 13.6056  ppl 810687.19  recall   0.2%  char   0.2% 0 ce 7.630  [s0:7.535  s1:4.334  s2:4.284  s3:0.119]  gates=0:1.006
+step  5500  train 13.3007  val 13.5885  ppl 796890.73  recall   0.2%  char   0.2% 0 ce 7.621  [s0:7.529  s1:4.327  s2:4.277  s3:0.119]  gates=0:1.005
+step  6000  train 13.2616  val 13.5840  ppl 793360.85  recall   0.2%  char   0.2% 0 ce 7.618  [s0:7.528  s1:4.325  s2:4.275  s3:0.119]  gates=0:1.005
+done in 870s
+-> experiment/r50/results/r50_bpe64_shuf.json

@@ -1,0 +1,18 @@
+{
+  "in_process_recall": 1.0,
+  "n": 40,
+  "fingerprint": "c1eb7826376d88065a5cd5122b33bc174dc4f455c43401905b149e66cc11bf16",
+  "store_bytes_per_file": 16781179,
+  "slots_per_example": 3937
+}
+{
+  "reloaded_recall": 1.0,
+  "in_process_recall": 1.0,
+  "n": 40
+}
+{
+  "mismatched_store_recall": 0.075,
+  "in_process_recall": 1.0,
+  "n": 40
+}
+=== PERSIST DONE 2026-09-16T16:26:08+05:30

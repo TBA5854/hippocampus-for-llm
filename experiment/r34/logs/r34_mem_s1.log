@@ -1,0 +1,45 @@
+pg19: 100 train books (40.4M tokens), 50 held-out books (17.4M), vocab 252, 0.0011% of held-out chars outside the train vocab
+hc=on  vocab=252  params=5.13M  trainable=4.93M  device=cuda
+example = 4 x 256 tokens, store carries across segments
+step   250  train 2.8838  val 2.8873  ppl 17.95  [s0:2.886  s1:2.888  s2:2.891  s3:2.885]  gates=0:0.001
+step   500  train 2.4701  val 2.4593  ppl 11.70  [s0:2.462  s1:2.458  s2:2.464  s3:2.454]  gates=0:0.015
+step   750  train 2.0959  val 2.0776  ppl 7.99  [s0:2.076  s1:2.075  s2:2.087  s3:2.072]  gates=0:0.027
+step  1000  train 1.8941  val 1.8743  ppl 6.52  [s0:1.869  s1:1.869  s2:1.888  s3:1.871]  gates=0:0.042
+step  1250  train 1.6700  val 1.7408  ppl 5.70  [s0:1.737  s1:1.736  s2:1.754  s3:1.736]  gates=0:0.052
+step  1500  train 1.6480  val 1.6373  ppl 5.14  [s0:1.635  s1:1.630  s2:1.650  s3:1.634]  gates=0:0.065
+step  1750  train 1.4945  val 1.5767  ppl 4.84  [s0:1.572  s1:1.572  s2:1.589  s3:1.574]  gates=0:0.073
+step  2000  train 1.4305  val 1.5323  ppl 4.63  [s0:1.527  s1:1.529  s2:1.543  s3:1.529]  gates=0:0.080
+step  2250  train 1.4326  val 1.5071  ppl 4.51  [s0:1.503  s1:1.503  s2:1.519  s3:1.503]  gates=0:0.085
+step  2500  train 1.3598  val 1.4792  ppl 4.39  [s0:1.472  s1:1.474  s2:1.491  s3:1.479]  gates=0:0.091
+step  2750  train 1.3188  val 1.4536  ppl 4.28  [s0:1.450  s1:1.450  s2:1.463  s3:1.451]  gates=0:0.095
+step  3000  train 1.3286  val 1.4436  ppl 4.24  [s0:1.440  s1:1.439  s2:1.454  s3:1.442]  gates=0:0.099
+step  3250  train 1.2720  val 1.4282  ppl 4.17  [s0:1.426  s1:1.422  s2:1.439  s3:1.426]  gates=0:0.104
+step  3500  train 1.2909  val 1.4121  ppl 4.10  [s0:1.408  s1:1.408  s2:1.423  s3:1.409]  gates=0:0.108
+step  3750  train 1.2472  val 1.4049  ppl 4.08  [s0:1.400  s1:1.401  s2:1.414  s3:1.405]  gates=0:0.112
+step  4000  train 1.2550  val 1.3930  ppl 4.03  [s0:1.390  s1:1.387  s2:1.402  s3:1.392]  gates=0:0.114
+step  4250  train 1.2878  val 1.3804  ppl 3.98  [s0:1.378  s1:1.376  s2:1.389  s3:1.378]  gates=0:0.118
+step  4500  train 1.2233  val 1.3764  ppl 3.96  [s0:1.373  s1:1.372  s2:1.386  s3:1.375]  gates=0:0.123
+step  4750  train 1.2454  val 1.3680  ppl 3.93  [s0:1.367  s1:1.364  s2:1.377  s3:1.364]  gates=0:0.128
+step  5000  train 1.2279  val 1.3632  ppl 3.91  [s0:1.361  s1:1.359  s2:1.371  s3:1.362]  gates=0:0.131
+step  5250  train 1.2176  val 1.3554  ppl 3.88  [s0:1.353  s1:1.351  s2:1.363  s3:1.355]  gates=0:0.134
+step  5500  train 1.1827  val 1.3556  ppl 3.88  [s0:1.355  s1:1.351  s2:1.363  s3:1.353]  gates=0:0.137
+step  5750  train 1.2218  val 1.3459  ppl 3.84  [s0:1.346  s1:1.342  s2:1.352  s3:1.343]  gates=0:0.141
+step  6000  train 1.2081  val 1.3401  ppl 3.82  [s0:1.339  s1:1.336  s2:1.348  s3:1.337]  gates=0:0.143
+step  6250  train 1.1820  val 1.3356  ppl 3.80  [s0:1.335  s1:1.331  s2:1.344  s3:1.333]  gates=0:0.147
+step  6500  train 1.2125  val 1.3331  ppl 3.79  [s0:1.331  s1:1.329  s2:1.341  s3:1.331]  gates=0:0.150
+step  6750  train 1.1577  val 1.3268  ppl 3.77  [s0:1.327  s1:1.322  s2:1.334  s3:1.324]  gates=0:0.153
+step  7000  train 1.2105  val 1.3231  ppl 3.75  [s0:1.321  s1:1.319  s2:1.331  s3:1.321]  gates=0:0.155
+step  7250  train 1.1661  val 1.3187  ppl 3.74  [s0:1.317  s1:1.315  s2:1.326  s3:1.316]  gates=0:0.157
+step  7500  train 1.1938  val 1.3169  ppl 3.73  [s0:1.318  s1:1.312  s2:1.324  s3:1.314]  gates=0:0.159
+step  7750  train 1.1430  val 1.3152  ppl 3.73  [s0:1.316  s1:1.310  s2:1.323  s3:1.312]  gates=0:0.160
+step  8000  train 1.1609  val 1.3102  ppl 3.71  [s0:1.310  s1:1.306  s2:1.317  s3:1.308]  gates=0:0.162
+step  8250  train 1.1645  val 1.3073  ppl 3.70  [s0:1.308  s1:1.302  s2:1.314  s3:1.305]  gates=0:0.163
+step  8500  train 1.2068  val 1.3072  ppl 3.70  [s0:1.307  s1:1.302  s2:1.315  s3:1.305]  gates=0:0.164
+step  8750  train 1.1279  val 1.3057  ppl 3.69  [s0:1.306  s1:1.301  s2:1.313  s3:1.304]  gates=0:0.165
+step  9000  train 1.1346  val 1.3037  ppl 3.68  [s0:1.303  s1:1.299  s2:1.311  s3:1.301]  gates=0:0.165
+step  9250  train 1.1435  val 1.3026  ppl 3.68  [s0:1.303  s1:1.298  s2:1.310  s3:1.300]  gates=0:0.166
+step  9500  train 1.1218  val 1.3015  ppl 3.67  [s0:1.302  s1:1.297  s2:1.309  s3:1.299]  gates=0:0.166
+step  9750  train 1.1110  val 1.3008  ppl 3.67  [s0:1.301  s1:1.296  s2:1.308  s3:1.298]  gates=0:0.166
+step 10000  train 1.1325  val 1.3012  ppl 3.67  [s0:1.301  s1:1.296  s2:1.308  s3:1.299]  gates=0:0.166
+done in 4401s
+-> experiment/r34/results/r34_mem_s1.json

@@ -1,0 +1,23 @@
+=== r62 bpe64 START 2026-09-18T20:59:53+05:30
+--- bpe64  M=2048  bridge=15 windows  (real) ---
+top-1         store= 1905 slots (15 windows)  touched=    1/1905  recall=100.0%
+top-2         store= 1905 slots (15 windows)  touched=    2/1905  recall= 96.9%
+top-4         store= 1905 slots (15 windows)  touched=    4/1905  recall= 93.8%
+top-8         store= 1905 slots (15 windows)  touched=    8/1905  recall= 93.8%
+graded(all)   store= 1905 slots (15 windows)  touched= 1905/1905  recall= 93.8%
+--- bpe64  M=4096  bridge=31 windows  (real) ---
+top-1         store= 3937 slots (31 windows)  touched=    1/3937  recall=100.0%
+top-2         store= 3937 slots (31 windows)  touched=    2/3937  recall= 95.0%
+top-4         store= 3937 slots (31 windows)  touched=    4/3937  recall= 91.2%
+top-8         store= 3937 slots (31 windows)  touched=    8/3937  recall= 90.0%
+graded(all)   store= 3937 slots (31 windows)  touched= 3937/3937  recall= 90.0%
+--- bpe64  M=8192  bridge=63 windows  (real) ---
+top-1         store= 8001 slots (63 windows)  touched=    1/8001  recall=100.0%
+top-2         store= 8001 slots (63 windows)  touched=    2/8001  recall= 90.6%
+top-4         store= 8001 slots (63 windows)  touched=    4/8001  recall= 85.6%
+top-8         store= 8001 slots (63 windows)  touched=    8/8001  recall= 84.4%
+graded(all)   store= 8001 slots (63 windows)  touched= 8001/8001  recall= 82.5%
+--- bpe64  M=4096  bridge=31 windows  (SHUFFLE control) ---
+top-1         store= 3937 slots (31 windows)  touched=    1/3937  recall=  0.0%
+graded(all)   store= 3937 slots (31 windows)  touched= 3937/3937  recall=  0.0%
+=== ROUND DONE 2026-09-18T21:02:33+05:30

@@ -1,0 +1,4 @@
+semantic probe (n=24 single-token synonym pairs):
+  exact (query=word)     recall  41.7%
+  synonym (query=synonym) recall   4.2%   [cos(word,syn)=0.906]
+  random (query=random)   recall   0.0%   [cos(word,rnd)=0.870]  chance~4.2%

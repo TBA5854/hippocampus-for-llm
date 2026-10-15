@@ -1,0 +1,13 @@
+{
+  "slots": 3937,
+  "batch": 4,
+  "symbol_fraction": 0.0038100075908005238,
+  "n_symbols": 32,
+  "emb": 0.06102362275123596,
+  "head": 0.06019812077283859,
+  "probe_heldout": 0.9948564767837524,
+  "emb_on_symbols": 0.0,
+  "emb_on_text": 0.0612570159137249,
+  "head_on_symbols": 0.0,
+  "head_on_text": 0.060428354889154434
+}

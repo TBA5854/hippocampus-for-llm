@@ -1,0 +1,3 @@
+=== r8_w0s1 START 2026-09-13T23:35:46+05:30
+=== r8 STOPPED by design 2026-09-13T23:41:28+05:30: r8_w0s1 matching collapsed 100% -> 0% at step 750 with position-free keys, replicating r7. Diagnosis on r7_w0s1 ckpt: untrained identity query matches 93.8%, learned query (17% from I) 0% - training steers the shared query away. Continued as r9 with --freeze-query.
+=== ROUND DONE 2026-09-13T23:41:28+05:30

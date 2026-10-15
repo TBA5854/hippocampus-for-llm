@@ -1,0 +1,52 @@
+{
+  "n_facts": 64,
+  "seg_len": 128,
+  "memory_size": 1024,
+  "rows": [
+    {
+      "read": "top-1",
+      "k": 1,
+      "slots_in_store": 889,
+      "slots_touched": 1,
+      "bridge_windows": 7,
+      "recall": 1.0,
+      "n": 160
+    },
+    {
+      "read": "top-2",
+      "k": 2,
+      "slots_in_store": 889,
+      "slots_touched": 2,
+      "bridge_windows": 7,
+      "recall": 0.99375,
+      "n": 160
+    },
+    {
+      "read": "top-4",
+      "k": 4,
+      "slots_in_store": 889,
+      "slots_touched": 4,
+      "bridge_windows": 7,
+      "recall": 0.9875,
+      "n": 160
+    },
+    {
+      "read": "top-8",
+      "k": 8,
+      "slots_in_store": 889,
+      "slots_touched": 8,
+      "bridge_windows": 7,
+      "recall": 0.9875,
+      "n": 160
+    },
+    {
+      "read": "graded(all)",
+      "k": 0,
+      "slots_in_store": 889,
+      "slots_touched": 889,
+      "bridge_windows": 7,
+      "recall": 0.9875,
+      "n": 160
+    }
+  ]
+}

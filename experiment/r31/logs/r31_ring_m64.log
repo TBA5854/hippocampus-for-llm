@@ -1,0 +1,37 @@
+hc=on  vocab=337  params=5.11M  trainable=4.92M  device=cuda
+example = 4 x 128 tokens, store carries across segments
+step   250  train 8.9560  val 8.9403  ppl 7633.81  recall   0.2%  [s0:3.378  s1:3.056  s2:3.049  s3:0.614]  gates=0:0.000
+step   500  train 7.9314  val 7.8518  ppl 2570.28  recall   0.9%  [s0:2.475  s1:2.155  s2:2.141  s3:0.160]  gates=0:0.005
+step   750  train 7.4361  val 7.4745  ppl 1762.51  recall   0.3%  [s0:2.023  s1:1.639  s2:1.634  s3:0.080]  gates=0:0.006
+step  1000  train 7.1364  val 7.2287  ppl 1378.39  recall   0.8%  [s0:1.761  s1:1.340  s2:1.340  s3:0.077]  gates=0:0.004
+step  1250  train 7.1434  val 7.1564  ppl 1282.31  recall   0.9%  [s0:1.655  s1:1.222  s2:1.223  s3:0.158]  gates=0:0.001
+step  1500  train 7.0917  val 7.0347  ppl 1135.31  recall   0.6%  [s0:1.569  s1:1.119  s2:1.122  s3:0.076]  gates=0:0.001
+step  1750  train 7.0139  val 7.0164  ppl 1114.79  recall   0.6%  [s0:1.516  s1:1.057  s2:1.062  s3:0.077]  gates=0:0.001
+step  2000  train 7.0780  val 7.0072  ppl 1104.55  recall   1.2%  [s0:1.480  s1:1.013  s2:1.016  s3:0.077]  gates=0:0.002
+step  2250  train 6.9908  val 6.9688  ppl 1062.90  recall   1.1%  [s0:1.450  s1:0.983  s2:0.987  s3:0.077]  gates=0:0.001
+step  2500  train 7.0103  val 6.9559  ppl 1049.28  recall   0.6%  [s0:1.430  s1:0.958  s2:0.964  s3:0.077]  gates=0:0.001
+step  2750  train 6.9465  val 6.9285  ppl 1021.00  recall   1.2%  [s0:1.413  s1:0.938  s2:0.943  s3:0.076]  gates=0:0.001
+step  3000  train 6.8779  val 6.9038  ppl 996.06  recall   0.9%  [s0:1.394  s1:0.920  s2:0.921  s3:0.076]  gates=0:0.001
+step  3250  train 6.8465  val 6.8922  ppl 984.56  recall   0.9%  [s0:1.379  s1:0.903  s2:0.906  s3:0.077]  gates=0:0.002
+step  3500  train 6.8948  val 6.8916  ppl 983.96  recall   0.6%  [s0:1.368  s1:0.889  s2:0.893  s3:0.077]  gates=0:0.001
+step  3750  train 6.8931  val 6.8829  ppl 975.43  recall   1.1%  [s0:1.359  s1:0.879  s2:0.886  s3:0.076]  gates=0:0.001
+step  4000  train 6.8183  val 6.8679  ppl 960.95  recall   0.8%  [s0:1.346  s1:0.864  s2:0.870  s3:0.076]  gates=0:0.001
+step  4250  train 6.8640  val 6.8632  ppl 956.45  recall   0.8%  [s0:1.338  s1:0.854  s2:0.861  s3:0.076]  gates=0:0.002
+step  4500  train 6.7945  val 6.8567  ppl 950.18  recall   1.1%  [s0:1.332  s1:0.843  s2:0.851  s3:0.076]  gates=0:0.002
+step  4750  train 6.8162  val 6.8506  ppl 944.43  recall   0.8%  [s0:1.323  s1:0.833  s2:0.843  s3:0.076]  gates=0:0.002
+step  5000  train 6.8625  val 6.8366  ppl 931.31  recall   0.2%  [s0:1.317  s1:0.828  s2:0.834  s3:0.076]  gates=0:0.003
+step  5250  train 6.8391  val 6.8357  ppl 930.46  recall   0.9%  [s0:1.309  s1:0.820  s2:0.826  s3:0.076]  gates=0:0.002
+step  5500  train 6.8445  val 6.8218  ppl 917.59  recall   1.1%  [s0:1.305  s1:0.813  s2:0.821  s3:0.076]  gates=0:0.002
+step  5750  train 6.7965  val 6.8241  ppl 919.77  recall   0.9%  [s0:1.299  s1:0.805  s2:0.815  s3:0.076]  gates=0:0.003
+step  6000  train 6.7932  val 6.8144  ppl 910.86  recall   0.0%  [s0:1.294  s1:0.801  s2:0.809  s3:0.076]  gates=0:0.003
+step  6250  train 6.7987  val 6.8122  ppl 908.85  recall   0.0%  [s0:1.289  s1:0.796  s2:0.804  s3:0.076]  gates=0:0.002
+step  6500  train 6.7801  val 6.8171  ppl 913.30  recall   0.9%  [s0:1.286  s1:0.791  s2:0.800  s3:0.076]  gates=0:0.002
+step  6750  train 6.8058  val 6.8099  ppl 906.75  recall   1.6%  [s0:1.283  s1:0.788  s2:0.797  s3:0.076]  gates=0:0.003
+step  7000  train 6.7661  val 6.8041  ppl 901.49  recall   0.5%  [s0:1.280  s1:0.785  s2:0.794  s3:0.076]  gates=0:0.003
+step  7250  train 6.7591  val 6.8013  ppl 898.98  recall   0.6%  [s0:1.278  s1:0.783  s2:0.792  s3:0.076]  gates=0:0.003
+step  7500  train 6.7754  val 6.8002  ppl 898.04  recall   0.5%  [s0:1.277  s1:0.781  s2:0.790  s3:0.076]  gates=0:0.003
+step  7750  train 6.7893  val 6.7996  ppl 897.50  recall   0.5%  [s0:1.277  s1:0.780  s2:0.790  s3:0.076]  gates=0:0.003
+step  8000  train 6.7628  val 6.7995  ppl 897.40  recall   0.5%  [s0:1.277  s1:0.780  s2:0.789  s3:0.076]  gates=0:0.003
+done in 971s
+-> experiment/r31/ckpt/r31_ring_m64.pt
+-> experiment/r31/results/r31_ring_m64.json
