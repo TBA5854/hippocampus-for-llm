@@ -27,6 +27,35 @@ uv sync --group dev          # torch, tokenizers, pytest
 uv run pytest                # runs tests_mech/
 ```
 
+## Demo (no GPU, no data)
+
+`demo/store_demo.py` exercises the store itself with a hand-built embedding table and no trained
+model. It writes 64 facts, reads them back by exact token match, grows the store to about
+100,000 slots, runs the controls, and saves, reloads and refuses a foreign store file.
+
+```sh
+uv run python demo/store_demo.py
+```
+
+Run time: about 30 seconds wall clock on a 10-core CPU (12 seconds inside the script, the rest is
+importing torch). Expected output, with timings that vary:
+
+```
+1-2. 64 facts written once, queried by their own key tokens
+     exact-match recall: 100.0%   (slots used: 64)
+3.   store grown to 100,064 slots of other tokens; top-1 read (1 slot used per query)
+     recall: 100.0%  [2.39s for 64 queries]
+4.   controls
+     scrambled store (another store read with these queries): 0.0%
+     empty store: 0.0%
+5.   saved, reloaded into a fresh store: recall 100.0%
+     foreign model's file refused: store was written by model model-A, not model-B; its keys an...
+```
+
+This shows the store mechanics only. The trained-model results (a language model learning to use the
+store) need GPU runs; they are in `experiment/` and the manuscript. Training the task from scratch
+on a CPU is not practical: 300 steps took about 7 minutes and had not yet learned it.
+
 ## Data
 
 The language experiments use PG-19 (Rae et al., ICLR 2020). `mech/data.py` reads
